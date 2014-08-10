@@ -7,12 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		499459C319981BE500DDD773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459C219981BE500DDD773 /* AppDelegate.swift */; };
-		499459C619981BE500DDD773 /* RevCheckIn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 499459C419981BE500DDD773 /* RevCheckIn.xcdatamodeld */; };
-		499459C819981BE500DDD773 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459C719981BE500DDD773 /* ViewController.swift */; };
-		499459CB19981BE500DDD773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499459C919981BE500DDD773 /* Main.storyboard */; };
-		499459CD19981BE500DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459CC19981BE500DDD773 /* Images.xcassets */; };
 		499459D919981BE600DDD773 /* RevCheckInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459D819981BE600DDD773 /* RevCheckInTests.swift */; };
+		499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E319981BFD00DDD773 /* AppDelegate.swift */; };
+		499459F519981BFD00DDD773 /* rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E419981BFD00DDD773 /* rootViewController.swift */; };
+		499459F619981BFD00DDD773 /* userModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E519981BFD00DDD773 /* userModel.swift */; };
+		499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E619981BFD00DDD773 /* activeUserModel.swift */; };
+		499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E719981BFD00DDD773 /* userStatusModel.swift */; };
+		499459F919981BFD00DDD773 /* usersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E819981BFD00DDD773 /* usersTableViewController.swift */; };
+		499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E919981BFD00DDD773 /* loginViewController.swift */; };
+		499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EA19981BFD00DDD773 /* registerViewController.swift */; };
+		499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EB19981BFD00DDD773 /* settingsViewController.swift */; };
+		499459FD19981BFD00DDD773 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EC19981BFD00DDD773 /* HTTPHelper.swift */; };
+		499459FE19981BFD00DDD773 /* HTTPRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459ED19981BFD00DDD773 /* HTTPRequestSerializer.swift */; };
+		499459FF19981BFD00DDD773 /* HTTPResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EE19981BFD00DDD773 /* HTTPResponseSerializer.swift */; };
+		49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EF19981BFD00DDD773 /* HTTPTask.swift */; };
+		49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459F019981BFD00DDD773 /* HTTPUpload.swift */; };
+		49945A0219981BFD00DDD773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499459F119981BFD00DDD773 /* Main.storyboard */; };
+		49945A0319981BFD00DDD773 /* RevCheckIn.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */; };
+		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +40,27 @@
 /* Begin PBXFileReference section */
 		499459BD19981BE500DDD773 /* RevCheckIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevCheckIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499459C119981BE500DDD773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		499459C219981BE500DDD773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		499459C519981BE500DDD773 /* RevCheckIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RevCheckIn.xcdatamodel; sourceTree = "<group>"; };
-		499459C719981BE500DDD773 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		499459CA19981BE500DDD773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		499459CC19981BE500DDD773 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		499459D219981BE600DDD773 /* RevCheckInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RevCheckInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		499459D719981BE600DDD773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		499459D819981BE600DDD773 /* RevCheckInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevCheckInTests.swift; sourceTree = "<group>"; };
+		499459E219981BFD00DDD773 /* RevCheckIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RevCheckIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		499459E319981BFD00DDD773 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		499459E419981BFD00DDD773 /* rootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rootViewController.swift; sourceTree = "<group>"; };
+		499459E519981BFD00DDD773 /* userModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userModel.swift; sourceTree = "<group>"; };
+		499459E619981BFD00DDD773 /* activeUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activeUserModel.swift; sourceTree = "<group>"; };
+		499459E719981BFD00DDD773 /* userStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userStatusModel.swift; sourceTree = "<group>"; };
+		499459E819981BFD00DDD773 /* usersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersTableViewController.swift; sourceTree = "<group>"; };
+		499459E919981BFD00DDD773 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		499459EA19981BFD00DDD773 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
+		499459EB19981BFD00DDD773 /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		499459EC19981BFD00DDD773 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
+		499459ED19981BFD00DDD773 /* HTTPRequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestSerializer.swift; sourceTree = "<group>"; };
+		499459EE19981BFD00DDD773 /* HTTPResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponseSerializer.swift; sourceTree = "<group>"; };
+		499459EF19981BFD00DDD773 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		499459F019981BFD00DDD773 /* HTTPUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUpload.swift; sourceTree = "<group>"; };
+		499459F119981BFD00DDD773 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RevCheckIn.xcdatamodel; sourceTree = "<group>"; };
+		499459F319981BFD00DDD773 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +102,25 @@
 		499459BF19981BE500DDD773 /* RevCheckIn */ = {
 			isa = PBXGroup;
 			children = (
-				499459C219981BE500DDD773 /* AppDelegate.swift */,
-				499459C719981BE500DDD773 /* ViewController.swift */,
-				499459C919981BE500DDD773 /* Main.storyboard */,
-				499459CC19981BE500DDD773 /* Images.xcassets */,
-				499459C419981BE500DDD773 /* RevCheckIn.xcdatamodeld */,
+				499459E319981BFD00DDD773 /* AppDelegate.swift */,
+				499459E419981BFD00DDD773 /* rootViewController.swift */,
+				499459E519981BFD00DDD773 /* userModel.swift */,
+				499459E619981BFD00DDD773 /* activeUserModel.swift */,
+				499459E719981BFD00DDD773 /* userStatusModel.swift */,
+				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
+				499459E919981BFD00DDD773 /* loginViewController.swift */,
+				499459EA19981BFD00DDD773 /* registerViewController.swift */,
+				499459EB19981BFD00DDD773 /* settingsViewController.swift */,
+				499459EC19981BFD00DDD773 /* HTTPHelper.swift */,
+				499459ED19981BFD00DDD773 /* HTTPRequestSerializer.swift */,
+				499459EE19981BFD00DDD773 /* HTTPResponseSerializer.swift */,
+				499459EF19981BFD00DDD773 /* HTTPTask.swift */,
+				499459F019981BFD00DDD773 /* HTTPUpload.swift */,
+				499459F119981BFD00DDD773 /* Main.storyboard */,
+				499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */,
+				499459F319981BFD00DDD773 /* Images.xcassets */,
 				499459C019981BE500DDD773 /* Supporting Files */,
+				499459E219981BFD00DDD773 /* RevCheckIn-Bridging-Header.h */,
 			);
 			path = RevCheckIn;
 			sourceTree = "<group>";
@@ -192,8 +230,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499459CB19981BE500DDD773 /* Main.storyboard in Resources */,
-				499459CD19981BE500DDD773 /* Images.xcassets in Resources */,
+				49945A0219981BFD00DDD773 /* Main.storyboard in Resources */,
+				49945A0419981BFD00DDD773 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,9 +249,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499459C819981BE500DDD773 /* ViewController.swift in Sources */,
-				499459C319981BE500DDD773 /* AppDelegate.swift in Sources */,
-				499459C619981BE500DDD773 /* RevCheckIn.xcdatamodeld in Sources */,
+				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
+				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
+				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
+				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
+				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
+				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,
+				49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */,
+				499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */,
+				499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */,
+				499459FD19981BFD00DDD773 /* HTTPHelper.swift in Sources */,
+				499459FF19981BFD00DDD773 /* HTTPResponseSerializer.swift in Sources */,
+				499459FE19981BFD00DDD773 /* HTTPRequestSerializer.swift in Sources */,
+				49945A0319981BFD00DDD773 /* RevCheckIn.xcdatamodel in Sources */,
+				499459F919981BFD00DDD773 /* usersTableViewController.swift in Sources */,
+				499459F619981BFD00DDD773 /* userModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,17 +284,6 @@
 			targetProxy = 499459D319981BE600DDD773 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		499459C919981BE500DDD773 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				499459CA19981BE500DDD773 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		499459DA19981BE600DDD773 /* Debug */ = {
@@ -329,9 +368,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -340,9 +382,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -409,19 +453,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		499459C419981BE500DDD773 /* RevCheckIn.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				499459C519981BE500DDD773 /* RevCheckIn.xcdatamodel */,
-			);
-			currentVersion = 499459C519981BE500DDD773 /* RevCheckIn.xcdatamodel */;
-			path = RevCheckIn.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 499459B519981BE500DDD773 /* Project object */;
 }

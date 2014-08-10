@@ -2,21 +2,61 @@
 //  AppDelegate.swift
 //  RevCheckIn
 //
-//  Created by Andrew Sowers on 8/10/14.
+//  Created by Andrew Sowers on 7/27/14.
 //  Copyright (c) 2014 Andrew Sowers. All rights reserved.
 //
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, NSURLSessionDelegate  {
                             
     var window: UIWindow?
-
-
+    var locationManager: CLLocationManager?
+    var lastProximity: CLProximity?
+    var myList: Array<AnyObject> = []
+    
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+
+//        if(application.respondsToSelector("registerUserNotificationSettings:")) {
+//            application.registerUserNotificationSettings(
+//                UIUserNotificationSettings(
+//                    forTypes: UIUserNotificationType.Alert | UIUserNotificationType.Sound,
+//                    categories: nil
+//                )
+//            )
+//        }
+        
+        var types: UIUserNotificationType = UIUserNotificationType.Badge |
+            UIUserNotificationType.Alert |
+            UIUserNotificationType.Sound
+        
+        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        
+        application.registerUserNotificationSettings( settings )
+        application.registerForRemoteNotifications()
+        
+        var uuidString:String = "AAAAAAAA-BBBB-BBBB-CCCC-CCCCDDDDDDDD" as String
+        let beaconIdentifier = "Push"
+        let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
+        let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
+            identifier: beaconIdentifier)
+        locationManager = CLLocationManager()
+        if(locationManager!.respondsToSelector("requestAlwaysAuthorization")) {
+            locationManager!.requestAlwaysAuthorization()
+        }
+        locationManager!.delegate = self
+        locationManager!.pausesLocationUpdatesAutomatically = false
+        
+        locationManager!.startMonitoringForRegion(beaconRegion)
+        locationManager!.startRangingBeaconsInRegion(beaconRegion)
+        locationManager!.startUpdatingLocation()
+
+
+        
         return true
     }
 
@@ -31,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication!) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        // Called as part of the transition from the background to the `inactive state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(application: UIApplication!) {
@@ -44,10 +84,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData! ) {
+        
+        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        
+        var deviceTokenString: String = ( deviceToken.description as NSString )
+                                            .stringByTrimmingCharactersInSet( characterSet )
+                                            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        
+        println( deviceTokenString )
+        
+    }
+
+    func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError! ) {
+        
+        println("Error: \(error.localizedDescription )")
+    }
+
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.experiencepush.RevCheckIn" in the application's documents Application Support directory.
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "-.RevCheckIn" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1] as NSURL
     }()
@@ -107,5 +164,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+extension AppDelegate: CLLocationManagerDelegate {
+    func sendLocalNotificationWithMessage(message: String!) {
+        let notification:UILocalNotification = UILocalNotification()
+        notification.alertBody = message
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func locationManager(manager: CLLocationManager!,
+        didRangeBeacons beacons: [AnyObject]!,
+        inRegion region: CLBeaconRegion!) {
+            //NSLog("didRangeBeacons");
+            var message:String = ""
+            
+            
+            
+            
+            if(beacons.count > 0) {
+                
+                let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
+                if(nearestBeacon.proximity == lastProximity ||
+                    nearestBeacon.proximity == CLProximity.Unknown) {
+                        return;
+                }
+                lastProximity = nearestBeacon.proximity;
+                switch nearestBeacon.proximity {
+                case CLProximity.Far:
+                    message = "You are far away from the beacon"
+                case CLProximity.Near:
+                    message = "You are near the beacon"
+                case CLProximity.Immediate:
+                    message = "You are in the immediate proximity of the beacon"
+                case CLProximity.Unknown:
+                    return
+                }
+            } else {
+                message = "No beacons are nearby"
+            }
+            
+            //NSLog("%@", message)
+            //sendLocalNotificationWithMessage(message)
+    }
+    func locationManager(manager: CLLocationManager!,
+        didEnterRegion region: CLRegion!) {
+            manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.startUpdatingLocation()
+            var myList: Array<AnyObject> = []
+            var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+            let freq = NSFetchRequest(entityName: "Active_user")
+            
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                NSLog("You've checked in, \(user)")
+                sendLocalNotificationWithMessage("You've checked in")
+            }
+            else{
+            }
+
+
+    }
+    
+    func locationManager(manager: CLLocationManager!,
+        didExitRegion region: CLRegion!) {
+            manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
+            manager.stopUpdatingLocation()
+            var myList: Array<AnyObject> = []
+            var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+            let freq = NSFetchRequest(entityName: "Active_user")
+            
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                NSLog("You've checked out, \(user)")
+                sendLocalNotificationWithMessage("You've checked out")
+            }
+            else{
+            }
+
+    }
 }
 
