@@ -23,8 +23,8 @@
 		49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459EF19981BFD00DDD773 /* HTTPTask.swift */; };
 		49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459F019981BFD00DDD773 /* HTTPUpload.swift */; };
 		49945A0219981BFD00DDD773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499459F119981BFD00DDD773 /* Main.storyboard */; };
-		49945A0319981BFD00DDD773 /* RevCheckIn.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */; };
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
+		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		499459EF19981BFD00DDD773 /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		499459F019981BFD00DDD773 /* HTTPUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUpload.swift; sourceTree = "<group>"; };
 		499459F119981BFD00DDD773 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RevCheckIn.xcdatamodel; sourceTree = "<group>"; };
 		499459F319981BFD00DDD773 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +117,8 @@
 				499459EF19981BFD00DDD773 /* HTTPTask.swift */,
 				499459F019981BFD00DDD773 /* HTTPUpload.swift */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
-				499459F219981BFD00DDD773 /* RevCheckIn.xcdatamodel */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
+				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
 				499459C019981BE500DDD773 /* Supporting Files */,
 				499459E219981BFD00DDD773 /* RevCheckIn-Bridging-Header.h */,
 			);
@@ -251,6 +251,7 @@
 			files = (
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
+				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
@@ -261,7 +262,6 @@
 				499459FD19981BFD00DDD773 /* HTTPHelper.swift in Sources */,
 				499459FF19981BFD00DDD773 /* HTTPResponseSerializer.swift in Sources */,
 				499459FE19981BFD00DDD773 /* HTTPRequestSerializer.swift in Sources */,
-				49945A0319981BFD00DDD773 /* RevCheckIn.xcdatamodel in Sources */,
 				499459F919981BFD00DDD773 /* usersTableViewController.swift in Sources */,
 				499459F619981BFD00DDD773 /* userModel.swift in Sources */,
 			);
@@ -453,6 +453,20 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		49945A051998230B00DDD773 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49945A061998230B00DDD773 /* Model.xcdatamodel */,
+			);
+			currentVersion = 49945A061998230B00DDD773 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 499459B519981BE500DDD773 /* Project object */;
 }

@@ -9,6 +9,6 @@
 import UIKit
 import CoreData
 class userStatusModel: NSManagedObject {
-    @NSManaged var checked_in: Int16
-    @NSManaged var user_id: Int16
+    @NSManaged var checked_in: String
+    @NSManaged var user_id: String
 }

@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 class userModel: NSManagedObject {
+    @NSManaged var id: String
     @NSManaged var username: String
-    @NSManaged var password: String
     @NSManaged var name: String
+    @NSManaged var email: String
     @NSManaged var business_name: String
 }
