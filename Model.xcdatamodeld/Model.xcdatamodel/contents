@@ -10,6 +10,10 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="User_device" syncable="YES">
+        <attribute name="device" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="User_status" syncable="YES">
         <attribute name="checked_in" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,5 +22,6 @@
         <element name="Active_user" positionX="-63" positionY="-18" width="128" height="60"/>
         <element name="User" positionX="-54" positionY="0" width="128" height="120"/>
         <element name="User_status" positionX="-36" positionY="45" width="128" height="75"/>
+        <element name="User_device" positionX="-45" positionY="27" width="128" height="73"/>
     </elements>
 </model>
