@@ -10,6 +10,7 @@ import Foundation
 
 //this should go away at some point. Just a work around for poor swift substring support
 //http://openradar.appspot.com/radar?id=6373877630369792
+
 extension String {
     
     subscript (idx: Int) -> String
