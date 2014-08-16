@@ -10,5 +10,4 @@ import UIKit
 import CoreData
 class userDeviceModel: NSManagedObject {
     @NSManaged var device: String
-    @NSManaged var username: String
 }

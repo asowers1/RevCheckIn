@@ -53,16 +53,18 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
             var user: String = selectedItem.valueForKeyPath("username") as String
-            
+            println("active user: \(user)")
             if user != "-1" {
                 println("login successful")
-                self.performSegueWithIdentifier("go ", sender: self)
+                
+                
+                self.performSegueWithIdentifier("go", sender: self)
             }
             else{
                 println("login unsuccessful")
-                let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                //let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
+                //alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
+                //self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }

@@ -93,6 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                                             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
         println( deviceTokenString )
+
+        //record user device
+        
         
     }
 
@@ -177,10 +180,18 @@ extension AppDelegate: CLLocationManagerDelegate {
         inRegion region: CLBeaconRegion!) {
             //NSLog("didRangeBeacons");
             var message:String = ""
+            var user:String = ""
+            var myList: Array<AnyObject> = []
+            var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+            let freq = NSFetchRequest(entityName: "Active_user")
             
-            
-            
-            
+            myList = context2.executeFetchRequest(freq, error: nil)
+            if !myList.isEmpty {
+                var selectedItem: NSManagedObject = myList[0] as
+                NSManagedObject
+                user = selectedItem.valueForKeyPath("username") as String
+            }
             if(beacons.count > 0) {
                 
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
@@ -188,6 +199,11 @@ extension AppDelegate: CLLocationManagerDelegate {
                     nearestBeacon.proximity == CLProximity.Unknown) {
                         return;
                 }
+
+                if myList.isEmpty || user == "-1" {
+                    self.setUserState("1")
+                }
+                
                 lastProximity = nearestBeacon.proximity;
                 switch nearestBeacon.proximity {
                 case CLProximity.Far:
@@ -200,6 +216,9 @@ extension AppDelegate: CLLocationManagerDelegate {
                     return
                 }
             } else {
+                if myList.isEmpty || user == "-1" {
+                    self.setUserState("0")
+                }
                 message = "No beacons are nearby"
             }
             
@@ -213,7 +232,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var myList: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            let freq = NSFetchRequest(entityName: "Active_user")
+            var freq = NSFetchRequest(entityName: "Active_user")
             
             while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
@@ -222,6 +241,8 @@ extension AppDelegate: CLLocationManagerDelegate {
             if user != "-1" {
                 NSLog("You've checked in, \(user)")
                 sendLocalNotificationWithMessage("You've checked in")
+                var helper = HTTPHelper()
+                helper.pushStateChange(user, state: "1")
             }
             else{
             }
@@ -239,16 +260,46 @@ extension AppDelegate: CLLocationManagerDelegate {
             let freq = NSFetchRequest(entityName: "Active_user")
             
             while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
-            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var selectedItem: NSManagedObject = myList[0] as
+            NSManagedObject
             var user: String = selectedItem.valueForKeyPath("username") as String
             
             if user != "-1" {
                 NSLog("You've checked out, \(user)")
                 sendLocalNotificationWithMessage("You've checked out")
+                var helper = HTTPHelper()
+                helper.pushStateChange(user, state: "0")
             }
             else{
             }
 
+    }
+    
+    func setUserState(state:String){
+        self.deleteUserStatus()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext!
+        let en = NSEntityDescription.entityForName("User_status", inManagedObjectContext: context)
+        var newItem = userStatusModel(entity: en, insertIntoManagedObjectContext: context)
+        newItem.checked_in = state
+        context.save(nil)
+        println("set state: \(state)")
+    }
+    
+    func deleteUserStatus(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext!
+        let freq = NSFetchRequest(entityName: "User_status")
+        
+        var myList: Array<AnyObject> = []
+        myList = context.executeFetchRequest(freq, error: nil)
+        if !myList.isEmpty{
+            println("deleting context")
+            for item in myList {
+                context.deleteObject(item as NSManagedObject)
+            }
+        }
+        context.save(nil)
     }
 }
 
