@@ -7,23 +7,40 @@
 //
 
 #import "allUsersTableViewController.h"
+#import "RevCheckIn-Swift.h"
 
 @interface allUsersTableViewController ()
 
 @end
 
-@implementation allUsersTableViewController
+@implementation allUsersTableViewController {
+    NSDictionary *allTeams;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Get Dictionary of Users with BusinessName as Key
     
+    allTeams = [[NSMutableDictionary alloc] init];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    //Setting Entity to be Queried
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
+                                              inManagedObjectContext:delegate.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    NSError* error;
+    
+    // Query on managedObjectContext With Generated fetchRequest
+    NSArray *fetchedRecords = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *record in fetchedRecords){
+        [allTeams setValue:record forKey:[record valueForKey:@"team"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
