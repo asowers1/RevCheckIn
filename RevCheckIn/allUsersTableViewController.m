@@ -29,6 +29,21 @@
     
     allTeams = [[NSMutableDictionary alloc] init];
     
+    HTTPHelper *helper = [[HTTPHelper alloc] init];
+    
+    [helper getAllUsers];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+-(void)loadUsers{
+    
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -52,14 +67,9 @@
             [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
         }
     }
+    
+    [self.tableView reloadData];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
