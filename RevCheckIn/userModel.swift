@@ -19,4 +19,5 @@ class userModel: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var email: String
     @NSManaged var business_name: String
+    
 }
