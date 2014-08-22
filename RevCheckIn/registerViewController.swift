@@ -12,9 +12,11 @@ class registerViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTestField: UITextField!
-    @IBOutlet var nameTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var businessNameTextField: UITextField!
+    @IBOutlet var nameTextField:     UITextField!
+    @IBOutlet var emailTextField:    UITextField!
+    @IBOutlet var phone:             UITextField!
+    @IBOutlet var role:              UITextField!
+    @IBOutlet var registrationCode:  UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,9 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         passwordTestField.delegate     = self
         nameTextField.delegate         = self
         emailTextField.delegate        = self
-        businessNameTextField.delegate = self
+        role.delegate                  = self
+        phone.delegate                 = self
+        registrationCode.delegate      = self
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
@@ -33,18 +37,23 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         }else if(textField == nameTextField){
             emailTextField.becomeFirstResponder()
         }else if(textField == emailTextField){
-            businessNameTextField.becomeFirstResponder()
-        }else if(textField == businessNameTextField){
-            businessNameTextField.resignFirstResponder()
+            role.becomeFirstResponder()
+        }else if(textField == role){
+            phone.becomeFirstResponder()
+        }else if(textField == phone){
+            registrationCode.becomeFirstResponder()
+        }else if(textField == registrationCode){
+            registrationCode.resignFirstResponder()
             self.registerLogic()
         }
+        
         return true
     }
     
     func registerLogic(){
-        if usernameTextField.text != "" && passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && businessNameTextField.text != "" {
+        if usernameTextField.text != "" && passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" {
             var helper: HTTPHelper = HTTPHelper() as HTTPHelper
-            helper.register(usernameTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, businessName: businessNameTextField.text)
+            helper.register(usernameTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, businessName: registrationCode.text)
             var myList: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!

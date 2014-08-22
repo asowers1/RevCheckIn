@@ -43,6 +43,7 @@
     // Query on managedObjectContext With Generated fetchRequest
     NSArray *fetchedRecords = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
+    
     for (NSManagedObject *record in fetchedRecords){
         if ([allTeams valueForKey:[record valueForKey:@"business_name"]]){
             [[allTeams valueForKey:[record valueForKey:@"business_name"]] addObject:record];
