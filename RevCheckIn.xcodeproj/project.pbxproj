@@ -27,6 +27,9 @@
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
+		AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */; };
+		AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */; };
+		AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382E0019A7B96100573AA5 /* UserInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,12 @@
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
+		AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allUsersTableViewController.h; sourceTree = "<group>"; };
+		AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = allUsersTableViewController.m; sourceTree = "<group>"; };
+		AB382DFC19A7A6E300573AA5 /* UserStatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusTableViewCell.h; sourceTree = "<group>"; };
+		AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusTableViewCell.m; sourceTree = "<group>"; };
+		AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		AB382E0019A7B96100573AA5 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +123,12 @@
 				499459E619981BFD00DDD773 /* activeUserModel.swift */,
 				499459E719981BFD00DDD773 /* userStatusModel.swift */,
 				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
+				AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */,
+				AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */,
+				AB382DFC19A7A6E300573AA5 /* UserStatusTableViewCell.h */,
+				AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */,
+				AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */,
+				AB382E0019A7B96100573AA5 /* UserInfoViewController.m */,
 				499459E919981BFD00DDD773 /* loginViewController.swift */,
 				499459EA19981BFD00DDD773 /* registerViewController.swift */,
 				499459EB19981BFD00DDD773 /* settingsViewController.swift */,
@@ -262,10 +277,13 @@
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
+				AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */,
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
+				AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
 				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,
 				49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */,
+				AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */,
 				49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */,
 				499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */,
 				499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */,
@@ -380,7 +398,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
@@ -396,7 +414,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
