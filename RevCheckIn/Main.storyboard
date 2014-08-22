@@ -339,7 +339,6 @@
                                     <outlet property="timeLabel" destination="Ye0-hJ-Zvk" id="vch-bd-JeM"/>
                                     <outlet property="titleLabel" destination="snm-Bb-VIQ" id="9Oa-5u-CRh"/>
                                     <outlet property="userNameLabel" destination="Gqd-gn-A4W" id="pGo-sp-9JT"/>
-                                    <segue destination="qyZ-CG-FOO" kind="show" id="G0U-J0-tXm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -356,6 +355,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="qyZ-CG-FOO" kind="show" identifier="showUserDetails" id="bpY-Jm-3b3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMw-qJ-49j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
