@@ -9,6 +9,7 @@
 #import "allUsersTableViewController.h"
 #import "RevCheckIn-Swift.h"
 #import "UserStatusTableViewCell.h"
+#import "UserInfoViewController.h"
 
 @interface allUsersTableViewController ()
 
@@ -16,6 +17,7 @@
 
 @implementation allUsersTableViewController {
     NSDictionary *allTeams;
+    NSManagedObject *selectedUser;
 }
 
 - (void)viewDidLoad {
@@ -83,6 +85,12 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    selectedUser = [[allTeams valueForKey:[[allTeams allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"showUserDetails" sender:self];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,14 +125,13 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showUserDetails"]){
+        [(UserInfoViewController *)segue.destinationViewController setUser:selectedUser];
+    }
 }
-*/
 
 @end
