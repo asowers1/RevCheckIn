@@ -8,6 +8,7 @@
 
 #import "allUsersTableViewController.h"
 #import "RevCheckIn-Swift.h"
+#import "UserStatusTableViewCell.h"
 
 @interface allUsersTableViewController ()
 
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView setRowHeight:68];
     
     // Get Dictionary of Users with BusinessName as Key
     
@@ -39,7 +42,12 @@
     NSArray *fetchedRecords = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     for (NSManagedObject *record in fetchedRecords){
-        [allTeams setValue:record forKey:[record valueForKey:@"team"]];
+        if ([allTeams valueForKey:[record valueForKey:@"business_name"]]){
+            [[allTeams valueForKey:[record valueForKey:@"business_name"]] addObject:record];
+        } else {
+            NSMutableArray *new = [NSMutableArray arrayWithObject:record];
+            [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
+        }
     }
 }
 
@@ -52,23 +60,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return allTeams.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [[allTeams valueForKey:[[allTeams allKeys] objectAtIndex:section]] count];
 }
 
-/*
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [[allTeams allKeys] objectAtIndex:section];
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UserStatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userStatusCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSManagedObject *user = [[allTeams valueForKey:[[allTeams allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    
+    [cell setUser:user];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
