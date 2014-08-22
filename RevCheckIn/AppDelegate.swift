@@ -11,13 +11,20 @@ import CoreData
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, NSURLSessionDelegate  {
+@objc class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, NSURLSessionDelegate  {
                             
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var myList: Array<AnyObject> = []
+
+    var completionHandler:()->Void={}
     
+
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+        self.completionHandler = completionHandler
+    }
+
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
 

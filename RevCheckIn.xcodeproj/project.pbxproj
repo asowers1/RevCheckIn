@@ -26,6 +26,7 @@
 		49945A0219981BFD00DDD773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499459F119981BFD00DDD773 /* Main.storyboard */; };
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
+		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		499459F119981BFD00DDD773 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		499459F319981BFD00DDD773 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
+		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				499459EE19981BFD00DDD773 /* HTTPResponseSerializer.swift */,
 				499459EF19981BFD00DDD773 /* HTTPTask.swift */,
 				499459F019981BFD00DDD773 /* HTTPUpload.swift */,
+				49F8685319A69CFE00A2AC11 /* HTTPBackground.h */,
+				49F8685419A69CFE00A2AC11 /* HTTPBackground.m */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
 				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
@@ -260,6 +265,7 @@
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
 				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,
+				49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */,
 				49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */,
 				499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */,
 				499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */,
