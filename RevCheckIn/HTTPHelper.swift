@@ -142,13 +142,15 @@ class HTTPHelper: NSObject {
         var request = HTTPTask()
         request.GET("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
             
-            var myList: Array<AnyObject> = NSJSONSerialization.JSONObjectWithData(response.responseObject as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil) as Array
-            
+            //var myList: Array<AnyObject> = NSJSONSerialization.JSONObjectWithData(response.responseObject as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil) as Array <AnyObject>
+            let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(response.responseObject! as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+            println("users: \(jsonObject)")
             },failure: {(error: NSError) -> Void in
                 println("error: \(error)")
-                self.setUserContext("-1")
         })
     }
+    
+    
     
     func getState() -> String {
         var myList: Array<AnyObject> = []
