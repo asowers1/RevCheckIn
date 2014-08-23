@@ -167,34 +167,34 @@ class HTTPRequestSerializer: NSObject {
         str += multiCRLF
         return str
     }
-    ///Local class to create key/pair of the parameters
-    class HTTPPair: NSObject {
-        var value: AnyObject
-        var key: String!
+   
+}
+///Local class to create key/pair of the parameters
+class HTTPPair: NSObject {
+    var value: AnyObject
+    var key: String!
         
-        init(value: AnyObject, key: String?) {
+    init(value: AnyObject, key: String?) {
             self.value = value
             self.key = key
-        }
-        func getValue() -> String {
-            var val = ""
-            if let str = self.value as? String {
-                val = str
-            } else if self.value.description != nil {
-                val = self.value.description
-            }
-            return val
-        }
-        func stringValue() -> String {
-            var val = getValue()
-            if self.key == nil {
-                return val.escapeStr()
-            }
-            return "\(self.key.escapeStr())=\(val.escapeStr())"
-        }
-        
     }
-   
+    func getValue() -> String {
+        var val = ""
+        if let str = self.value as? String {
+            val = str
+        } else if self.value.description != nil {
+            val = self.value.description
+        }
+        return val
+    }
+    func stringValue() -> String {
+        var val = getValue()
+        if self.key == nil {
+            return val.escapeStr()
+        }
+        return "\(self.key.escapeStr())=\(val.escapeStr())"
+    }
+    
 }
 
 class JSONRequestSerializer: HTTPRequestSerializer {

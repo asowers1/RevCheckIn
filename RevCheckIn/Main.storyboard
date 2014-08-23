@@ -45,7 +45,7 @@
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OdK-fW-UDa"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjC-Va-dO4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cjC-Va-dO4">
                                 <rect key="frame" x="16" y="164" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Dhf-Sc-Hit"/>
@@ -58,7 +58,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0q-Z1-SZm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0q-Z1-SZm">
                                 <rect key="frame" x="16" y="107" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cvB-6l-i9P"/>
@@ -604,7 +604,7 @@
         <image name="rev_logo_with_tagline" width="275" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9jm-pO-BwN"/>
         <segue reference="z8T-85-Gby"/>
-        <segue reference="v4p-hD-DBV"/>
     </inferredMetricsTieBreakers>
 </document>
