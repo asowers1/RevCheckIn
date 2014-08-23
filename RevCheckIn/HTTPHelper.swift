@@ -87,8 +87,8 @@ class HTTPHelper: NSObject {
             })
     }
     
-    func register(username:String, password:String, name:String, email:String, businessName:String) {
-        let params = ["PUSH_ID":"123", "username":username, "password":password, "name":name, "email":email, "business_name":businessName, "call":"addNewUser"] as Dictionary
+    func register(username:String, password:String, name:String, email:String, registrationCode:String, role:String, phone:String) {
+        let params = ["PUSH_ID":"123", "username":username, "password":password, "name":name, "email":email, "code":registrationCode,"role":role,"phone":phone, "call":"addNewUser"] as Dictionary
         var request = HTTPTask()
         self.deleteActiveUser()
         request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in

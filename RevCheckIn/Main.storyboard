@@ -171,24 +171,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3P-3M-7jL">
-                                <rect key="frame" x="16" y="239" width="568" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cl-rn-yt6">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <state key="normal" title="Go">
-                                    <color key="titleColor" red="0.53333336109999996" green="0.79215693470000004" blue="0.75294125079999996" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="285" y="85" width="30" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="go:" destination="awS-9i-mtY" eventType="touchUpInside" id="uZn-1J-PmV"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XtG-rL-hnt">
                                 <rect key="frame" x="16" y="87" width="568" height="30"/>
                                 <constraints>
@@ -204,22 +186,55 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Role" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hee-oc-10e">
+                                <rect key="frame" x="16" y="239" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wh9-dl-fmw">
+                                <rect key="frame" x="16" y="277" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Registration Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3P-3M-7jL">
+                                <rect key="frame" x="16" y="315" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cl-rn-yt6">
+                                <rect key="frame" x="285" y="361" width="30" height="30"/>
+                                <state key="normal" title="Go">
+                                    <color key="titleColor" red="0.53333336109999996" green="0.79215693470000004" blue="0.75294125079999996" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="285" y="85" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="go:" destination="awS-9i-mtY" eventType="touchUpInside" id="uZn-1J-PmV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XtG-rL-hnt" firstAttribute="top" secondItem="lVN-x7-8Ld" secondAttribute="bottom" constant="67" id="0XF-Ci-Zn6"/>
                             <constraint firstItem="XtG-rL-hnt" firstAttribute="centerX" secondItem="lVN-x7-8Ld" secondAttribute="centerX" id="5Is-K2-iaN"/>
                             <constraint firstItem="FVI-Et-bVe" firstAttribute="trailing" secondItem="B3P-3M-7jL" secondAttribute="trailing" id="Ae8-nL-mCe"/>
-                            <constraint firstItem="R7p-Zz-74V" firstAttribute="top" secondItem="0cl-rn-yt6" secondAttribute="bottom" constant="285" id="EN9-dy-wDz"/>
+                            <constraint firstItem="R7p-Zz-74V" firstAttribute="top" secondItem="0cl-rn-yt6" secondAttribute="bottom" constant="209" id="EN9-dy-wDz"/>
                             <constraint firstAttribute="centerX" secondItem="XtG-rL-hnt" secondAttribute="centerX" id="Fz1-iO-XXg"/>
+                            <constraint firstItem="Hee-oc-10e" firstAttribute="leading" secondItem="FVI-Et-bVe" secondAttribute="leading" id="Gv3-rG-E9c"/>
                             <constraint firstItem="7WY-j5-sCo" firstAttribute="trailing" secondItem="umE-3x-Ey8" secondAttribute="trailing" id="HrQ-iv-XU5"/>
                             <constraint firstItem="umE-3x-Ey8" firstAttribute="leading" secondItem="7WY-j5-sCo" secondAttribute="leading" id="Kms-kb-Q31"/>
+                            <constraint firstItem="Hee-oc-10e" firstAttribute="trailing" secondItem="FVI-Et-bVe" secondAttribute="trailing" id="Px9-X4-XJ0"/>
+                            <constraint firstItem="Wh9-dl-fmw" firstAttribute="top" secondItem="Hee-oc-10e" secondAttribute="bottom" constant="8" symbolic="YES" id="RNm-S6-EJ2"/>
                             <constraint firstItem="7WY-j5-sCo" firstAttribute="trailing" secondItem="XtG-rL-hnt" secondAttribute="trailing" id="Slz-EZ-Gp4"/>
+                            <constraint firstItem="Hee-oc-10e" firstAttribute="top" secondItem="FVI-Et-bVe" secondAttribute="bottom" constant="8" symbolic="YES" id="TCA-zU-SvS"/>
                             <constraint firstItem="7WY-j5-sCo" firstAttribute="leading" secondItem="XtG-rL-hnt" secondAttribute="leading" id="WMG-R2-ySi"/>
-                            <constraint firstItem="B3P-3M-7jL" firstAttribute="top" secondItem="FVI-Et-bVe" secondAttribute="bottom" constant="8" id="Zum-hU-adc"/>
+                            <constraint firstItem="B3P-3M-7jL" firstAttribute="top" secondItem="FVI-Et-bVe" secondAttribute="bottom" constant="84" id="Zum-hU-adc"/>
+                            <constraint firstItem="Wh9-dl-fmw" firstAttribute="leading" secondItem="Hee-oc-10e" secondAttribute="leading" id="buf-Pb-zxI"/>
                             <constraint firstAttribute="centerX" secondItem="7WY-j5-sCo" secondAttribute="centerX" id="cEc-qW-tpm"/>
                             <constraint firstItem="B3P-3M-7jL" firstAttribute="leading" secondItem="FVI-Et-bVe" secondAttribute="leading" id="dRa-c6-l8e"/>
-                            <constraint firstItem="0cl-rn-yt6" firstAttribute="top" secondItem="lVN-x7-8Ld" secondAttribute="bottom" constant="265" id="hX5-bi-dh2"/>
+                            <constraint firstItem="0cl-rn-yt6" firstAttribute="top" secondItem="lVN-x7-8Ld" secondAttribute="bottom" constant="341" id="hX5-bi-dh2"/>
                             <constraint firstAttribute="centerX" secondItem="umE-3x-Ey8" secondAttribute="centerX" id="iRK-fo-pfc"/>
                             <constraint firstAttribute="centerX" secondItem="FVI-Et-bVe" secondAttribute="centerX" id="jay-do-hXT"/>
                             <constraint firstItem="7WY-j5-sCo" firstAttribute="top" secondItem="XtG-rL-hnt" secondAttribute="bottom" constant="8" id="jga-qa-RoG"/>
@@ -227,6 +242,7 @@
                             <constraint firstItem="FVI-Et-bVe" firstAttribute="top" secondItem="umE-3x-Ey8" secondAttribute="bottom" constant="8" id="lwf-b1-I13"/>
                             <constraint firstItem="umE-3x-Ey8" firstAttribute="trailing" secondItem="FVI-Et-bVe" secondAttribute="trailing" id="m8U-ae-0eM"/>
                             <constraint firstItem="FVI-Et-bVe" firstAttribute="leading" secondItem="umE-3x-Ey8" secondAttribute="leading" id="oBp-k3-5c2"/>
+                            <constraint firstItem="Wh9-dl-fmw" firstAttribute="trailing" secondItem="Hee-oc-10e" secondAttribute="trailing" id="sRd-Ty-sRk"/>
                             <constraint firstItem="umE-3x-Ey8" firstAttribute="top" secondItem="7WY-j5-sCo" secondAttribute="bottom" constant="8" id="w2F-RH-eAL"/>
                             <constraint firstItem="0cl-rn-yt6" firstAttribute="leading" secondItem="B3P-3M-7jL" secondAttribute="trailing" constant="-299" id="wg9-HR-v3M"/>
                             <constraint firstAttribute="centerX" secondItem="B3P-3M-7jL" secondAttribute="centerX" id="y8a-qO-K41"/>
@@ -242,10 +258,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="businessNameTextField" destination="B3P-3M-7jL" id="LfK-Fe-ceS"/>
                         <outlet property="emailTextField" destination="FVI-Et-bVe" id="9Bd-jd-MLA"/>
                         <outlet property="nameTextField" destination="umE-3x-Ey8" id="kbS-6R-7ls"/>
                         <outlet property="passwordTestField" destination="7WY-j5-sCo" id="KSN-yW-V96"/>
+                        <outlet property="phone" destination="Wh9-dl-fmw" id="yjY-zK-kpy"/>
+                        <outlet property="registrationCode" destination="B3P-3M-7jL" id="cxA-Yt-F5c"/>
+                        <outlet property="role" destination="Hee-oc-10e" id="oQz-QP-JRV"/>
                         <outlet property="usernameTextField" destination="XtG-rL-hnt" id="YJA-35-dk9"/>
                         <segue destination="flT-6n-Fp5" kind="show" identifier="go" id="v4p-hD-DBV"/>
                     </connections>

@@ -53,7 +53,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
     func registerLogic(){
         if usernameTextField.text != "" && passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" {
             var helper: HTTPHelper = HTTPHelper() as HTTPHelper
-            helper.register(usernameTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, businessName: registrationCode.text)
+            helper.register(usernameTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, registrationCode: registrationCode.text, role: role.text, phone: phone.text)
             var myList: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
