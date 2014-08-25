@@ -8,52 +8,124 @@
 
 import UIKit
 import CoreData
+import QuartzCore
 class registerViewController: UIViewController, UITextFieldDelegate{
 
-    @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTestField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet var nameTextField:     UITextField!
     @IBOutlet var emailTextField:    UITextField!
     @IBOutlet var phone:             UITextField!
     @IBOutlet var role:              UITextField!
     @IBOutlet var registrationCode:  UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var scrollViewBottomSpace: NSLayoutConstraint!
+    var standConst: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.delegate     = self
+        
+        self.navigationController.navigationBar.hidden = true;
+        
+        if (UIDevice.currentDevice().model != "iPad"){
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardOpen:", name:UIKeyboardDidShowNotification, object: nil)
+            
+            let numberToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, self.scrollView.frame.size.width, 50))
+            numberToolbar.barStyle = UIBarStyle.Default
+            numberToolbar.items = NSArray(objects: UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: "toolbarPressDone:"))
+            passwordTestField.inputAccessoryView = numberToolbar;
+            confirmPasswordTextField.inputAccessoryView = numberToolbar;
+            nameTextField.inputAccessoryView = numberToolbar;
+            emailTextField.inputAccessoryView = numberToolbar;
+            role.inputAccessoryView = numberToolbar;
+            phone.inputAccessoryView = numberToolbar;
+            registrationCode.inputAccessoryView = numberToolbar;
+        }
+        
+        //self.scrollView.contentSize = self.containerView.bounds.size
+        
         passwordTestField.delegate     = self
+        confirmPasswordTextField.delegate = self
         nameTextField.delegate         = self
         emailTextField.delegate        = self
         role.delegate                  = self
         phone.delegate                 = self
         registrationCode.delegate      = self
+
+        self.emailTextField.layer.borderWidth = 2.0
+        self.emailTextField.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.passwordTestField.layer.borderWidth = 2.0
+        self.passwordTestField.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.confirmPasswordTextField.layer.borderWidth = 2.0
+        self.confirmPasswordTextField.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.nameTextField.layer.borderWidth = 2.0
+        self.nameTextField.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.phone.layer.borderWidth = 2.0
+        self.phone.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.role.layer.borderWidth = 2.0
+        self.role.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        self.registrationCode.layer.borderWidth = 2.0
+        self.registrationCode.layer.borderColor = UIColor(red: (251/255.0), green: (109/255.0), blue: (9/255.0), alpha: 1).CGColor
+        
+        standConst = scrollViewBottomSpace.constant
+    }
+    
+    func keyboardOpen(notification: NSNotification){
+        let userInfo = notification.userInfo!
+        
+        // Convert the keyboard frame from screen to view coordinates.
+        let keyboardScreenBeginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as NSValue).CGRectValue()
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
+        
+        scrollViewBottomSpace.constant = keyboardScreenEndFrame.size.height - 108
+       
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardClose:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardClose(notification: NSNotification){
+        
+        scrollViewBottomSpace.constant = standConst
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardOpen:", name:UIKeyboardDidShowNotification, object: nil)
+        
+    }
+    
+    func toolbarPressDone(sender: AnyObject){
+        nameTextField.resignFirstResponder()
+        passwordTestField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        phone.resignFirstResponder()
+        role.resignFirstResponder()
+        registrationCode.resignFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
-        if(textField == usernameTextField){
-            passwordTestField.becomeFirstResponder()
-        }else if(textField == passwordTestField){
-            nameTextField.becomeFirstResponder()
-        }else if(textField == nameTextField){
-            emailTextField.becomeFirstResponder()
-        }else if(textField == emailTextField){
-            role.becomeFirstResponder()
+        if (textField == self.emailTextField){
+            self.nameTextField.becomeFirstResponder()
+        } else if(textField == nameTextField){
+            self.passwordTestField.becomeFirstResponder()
+        } else if(textField == passwordTestField){
+            self.confirmPasswordTextField.becomeFirstResponder()
+        } else if (textField == self.confirmPasswordTextField){
+            self.phone.becomeFirstResponder()
         }else if(textField == role){
-            phone.becomeFirstResponder()
-        }else if(textField == phone){
             registrationCode.becomeFirstResponder()
+        }else if(textField == phone){
+            role.becomeFirstResponder()
         }else if(textField == registrationCode){
             registrationCode.resignFirstResponder()
-            self.registerLogic()
         }
         
         return true
     }
     
     func registerLogic(){
-        if usernameTextField.text != "" && passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" {
+        if passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" && passwordTestField.text == confirmPasswordTextField.text {
             var helper: HTTPHelper = HTTPHelper() as HTTPHelper
-            helper.register(usernameTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, registrationCode: registrationCode.text, role: role.text, phone: phone.text)
+            helper.register(emailTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, registrationCode: registrationCode.text, role: role.text, phone: phone.text)
             var myList: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!

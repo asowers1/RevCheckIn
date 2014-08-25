@@ -13,6 +13,10 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
+    @IBOutlet weak var newAccountButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     
     @IBOutlet var imgView: UIImageView!
     
@@ -23,6 +27,9 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController.navigationBar.hidden = true
+        
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName :UIFont(name: "AppleSDGothicNeo-Thin", size: 28.0)]
         self.navigationController.navigationBar.titleTextAttributes = titleDict
         self.title = "Rev Check-in"
@@ -43,14 +50,16 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         if(textField == username){
             password.becomeFirstResponder()
         }else if(textField == password){
-            if username.text != "" && password.text != "" {
-                password.resignFirstResponder()
-                self.loginLogic()
-            }
+            password.resignFirstResponder()
         }
         return true
     }
     
+    @IBAction func startEditingLogin(sender: AnyObject) {
+        println("Started Editing username")
+        
+    }
+
     func loginLogic() {
         var helper: HTTPHelper = HTTPHelper()
         helper.login(username.text, password: password.text)
@@ -72,6 +81,14 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         }
     }
     
+    @IBAction func cancelLogin(sender: AnyObject) {
+        self.leadingConstraint.constant = 0
+        self.trailingConstraint.constant = 0
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
     
     override func viewWillAppear(animated: Bool) {
         var myList: Array<AnyObject> = []
@@ -84,9 +101,21 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     @IBAction func login(sender: AnyObject) {
-        if username.text != "" && password.text != "" {
+        if (self.username.text != "" && self.password.text != ""){
             self.loginLogic()
         }
+    }
+    
+    
+    @IBAction func showLogin(sender: AnyObject) {
+        self.leadingConstraint.constant = self.view.frame.origin.x - (self.newAccountButton.frame.size.width + 20)
+        self.trailingConstraint.constant = -1 * (self.newAccountButton.frame.size.width + 20)
+        
+        UIView.animateWithDuration(0.25, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+
     }
 
     @IBAction func register(sender: AnyObject) {
