@@ -78,14 +78,23 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wql-zC-n57">
+                                <rect key="frame" x="180" y="381" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="aoC-zo-E6D"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="NBh-ST-7GV" secondAttribute="centerX" constant="32" id="0QT-0P-iv8"/>
                             <constraint firstItem="vUx-eH-iS3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-4" id="1Yb-0x-Yoz"/>
                             <constraint firstItem="v0q-Z1-SZm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3MG-Du-wbY"/>
+                            <constraint firstItem="wql-zC-n57" firstAttribute="top" secondItem="NBh-ST-7GV" secondAttribute="bottom" constant="21" id="4iV-d9-Pbp"/>
+                            <constraint firstItem="vUx-eH-iS3" firstAttribute="top" secondItem="wql-zC-n57" secondAttribute="bottom" constant="51" id="4n4-kT-XQc"/>
                             <constraint firstItem="cjC-Va-dO4" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5Gw-iK-smj"/>
                             <constraint firstItem="v0q-Z1-SZm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="6qD-IM-88h"/>
+                            <constraint firstItem="wql-zC-n57" firstAttribute="centerX" secondItem="vUx-eH-iS3" secondAttribute="centerX" id="ARw-8i-Cmv"/>
                             <constraint firstItem="v0q-Z1-SZm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="66" id="BM1-Zm-4a0"/>
                             <constraint firstItem="cjC-Va-dO4" firstAttribute="top" secondItem="v0q-Z1-SZm" secondAttribute="bottom" constant="27" id="O7R-aL-Bd5"/>
                             <constraint firstAttribute="centerX" secondItem="sbC-HQ-1bR" secondAttribute="centerX" constant="-23.5" id="SaP-75-svh"/>
@@ -133,6 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Rev Ceck-in" id="m04-fa-JxE"/>
                     <connections>
+                        <outlet property="imgView" destination="wql-zC-n57" id="HOR-9N-2RF"/>
                         <outlet property="password" destination="cjC-Va-dO4" id="cgo-Ed-zdn"/>
                         <outlet property="username" destination="v0q-Z1-SZm" id="8qk-8w-pPK"/>
                         <segue destination="flT-6n-Fp5" kind="show" identifier="login" id="9jm-pO-BwN"/>

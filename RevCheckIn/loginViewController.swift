@@ -14,6 +14,8 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
     
+    @IBOutlet var imgView: UIImageView!
+    
     var usernameString:String=""
     var passwordString:String=""
     
@@ -31,8 +33,9 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         
         println("testing image upload...")
         var httpImage = HTTPImage()
-        var value = httpImage.uploadFileToServer("test.png")
+        var value = httpImage.uploadFileToServer("test")
         println("return: \(value)")
+
 
     }
     

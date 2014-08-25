@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4940922B19ABC33700CD84EA /* HTTPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940922A19ABC33700CD84EA /* HTTPImage.m */; };
-		4940922D19ABDC6700CD84EA /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 4940922C19ABDC6700CD84EA /* test.png */; };
 		498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498299201999C52E00CEEE4E /* userDeviceModel.swift */; };
 		499459D919981BE600DDD773 /* RevCheckInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459D819981BE600DDD773 /* RevCheckInTests.swift */; };
 		499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E319981BFD00DDD773 /* AppDelegate.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		4940922919ABC33700CD84EA /* HTTPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPImage.h; sourceTree = "<group>"; };
 		4940922A19ABC33700CD84EA /* HTTPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPImage.m; sourceTree = "<group>"; };
-		4940922C19ABDC6700CD84EA /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		498299201999C52E00CEEE4E /* userDeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDeviceModel.swift; sourceTree = "<group>"; };
 		499459BD19981BE500DDD773 /* RevCheckIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevCheckIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499459C119981BE500DDD773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				4940922A19ABC33700CD84EA /* HTTPImage.m */,
 				49F8685319A69CFE00A2AC11 /* HTTPBackground.h */,
 				49F8685419A69CFE00A2AC11 /* HTTPBackground.m */,
-				4940922C19ABDC6700CD84EA /* test.png */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
 				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
@@ -263,7 +260,6 @@
 			files = (
 				49945A0219981BFD00DDD773 /* Main.storyboard in Resources */,
 				49945A0419981BFD00DDD773 /* Images.xcassets in Resources */,
-				4940922D19ABDC6700CD84EA /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
