@@ -31,6 +31,7 @@
 		AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */; };
 		AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */; };
 		AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382E0019A7B96100573AA5 /* UserInfoViewController.m */; };
+		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusTableViewCell.m; sourceTree = "<group>"; };
 		AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		AB382E0019A7B96100573AA5 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				49F8685419A69CFE00A2AC11 /* HTTPBackground.m */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
+				ABDA602F19ABFBBC00F40CC2 /* test.png */,
 				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
 				499459C019981BE500DDD773 /* Supporting Files */,
 				499459E219981BFD00DDD773 /* RevCheckIn-Bridging-Header.h */,
@@ -260,6 +263,7 @@
 			files = (
 				49945A0219981BFD00DDD773 /* Main.storyboard in Resources */,
 				49945A0419981BFD00DDD773 /* Images.xcassets in Resources */,
+				ABDA603019ABFBBC00F40CC2 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

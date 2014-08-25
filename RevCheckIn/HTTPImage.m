@@ -21,12 +21,7 @@
 -(NSString *)uploadFileToServer:(NSString *)fileName
 
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                      @"test.png" ];
-    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    UIImage* image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"png"]];
     NSData* imageData = UIImagePNGRepresentation(image);
     NSString *urlString = @"http://experiencepush.com/rev/rest/?PUSH_ID=123&call=uploadImage";
     
