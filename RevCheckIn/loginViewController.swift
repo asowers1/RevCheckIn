@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Foundation
+import QuartzCore
 class loginViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
@@ -42,6 +43,17 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         var httpImage = HTTPImage()
         var value = httpImage.uploadFileToServer("test")
         println("return: \(value)")
+        
+        
+        self.newAccountButton.layer.borderWidth = 2.0
+        self.loginButton.layer.borderWidth = 2.0
+        self.newAccountButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.loginButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
+        username.layer.borderWidth = 2.0
+        password.layer.borderWidth = 2.0
+        username.layer.borderColor = UIColor.whiteColor().CGColor
+        password.layer.borderColor = UIColor.whiteColor().CGColor
 
 
     }
