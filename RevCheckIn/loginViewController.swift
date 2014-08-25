@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 class loginViewController: UIViewController, UITextFieldDelegate  {
 
     @IBOutlet var username: UITextField!
@@ -27,6 +28,11 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         navigationController.navigationBar.barTintColor = UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 1.0)
         username.delegate = self
         password.delegate = self
+        
+        println("testing image upload...")
+        var httpImage = HTTPImage()
+        var value = httpImage.uploadFileToServer("test.png")
+        println("return: \(value)")
 
     }
     
