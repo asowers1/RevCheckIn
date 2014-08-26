@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface HTTPImage : NSObject
 -(NSString *)setUserPicture:(NSString *)fileName :(NSString*)username;

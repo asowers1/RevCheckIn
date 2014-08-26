@@ -32,6 +32,7 @@
 		AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */; };
 		AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382E0019A7B96100573AA5 /* UserInfoViewController.m */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
+		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		AB382E0019A7B96100573AA5 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
+		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */,
 				AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */,
 				AB382E0019A7B96100573AA5 /* UserInfoViewController.m */,
+				ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */,
+				ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */,
 				499459E919981BFD00DDD773 /* loginViewController.swift */,
 				499459EA19981BFD00DDD773 /* registerViewController.swift */,
 				499459EB19981BFD00DDD773 /* settingsViewController.swift */,
@@ -284,6 +289,7 @@
 				4940922B19ABC33700CD84EA /* HTTPImage.m in Sources */,
 				498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */,
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
+				ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */,
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
