@@ -41,7 +41,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         
         println("testing image upload...")
         var httpImage = HTTPImage()
-        var value = httpImage.uploadFileToServer("test")
+        var value = httpImage.setUserPicture("test","asow92")
         println("return: \(value)")
         
         

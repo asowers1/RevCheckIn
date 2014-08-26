@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface HTTPImage : NSObject
--(NSString *)uploadFileToServer:(NSString *)fileName;
+-(NSString *)setUserPicture:(NSString *)fileName :(NSString*)username;
 @end
