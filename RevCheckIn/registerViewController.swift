@@ -92,6 +92,10 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         
     }
     
+// Remove this
+    @IBAction func skip(sender: AnyObject) {
+        self.performSegueWithIdentifier("uploadImage", sender: self)
+    }
     func toolbarPressDone(sender: AnyObject){
         nameTextField.resignFirstResponder()
         passwordTestField.resignFirstResponder()
@@ -138,14 +142,13 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             if user != "-1" {
                 println("login successful")
                 
-                
-                self.performSegueWithIdentifier("go", sender: self)
+                self.performSegueWithIdentifier("uploadImage", sender: self)
             }
             else{
                 println("login unsuccessful")
-                //let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
-                //alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
-                //self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
