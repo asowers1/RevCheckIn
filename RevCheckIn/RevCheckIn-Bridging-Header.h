@@ -3,7 +3,4 @@
 //
 
 #import "HTTPBackground.h"
-#import "allUsersTableViewController.h"
-#import "userStatusTableViewCell.h"
-#import "userInfoViewController.h"
 #import "HTTPImage.h"

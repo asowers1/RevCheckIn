@@ -39,11 +39,6 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         username.delegate = self
         password.delegate = self
         
-        println("testing image upload...")
-        var httpImage = HTTPImage()
-        var value = httpImage.setUserPicture("test","asow92")
-        println("return: \(value)")
-        
         
         self.newAccountButton.layer.borderWidth = 2.0
         self.loginButton.layer.borderWidth = 2.0

@@ -92,9 +92,26 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 -(void)uploadImage:(UIImage *)imageIn{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        //Setting Entity to be Queried
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Active_user"
+                                                  inManagedObjectContext:delegate.managedObjectContext];
+        
+        [fetchRequest setEntity:entity];
+        NSError* error;
+        
+        // Query on managedObjectContext With Generated fetchRequest
+        NSArray *fetchedRecords = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        NSString *userName = [fetchedRecords[0] valueForKey:@"username"];
+        
         HTTPImage *imageUpload = [[HTTPImage alloc] init];
     
-        //[imageUpload uploadImageToServer:imageIn];
+        [imageUpload setUserPicture:imageIn :userName];
         
 #warning checkForFail
         

@@ -8,8 +8,6 @@
 
 #import "allUsersTableViewController.h"
 #import "RevCheckIn-Swift.h"
-#import "UserStatusTableViewCell.h"
-#import "UserInfoViewController.h"
 
 @interface allUsersTableViewController ()
 
@@ -87,11 +85,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserStatusTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userStatusCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userStatusCell" forIndexPath:indexPath];
     
     NSManagedObject *user = [[allTeams valueForKey:[[allTeams allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     
-    [cell setUser:user];
+    
     
     return cell;
 }
@@ -141,7 +139,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showUserDetails"]){
-        [(UserInfoViewController *)segue.destinationViewController setUser:selectedUser];
+        //[(UserInfoViewController *)segue.destinationViewController setUser:selectedUser];
     }
 }
 

@@ -145,7 +145,8 @@ class HTTPHelper: NSObject {
             //var myList: Array<AnyObject> = NSJSONSerialization.JSONObjectWithData(response.responseObject as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil) as Array <AnyObject>
             let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(response.responseObject! as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
             println("users: \(jsonObject)")
-            },failure: {(error: NSError) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("displayUsers", object: self)
+        },failure: {(error: NSError) -> Void in
                 println("error: \(error)")
         })
     }
