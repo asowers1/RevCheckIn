@@ -10,6 +10,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HTTPImage : NSObject
--(NSString *)uploadFileToServer:(NSString *)fileName;
-- (UIImage*)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
+-(NSString *)setUserPicture:(NSString *)fileName :(NSString*)username;
 @end
