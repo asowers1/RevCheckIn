@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TeamMembersCollectionView.h"
 
 @interface TeamTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) NSString *team;
+@property (weak, nonatomic) IBOutlet UIImageView *teamLogo;
+@property (weak, nonatomic) IBOutlet TeamMembersCollectionView *teamMembers;
 
 @end

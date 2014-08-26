@@ -29,8 +29,10 @@
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
 		AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */; };
-		AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */; };
-		AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382E0019A7B96100573AA5 /* UserInfoViewController.m */; };
+		AB43415F19AD2F9700AA40BD /* AllTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */; };
+		AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */; };
+		AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */; };
+		AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
 /* End PBXBuildFile section */
@@ -76,10 +78,14 @@
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
 		AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allUsersTableViewController.h; sourceTree = "<group>"; };
 		AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = allUsersTableViewController.m; sourceTree = "<group>"; };
-		AB382DFC19A7A6E300573AA5 /* UserStatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusTableViewCell.h; sourceTree = "<group>"; };
-		AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusTableViewCell.m; sourceTree = "<group>"; };
-		AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
-		AB382E0019A7B96100573AA5 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTeamsViewController.h; sourceTree = "<group>"; };
+		AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTeamsViewController.m; sourceTree = "<group>"; };
+		AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTableViewCell.h; sourceTree = "<group>"; };
+		AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTableViewCell.m; sourceTree = "<group>"; };
+		AB43416319AD2FE300AA40BD /* TeamMembersCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMembersCollectionView.h; sourceTree = "<group>"; };
+		AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMembersCollectionView.m; sourceTree = "<group>"; };
+		AB43416619AD2FFD00AA40BD /* MemberCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCollectionViewCell.h; sourceTree = "<group>"; };
+		AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCollectionViewCell.m; sourceTree = "<group>"; };
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
 		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
@@ -133,10 +139,14 @@
 				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
 				AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */,
 				AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */,
-				AB382DFC19A7A6E300573AA5 /* UserStatusTableViewCell.h */,
-				AB382DFD19A7A6E300573AA5 /* UserStatusTableViewCell.m */,
-				AB382DFF19A7B96100573AA5 /* UserInfoViewController.h */,
-				AB382E0019A7B96100573AA5 /* UserInfoViewController.m */,
+				AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */,
+				AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */,
+				AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */,
+				AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */,
+				AB43416319AD2FE300AA40BD /* TeamMembersCollectionView.h */,
+				AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */,
+				AB43416619AD2FFD00AA40BD /* MemberCollectionViewCell.h */,
+				AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */,
 				ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */,
 				ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */,
 				499459E919981BFD00DDD773 /* loginViewController.swift */,
@@ -293,16 +303,18 @@
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
-				AB382E0119A7B96100573AA5 /* UserInfoViewController.m in Sources */,
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
 				AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
+				AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */,
 				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,
+				AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */,
 				49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */,
-				AB382DFE19A7A6E300573AA5 /* UserStatusTableViewCell.m in Sources */,
 				49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */,
 				499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */,
+				AB43415F19AD2F9700AA40BD /* AllTeamsViewController.m in Sources */,
 				499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */,
+				AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */,
 				499459FD19981BFD00DDD773 /* HTTPHelper.swift in Sources */,
 				499459FF19981BFD00DDD773 /* HTTPResponseSerializer.swift in Sources */,
 				499459FE19981BFD00DDD773 /* HTTPRequestSerializer.swift in Sources */,

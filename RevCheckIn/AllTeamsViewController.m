@@ -60,6 +60,44 @@
     [self.teamsTable reloadData];
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return allTeams.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TeamTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"teamCell"];
+    cell.team = allTeams.allKeys[indexPath.row];
+    [cell.teamLogo setImage:[UIImage imageNamed:@"test"]];
+// Set Team logo cell.teamLogo.image = [Team Image]
+    [cell.teamMembers setTeamName:cell.team];
+    [cell.teamMembers setDataSource:self];
+    [cell.teamMembers setDelegate:self];
+    
+    return cell;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+    // return 2 to see non-checked in users
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] count];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    MemberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"memberCell" forIndexPath:indexPath];
+    NSManagedObject *user = [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectAtIndex:indexPath.row];
+    [cell.memberImage setImage:[UIImage imageNamed:@"businessMan"]];
+    cell.name.text = [user valueForKey:@"name"];
+    cell.timeStamp.text = [user valueForKey:@"timestamp"];
+    
+    return cell;
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MemberCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *memberImage;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *timeStamp;
 
 @end

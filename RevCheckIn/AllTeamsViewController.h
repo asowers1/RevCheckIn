@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RevCheckIn-Swift.h"
+#import "TeamTableViewCell.h"
+#import "TeamMembersCollectionView.h"
+#import "MemberCollectionViewCell.h"
 
 @interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;
