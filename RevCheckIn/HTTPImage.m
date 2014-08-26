@@ -10,9 +10,9 @@
 #import <Foundation/Foundation.h>
 @implementation HTTPImage
 
--(NSString *)setUserPicture:(NSString *)fileName :(NSString*)username
+-(NSString *)setUserPicture:(UIImage *)image :(NSString*)username
 {
-    UIImage* image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"png"]];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.width / 2.0, image.size.height / 2.0)];
     NSData* imageData = UIImagePNGRepresentation(image);
     NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setUserPicture&username=%@",username];
     
@@ -26,7 +26,7 @@
     
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@.png\"\r\n",fileName] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@.png\"\r\n",[[[username stringByReplacingOccurrencesOfString:@"." withString:@""] componentsSeparatedByString:@"@"] objectAtIndex:0]] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:imageData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -36,7 +36,7 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
     return returnString;
-
+    
 }
 
 - (UIImage*)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize{
