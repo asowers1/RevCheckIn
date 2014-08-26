@@ -94,7 +94,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         HTTPImage *imageUpload = [[HTTPImage alloc] init];
     
-        [imageUpload uploadImageToServer:imageIn];
+        //[imageUpload uploadImageToServer:imageIn];
         
 #warning checkForFail
         
