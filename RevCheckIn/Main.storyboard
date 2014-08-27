@@ -181,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uW7-lv-SNb">
-                                <rect key="frame" x="0.0" y="142" width="600" height="350"/>
+                                <rect key="frame" x="0.0" y="142" width="600" height="380"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDY-0X-AuF">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="524"/>
@@ -334,14 +334,11 @@
                                         <exclude reference="vlc-S3-mu1"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="112" width="400" height="380"/>
-                                </variation>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L7-II-4xE">
-                                <rect key="frame" x="0.0" y="500" width="300" height="100"/>
+                                <rect key="frame" x="0.0" y="530" width="300" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="LAC-ft-IiI"/>
+                                    <constraint firstAttribute="height" constant="70" id="LAC-ft-IiI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="cancel">
@@ -352,7 +349,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxF-Im-fhj">
-                                <rect key="frame" x="300" y="500" width="300" height="100"/>
+                                <rect key="frame" x="300" y="530" width="300" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Sp6-Jp-xJO"/>
                                 </constraints>
@@ -360,6 +357,11 @@
                                 <state key="normal" title="create">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Sp6-Jp-xJO"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="go:" destination="awS-9i-mtY" eventType="touchUpInside" id="yIE-kb-vU8"/>
                                 </connections>
@@ -376,12 +378,13 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="revWithText" translatesAutoresizingMaskIntoConstraints="NO" id="FPG-7p-SCc">
                                 <rect key="frame" x="150" y="60" width="300" height="74"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="IT3-KJ-tes"/>
-                                    <constraint firstAttribute="height" constant="74" id="sE4-Kk-P0x"/>
+                                    <constraint firstAttribute="width" constant="300" id="IT3-KJ-tes">
+                                        <variation key="widthClass=compact" constant="200"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="74" id="sE4-Kk-P0x">
+                                        <variation key="widthClass=compact" constant="50"/>
+                                    </constraint>
                                 </constraints>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="50" y="30" width="300" height="74"/>
-                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="0.50980392159999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -389,6 +392,7 @@
                             <constraint firstItem="uW7-lv-SNb" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" id="6Sn-Oz-FS1"/>
                             <constraint firstItem="FPG-7p-SCc" firstAttribute="top" secondItem="SAq-7a-psr" secondAttribute="topMargin" constant="50" id="8LI-Ry-OI1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uW7-lv-SNb" secondAttribute="trailing" constant="-16" id="COt-40-Ck5"/>
+                            <constraint firstItem="vxF-Im-fhj" firstAttribute="height" secondItem="6L7-II-4xE" secondAttribute="height" id="Hwa-wh-HXQ"/>
                             <constraint firstAttribute="centerX" secondItem="FPG-7p-SCc" secondAttribute="centerX" id="IDC-5T-PrB"/>
                             <constraint firstItem="OGy-xR-dN9" firstAttribute="leading" secondItem="FPG-7p-SCc" secondAttribute="leading" id="M1L-6Y-EJV"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="top" secondItem="uW7-lv-SNb" secondAttribute="bottom" constant="8" id="Re5-ue-CfM"/>
@@ -396,14 +400,16 @@
                             <constraint firstItem="OGy-xR-dN9" firstAttribute="width" secondItem="FPG-7p-SCc" secondAttribute="width" id="Rej-KS-US7"/>
                             <constraint firstItem="OGy-xR-dN9" firstAttribute="height" secondItem="FPG-7p-SCc" secondAttribute="height" id="YhD-eC-M1m"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="width" secondItem="6L7-II-4xE" secondAttribute="width" id="YlL-Ng-lgd"/>
-                            <constraint firstItem="uW7-lv-SNb" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="bottom" constant="8" id="aUv-6O-Ip7"/>
+                            <constraint firstItem="uW7-lv-SNb" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="bottom" constant="8" id="aUv-6O-Ip7">
+                                <variation key="widthClass=compact" constant="23"/>
+                            </constraint>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="leading" secondItem="SAq-7a-psr" secondAttribute="leadingMargin" constant="-16" id="d6s-n6-CMv"/>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" multiplier="1:2" id="e92-0S-Dl9"/>
                             <constraint firstItem="OGy-xR-dN9" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="top" id="f0J-vs-SmY"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="leading" secondItem="6L7-II-4xE" secondAttribute="trailing" id="iSD-SJ-Mfu"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="top" secondItem="6L7-II-4xE" secondAttribute="top" id="mHv-rB-lo1"/>
                             <constraint firstItem="FPG-7p-SCc" firstAttribute="top" secondItem="SAq-7a-psr" secondAttribute="topMargin" constant="60" id="xmu-4O-jCa">
-                                <variation key="widthClass=compact" constant="20"/>
+                                <variation key="widthClass=compact" constant="43"/>
                             </constraint>
                             <constraint firstItem="R7p-Zz-74V" firstAttribute="top" secondItem="6L7-II-4xE" secondAttribute="bottom" id="y6e-qG-eDx"/>
                             <constraint firstItem="uW7-lv-SNb" firstAttribute="leading" secondItem="SAq-7a-psr" secondAttribute="leadingMargin" constant="-16" id="yVX-VQ-qXB"/>
@@ -412,11 +418,13 @@
                             <mask key="constraints">
                                 <exclude reference="ReM-FT-ClF"/>
                                 <exclude reference="8LI-Ry-OI1"/>
+                                <exclude reference="Hwa-wh-HXQ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
                                 <exclude reference="8LI-Ry-OI1"/>
+                                <include reference="Hwa-wh-HXQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -677,6 +685,9 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="22" width="50" height="12"/>
+                                                                        </variation>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:55 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-d0-LOg">
                                                                         <rect key="frame" x="0.0" y="83" width="110" height="12"/>
@@ -686,6 +697,9 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="38" width="50" height="12"/>
+                                                                        </variation>
                                                                     </label>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EpC-9R-ugM">
                                                                         <rect key="frame" x="26" y="4" width="59" height="59"/>
@@ -693,6 +707,9 @@
                                                                             <constraint firstAttribute="height" constant="59" id="5dZ-wn-h2j"/>
                                                                             <constraint firstAttribute="width" constant="59" id="vtM-2t-G7x"/>
                                                                         </constraints>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="-5" y="4" width="60" height="59"/>
+                                                                        </variation>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
