@@ -11,6 +11,7 @@
 #import "TeamMembersCollectionView.h"
 #import "MemberCollectionViewCell.h"
 #import "TransLoadingIndicator.h"
+#import "MarqueeLabel.h"
 
 @interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;

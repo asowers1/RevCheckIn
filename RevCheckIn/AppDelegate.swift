@@ -61,7 +61,8 @@ import CoreLocation
         locationManager!.startMonitoringForRegion(beaconRegion)
         locationManager!.startRangingBeaconsInRegion(beaconRegion)
         locationManager!.startUpdatingLocation()
-
+    
+        UINavigationBar.appearance().barTintColor = UIColor(red: (246/255.0), green: (86/255.0), blue: (12/255.0), alpha: 1)
 
         
         return true

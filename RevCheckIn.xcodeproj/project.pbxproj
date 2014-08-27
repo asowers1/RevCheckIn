@@ -36,6 +36,7 @@
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
 		ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */; };
 		ABF2CFAA19AE462D0037F0FD /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF2CFA919AE462D0037F0FD /* push.png */; };
+		ABF2CFAD19AE69D90037F0FD /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFAC19AE69D90037F0FD /* MarqueeLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		ABF2CFA619AE36720037F0FD /* TransLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransLoadingIndicator.h; sourceTree = "<group>"; };
 		ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransLoadingIndicator.m; sourceTree = "<group>"; };
 		ABF2CFA919AE462D0037F0FD /* push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = push.png; sourceTree = "<group>"; };
+		ABF2CFAB19AE69D90037F0FD /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
+		ABF2CFAC19AE69D90037F0FD /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				499459E619981BFD00DDD773 /* activeUserModel.swift */,
 				499459E719981BFD00DDD773 /* userStatusModel.swift */,
 				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
+				ABF2CFAB19AE69D90037F0FD /* MarqueeLabel.h */,
+				ABF2CFAC19AE69D90037F0FD /* MarqueeLabel.m */,
 				AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */,
 				AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */,
 				AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */,
@@ -300,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF2CFAD19AE69D90037F0FD /* MarqueeLabel.m in Sources */,
 				4940922B19ABC33700CD84EA /* HTTPImage.m in Sources */,
 				498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */,
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,

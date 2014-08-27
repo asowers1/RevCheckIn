@@ -13,10 +13,11 @@
 -(NSString *)setUserPicture:(UIImage *)image :(NSString*)username
 {
     NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.width / 2.0, image.size.height / 2.0)];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.height/2.0, image.size.width/2.0)];
     NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
     NSData* imageData = UIImagePNGRepresentation(image);
-    NSLog(imageData.description);
+    NSLog(@"data length: %d",imageData.length);
+    //UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imageData], nil, nil, nil);
     NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setUserPicture&username=%@",username];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

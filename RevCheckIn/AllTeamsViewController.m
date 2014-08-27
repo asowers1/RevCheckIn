@@ -22,6 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 178, 39)];
+    [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
+    [(UIImageView *)self.navigationItem.titleView setImage:[UIImage imageNamed:@"revWithText"]];
     
     [self.teamsTable setRowHeight:100];
     
@@ -43,6 +46,10 @@
     HTTPHelper *helper = [[HTTPHelper alloc] init];
     
     [helper getAllUsers];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)reloadTable{
@@ -89,8 +96,6 @@
             NSMutableArray *new = [NSMutableArray arrayWithObject:record];
             
             [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
-            
-            [teamPhotos setObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:@"]] forKey:<#(id<NSCopying>)#>]
         }
     }
     
@@ -152,7 +157,22 @@
     MemberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"memberCell" forIndexPath:indexPath];
     NSManagedObject *user = [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectAtIndex:indexPath.row];
     [cell.memberImage setImage:[UIImage imageWithData:[user valueForKey:@"picture"]]];
+    [cell.memberImage.layer setCornerRadius:cell.memberImage.frame.size.width/2.0];
+    [cell.memberImage setClipsToBounds:YES];
     cell.name.text = [user valueForKey:@"name"];
+    
+    /*
+    MarqueeLabel *scrollName = [[MarqueeLabel alloc] initWithFrame:cell.name.frame rate:10 andFadeLength:5];
+    [scrollName setFont:cell.name.font];
+    scrollName.text = [user valueForKey:@"name"];
+    [scrollName setMarqueeType:MLContinuous];
+    [scrollName setAnimationDelay:2];
+    scrollName.continuousMarqueeExtraBuffer = 40;
+    scrollName.textColor = cell.name.textColor;
+    [scrollName setTextAlignment:NSTextAlignmentCenter];
+    [cell.contentView addSubview:scrollName];
+    [cell.name setHidden:YES];
+    */
     
     NSString *timestamp = [user valueForKey:@"timestamp"];
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];

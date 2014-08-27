@@ -29,30 +29,32 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         let freq = NSFetchRequest(entityName: "Active_user")
         
-        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
-        var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-        var user: String = selectedItem.valueForKeyPath("username") as String
-        
-        if user != "-1" {
-            println("login successful")
-            self.performSegueWithIdentifier("login", sender: self)
+        myList = context2.executeFetchRequest(freq, error: nil)
+        if (myList.count > 0){
+            
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                println("login successful")
+                self.performSegueWithIdentifier("login", sender: self)
+            }
+            else{
+                println("login unsuccessful")
+            }
         }
-        else{
-            println("login unsuccessful")
-        }
-        
         self.navigationController.navigationBar.hidden = true
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName :UIFont(name: "AppleSDGothicNeo-Thin", size: 28.0)]
         self.navigationController.navigationBar.titleTextAttributes = titleDict
         self.title = "Rev Check-in"
         
-        navigationController.navigationBar.barTintColor = UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 1.0)
         username.delegate = self
         password.delegate = self
         
@@ -66,9 +68,11 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         password.layer.borderWidth = 2.0
         username.layer.borderColor = UIColor.whiteColor().CGColor
         password.layer.borderColor = UIColor.whiteColor().CGColor
-        
 
-
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return false
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
