@@ -150,7 +150,14 @@ class HTTPHelper: NSObject {
                 for user in ar{
                     //get all memembers:
                     let business_name: AnyObject! = ar[0]["business_name"]
-                    
+                    let email: AnyObject!         = ar[0]["email"]
+                    let name: AnyObject!          = ar[0]["name"]
+                    let phone: AnyObject!         = ar[0]["phone"]
+                    let picture: AnyObject!       = ar[0]["picture"]
+                    let role: AnyObject!          = ar[0]["role"]
+                    let state: AnyObject!         = ar[0]["state"]
+                    let timestamp: AnyObject!     = ar[0]["timestamp"]
+                    let username: AnyObject!      = ar[0]["username"]
                     
                     // add each user per iteration
                     
