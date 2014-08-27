@@ -142,9 +142,17 @@ class HTTPHelper: NSObject {
         var request = HTTPTask()
         request.GET("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
             let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(response.responseObject! as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+            
+            // remove all users here:
+            
+            // iterate through users in JSON
             if let ar: [AnyObject] = jsonObject as? [AnyObject]{
                 for user in ar{
+                    //get all memembers:
                     let business_name: AnyObject! = ar[0]["business_name"]
+                    
+                    
+                    // add each user per iteration
                     
                 }
             }
