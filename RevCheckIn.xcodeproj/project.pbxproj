@@ -28,15 +28,14 @@
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
-		AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */; };
 		AB43415F19AD2F9700AA40BD /* AllTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */; };
 		AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */; };
 		AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */; };
 		AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
-		ABF2CFA519AE2FA40037F0FD /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF2CFA419AE2FA40037F0FD /* push.png */; };
 		ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */; };
+		ABF2CFAA19AE462D0037F0FD /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF2CFA919AE462D0037F0FD /* push.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +77,6 @@
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
-		AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allUsersTableViewController.h; sourceTree = "<group>"; };
-		AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = allUsersTableViewController.m; sourceTree = "<group>"; };
 		AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTeamsViewController.h; sourceTree = "<group>"; };
 		AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTeamsViewController.m; sourceTree = "<group>"; };
 		AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTableViewCell.h; sourceTree = "<group>"; };
@@ -91,9 +88,9 @@
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
 		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
-		ABF2CFA419AE2FA40037F0FD /* push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = push.png; sourceTree = "<group>"; };
 		ABF2CFA619AE36720037F0FD /* TransLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransLoadingIndicator.h; sourceTree = "<group>"; };
 		ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransLoadingIndicator.m; sourceTree = "<group>"; };
+		ABF2CFA919AE462D0037F0FD /* push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = push.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +139,6 @@
 				499459E619981BFD00DDD773 /* activeUserModel.swift */,
 				499459E719981BFD00DDD773 /* userStatusModel.swift */,
 				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
-				AB382DF919A7A33B00573AA5 /* allUsersTableViewController.h */,
-				AB382DFA19A7A33B00573AA5 /* allUsersTableViewController.m */,
 				AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */,
 				AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */,
 				AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */,
@@ -170,7 +165,7 @@
 				49F8685419A69CFE00A2AC11 /* HTTPBackground.m */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
-				ABF2CFA419AE2FA40037F0FD /* push.png */,
+				ABF2CFA919AE462D0037F0FD /* push.png */,
 				ABDA602F19ABFBBC00F40CC2 /* test.png */,
 				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
 				499459C019981BE500DDD773 /* Supporting Files */,
@@ -285,9 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				49945A0219981BFD00DDD773 /* Main.storyboard in Resources */,
+				ABF2CFAA19AE462D0037F0FD /* push.png in Resources */,
 				49945A0419981BFD00DDD773 /* Images.xcassets in Resources */,
 				ABDA603019ABFBBC00F40CC2 /* test.png in Resources */,
-				ABF2CFA519AE2FA40037F0FD /* push.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +309,6 @@
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,
-				AB382DFB19A7A33B00573AA5 /* allUsersTableViewController.m in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
 				AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */,
 				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,

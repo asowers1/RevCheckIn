@@ -10,12 +10,14 @@
 #import "RevCheckIn-Swift.h"
 #import "TeamMembersCollectionView.h"
 #import "MemberCollectionViewCell.h"
+#import "TransLoadingIndicator.h"
 
 @interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;
 @property (weak, nonatomic) IBOutlet UITableView *teamsTable;
+@property (strong, nonatomic) UIRefreshControl *refresh;
 
-@property (strong, nonatomic) NSMutableDictionary *allTeams;
-@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingView;
+
 
 @end

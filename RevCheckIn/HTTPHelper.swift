@@ -168,16 +168,24 @@ class HTTPHelper: NSObject {
                     let email: AnyObject!         = user["email"]
                     let name: AnyObject!          = user["name"]
                     let phone: AnyObject!         = user["phone"]
-                    let picture: AnyObject!       = user["picture"]
+                    var picture: String!          = user["picture"] as String
                     let role: AnyObject!          = user["role"]
                     let state: AnyObject!         = user["state"]
                     let timestamp: AnyObject!     = user["timestamp"]
-                    let username: AnyObject!      = user["username"]
+                    let username: String!         = user["username"] as String
                     // add each user per iteration
+                    
+                    picture = picture + username
+                    
+                    println(picture)
                     
                     var newItem = userDeviceModel(entity: en, insertIntoManagedObjectContext: context)
                     newItem.setValue(username, forKey:"username")
                     newItem.setValue(business_name, forKey:"business_name")
+                    let imageURL : NSURL = NSURL.URLWithString(picture)
+                    var err: NSError?
+                    let photoData : NSData = NSData(contentsOfURL: imageURL)
+                    newItem.setValue(photoData, forKey:"picture")
                     newItem.setValue(name, forKey: "name")
                     newItem.setValue(phone, forKey: "phone")
                     newItem.setValue(role, forKey: "role")

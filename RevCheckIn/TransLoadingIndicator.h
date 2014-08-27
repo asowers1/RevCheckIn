@@ -11,4 +11,18 @@
 
 @interface TransLoadingIndicator : UIView
 
+
+@property (nonatomic, retain) IBOutlet UILabel *textLabel;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *indicator;
+
+-(void)setUp;
+
+-(void)changeText:(NSString *)textIn;
+
+-(void)startAnimating;
+
+-(void)stopAnimating;
+
+-(void)hide;
+
 @end

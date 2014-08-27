@@ -27,11 +27,13 @@
     [self.teamsTable setDataSource:self];
     [self.teamsTable setDelegate:self];
     
+    self.refresh = [[UIRefreshControl alloc] init];
     
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    [blurEffectView setFrame:self.loadingView.bounds];
-    [self.loadingView addSubview:blurEffectView];
+    [self.refresh addTarget:self action:@selector(reloadTable) forControlEvents:UIControlEventValueChanged];
+    [self.teamsTable addSubview:self.refresh];
+    
+    [self.loadingView changeText:@"loading teams"];
+    [self.loadingView startAnimating];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable) name:@"displayUsers" object:nil];
     
@@ -43,7 +45,12 @@
 }
 
 -(void)reloadTable{
-
+    
+    if (self.loadingView.hidden){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.loadingView startAnimating];
+        });
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -100,7 +107,9 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
         [self.teamsTable reloadData];
+        [self.refresh endRefreshing];
     });
 }
 
@@ -139,7 +148,7 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MemberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"memberCell" forIndexPath:indexPath];
     NSManagedObject *user = [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectAtIndex:indexPath.row];
-    [cell.memberImage setImage:[UIImage imageNamed:@"businessMan"]];
+    [cell.memberImage setImage:[UIImage imageWithData:[user valueForKey:@"picture"]]];
     cell.name.text = [user valueForKey:@"name"];
     
     NSString *timestamp = [user valueForKey:@"timestamp"];
