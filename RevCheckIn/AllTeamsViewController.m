@@ -15,6 +15,7 @@
 
 @implementation AllTeamsViewController {
     NSMutableDictionary *allTeams;
+    NSMutableDictionary *teamPhotos;
 }
 
 - (void)viewDidLoad {
@@ -88,6 +89,8 @@
             NSMutableArray *new = [NSMutableArray arrayWithObject:record];
             
             [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
+            
+            [teamPhotos setObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:@"]] forKey:<#(id<NSCopying>)#>]
         }
     }
     
