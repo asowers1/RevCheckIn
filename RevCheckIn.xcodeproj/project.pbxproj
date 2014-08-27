@@ -35,6 +35,8 @@
 		AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
+		ABF2CFA519AE2FA40037F0FD /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF2CFA419AE2FA40037F0FD /* push.png */; };
+		ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,9 @@
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
 		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
+		ABF2CFA419AE2FA40037F0FD /* push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = push.png; sourceTree = "<group>"; };
+		ABF2CFA619AE36720037F0FD /* TransLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransLoadingIndicator.h; sourceTree = "<group>"; };
+		ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransLoadingIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +148,8 @@
 				AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */,
 				AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */,
 				AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */,
+				ABF2CFA619AE36720037F0FD /* TransLoadingIndicator.h */,
+				ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */,
 				AB43416319AD2FE300AA40BD /* TeamMembersCollectionView.h */,
 				AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */,
 				AB43416619AD2FFD00AA40BD /* MemberCollectionViewCell.h */,
@@ -163,6 +170,7 @@
 				49F8685419A69CFE00A2AC11 /* HTTPBackground.m */,
 				499459F119981BFD00DDD773 /* Main.storyboard */,
 				499459F319981BFD00DDD773 /* Images.xcassets */,
+				ABF2CFA419AE2FA40037F0FD /* push.png */,
 				ABDA602F19ABFBBC00F40CC2 /* test.png */,
 				49945A051998230B00DDD773 /* Model.xcdatamodeld */,
 				499459C019981BE500DDD773 /* Supporting Files */,
@@ -279,6 +287,7 @@
 				49945A0219981BFD00DDD773 /* Main.storyboard in Resources */,
 				49945A0419981BFD00DDD773 /* Images.xcassets in Resources */,
 				ABDA603019ABFBBC00F40CC2 /* test.png in Resources */,
+				ABF2CFA519AE2FA40037F0FD /* push.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +310,7 @@
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
 				ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */,
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
+				ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
 				499459FC19981BFD00DDD773 /* settingsViewController.swift in Sources */,

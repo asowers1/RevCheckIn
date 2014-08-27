@@ -12,7 +12,7 @@
 @interface TeamTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) NSString *team;
-@property (weak, nonatomic) IBOutlet UIImageView *teamLogo;
+@property (weak, nonatomic) IBOutlet UIImageView *teamImage;
 @property (weak, nonatomic) IBOutlet TeamMembersCollectionView *teamMembers;
 
 @end

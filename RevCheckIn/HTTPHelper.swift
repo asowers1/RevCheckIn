@@ -144,25 +144,50 @@ class HTTPHelper: NSObject {
             let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(response.responseObject! as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
             
             // remove all users here:
+            let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let context: NSManagedObjectContext = appDel.managedObjectContext!
+            let en = NSEntityDescription.entityForName("User", inManagedObjectContext: context)
+            
+            let freq = NSFetchRequest(entityName: "User")
+        
+            var myList: Array<AnyObject> = []
+            myList = context.executeFetchRequest(freq, error: nil)
+            if !myList.isEmpty{
+                println("deleting context")
+                for item in myList {
+                    context.deleteObject(item as NSManagedObject)
+                }
+            }
+            context.save(nil)
             
             // iterate through users in JSON
             if let ar: [AnyObject] = jsonObject as? [AnyObject]{
                 for user in ar{
                     //get all memembers:
-                    let business_name: AnyObject! = ar[0]["business_name"]
-                    let email: AnyObject!         = ar[0]["email"]
-                    let name: AnyObject!          = ar[0]["name"]
-                    let phone: AnyObject!         = ar[0]["phone"]
-                    let picture: AnyObject!       = ar[0]["picture"]
-                    let role: AnyObject!          = ar[0]["role"]
-                    let state: AnyObject!         = ar[0]["state"]
-                    let timestamp: AnyObject!     = ar[0]["timestamp"]
-                    let username: AnyObject!      = ar[0]["username"]
-                    
+                    let business_name: AnyObject! = user["business_name"]
+                    let email: AnyObject!         = user["email"]
+                    let name: AnyObject!          = user["name"]
+                    let phone: AnyObject!         = user["phone"]
+                    let picture: AnyObject!       = user["picture"]
+                    let role: AnyObject!          = user["role"]
+                    let state: AnyObject!         = user["state"]
+                    let timestamp: AnyObject!     = user["timestamp"]
+                    let username: AnyObject!      = user["username"]
                     // add each user per iteration
                     
+                    var newItem = userDeviceModel(entity: en, insertIntoManagedObjectContext: context)
+                    newItem.setValue(username, forKey:"username")
+                    newItem.setValue(business_name, forKey:"business_name")
+                    newItem.setValue(name, forKey: "name")
+                    newItem.setValue(phone, forKey: "phone")
+                    newItem.setValue(role, forKey: "role")
+                    newItem.setValue(state.stringValue, forKey: "state")
+                    newItem.setValue(timestamp, forKey: "timestamp")
+                    newItem.setValue(email, forKey: "email")
                 }
             }
+            
+            context.save(nil)
             
             
             NSNotificationCenter.defaultCenter().postNotificationName("displayUsers", object: self)

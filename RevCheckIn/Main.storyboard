@@ -644,8 +644,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="149" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="04b-bw-DIt">
                                 <rect key="frame" x="0.0" y="109" width="600" height="491"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="1" alpha="0.65000000000000002" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamCell" rowHeight="100" id="Gpo-MT-30a" customClass="TeamTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -653,16 +653,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gpo-MT-30a" id="qbp-k5-5cI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-zK-cA6">
-                                                    <rect key="frame" x="8" y="5" width="90" height="90"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="6c2-xk-8nM"/>
-                                                        <constraint firstAttribute="height" constant="90" id="T9F-kA-f81"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eAh-qV-W9e" customClass="TeamMembersCollectionView">
                                                     <rect key="frame" x="106" y="0.0" width="494" height="100"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eeu-BD-CvH">
                                                         <size key="itemSize" width="110" height="95"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -732,6 +725,13 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="push.png" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-zK-cA6">
+                                                    <rect key="frame" x="8" y="5" width="90" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="6c2-xk-8nM"/>
+                                                        <constraint firstAttribute="height" constant="90" id="T9F-kA-f81"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eAh-qV-W9e" firstAttribute="top" secondItem="qbp-k5-5cI" secondAttribute="topMargin" constant="-8" id="1lh-gA-1CD"/>
@@ -742,9 +742,10 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="eAh-qV-W9e" secondAttribute="bottom" constant="-8" id="xYI-lo-whP"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.99607843139999996" green="0.50980392159999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="teamLogo" destination="OkH-zK-cA6" id="KGr-QL-h8a"/>
-                                            <outlet property="teamMembers" destination="eAh-qV-W9e" id="VXj-j2-GJK"/>
+                                            <outlet property="teamImage" destination="OkH-zK-cA6" id="7ig-Pp-5Nr"/>
+                                            <outlet property="teamMembers" destination="eAh-qV-W9e" id="cOM-6K-GsV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -759,6 +760,14 @@
                                     <rect key="frame" x="50" y="30" width="300" height="74"/>
                                 </variation>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbT-Tr-JUa" customClass="TransLoadingIndicator">
+                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="WSi-Va-wE2"/>
+                                    <constraint firstAttribute="width" constant="150" id="lc2-3G-qMy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="0.50980392159999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -768,10 +777,13 @@
                             <constraint firstItem="04b-bw-DIt" firstAttribute="top" secondItem="l02-qv-nPk" secondAttribute="bottom" constant="20" id="GxJ-rx-dna"/>
                             <constraint firstItem="6je-7z-eXa" firstAttribute="top" secondItem="04b-bw-DIt" secondAttribute="bottom" id="rAH-76-pf0"/>
                             <constraint firstItem="04b-bw-DIt" firstAttribute="leading" secondItem="UAr-UF-2Ss" secondAttribute="leadingMargin" constant="-16" id="wee-yQ-d7l"/>
+                            <constraint firstAttribute="centerY" secondItem="fbT-Tr-JUa" secondAttribute="centerY" id="xK2-92-AeM"/>
+                            <constraint firstAttribute="centerX" secondItem="fbT-Tr-JUa" secondAttribute="centerX" id="xQc-gR-7BX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IyL-fn-7oV"/>
                     <connections>
+                        <outlet property="loadingView" destination="fbT-Tr-JUa" id="1py-1r-iyy"/>
                         <outlet property="revLogo" destination="l02-qv-nPk" id="brR-Gf-U2q"/>
                         <outlet property="teamsTable" destination="04b-bw-DIt" id="NU7-Gb-su5"/>
                     </connections>
@@ -801,9 +813,9 @@
     </scenes>
     <resources>
         <image name="businessMan" width="200" height="200"/>
+        <image name="push.png" width="1882" height="1882"/>
         <image name="revCircle" width="191" height="191"/>
         <image name="revWithText" width="300" height="74"/>
-        <image name="test" width="762" height="581"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="igT-kf-iDt"/>

@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RevCheckIn-Swift.h"
-#import "TeamTableViewCell.h"
 #import "TeamMembersCollectionView.h"
 #import "MemberCollectionViewCell.h"
 
 @interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;
 @property (weak, nonatomic) IBOutlet UITableView *teamsTable;
+
+@property (strong, nonatomic) NSMutableDictionary *allTeams;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
 
 @end
