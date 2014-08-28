@@ -66,9 +66,14 @@ class HTTPHelper: NSObject {
     }
 
     func login(username:String, password:String){
+        Crashlytics.setObjectValue("login", forKey: "HTTPHelperAction")
+        Crashlytics.setObjectValue(username, forKey: "username")
+        Crashlytics.setBoolValue(password.isEmpty, forKey: "passwordEmpty")
         var params = ["PUSH_ID":"123", "username":username, "password":password, "call":"login"] as Dictionary
+        Crashlytics.setObjectValue(params, forKey:"ParamsCount")
         var request = HTTPTask()
         self.deleteActiveUser()
+        Crashlytics.setObjectValue("deleteActiveUser", forKey: "lastAction")
         request.GET("http://experiencepush.com/rev/rest/", parameters: params, success: {(response: HTTPResponse) -> Void in
             if response.responseObject != nil {
                 let data = response.responseObject as NSData
@@ -88,6 +93,7 @@ class HTTPHelper: NSObject {
     }
     
     func register(username:String, password:String, name:String, email:String, registrationCode:String, role:String, phone:String) {
+        Crashlytics.setObjectValue("register", forKey: "HTTPHelperAction")
         let params = ["PUSH_ID":"123", "username":username, "password":password, "name":name, "email":email, "code":registrationCode,"role":role,"phone":phone, "call":"addNewUser"] as Dictionary
         var request = HTTPTask()
         self.deleteActiveUser()

@@ -128,28 +128,36 @@ class registerViewController: UIViewController, UITextFieldDelegate{
     
     func registerLogic(){
         if passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" && passwordTestField.text == confirmPasswordTextField.text {
+            Crashlytics.setObjectValue("valie Values", forKey: "registrationResult")
             var helper: HTTPHelper = HTTPHelper() as HTTPHelper
             helper.register(emailTextField.text, password: passwordTestField.text, name: nameTextField.text, email: emailTextField.text, registrationCode: registrationCode.text, role: role.text, phone: phone.text)
+            Crashlytics.setObjectValue("finishedHelper.register", forKey: "lastAction")
             var myList: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             let freq = NSFetchRequest(entityName: "Active_user")
             
+            Crashlytics.setObjectValue("define fetch request for Active_user", forKey: "lastAction")
             while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            Crashlytics.setObjectValue("executed fetch request", forKey: "lastAction")
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
             var user: String = selectedItem.valueForKeyPath("username") as String
             println("active user: \(user)")
             if user != "-1" {
+                Crashlytics.setObjectValue("user not -1", forKey: "registrationPass")
                 println("login successful")
                 
                 self.performSegueWithIdentifier("uploadImage", sender: self)
             }
             else{
+                Crashlytics.setObjectValue("user == -1", forKey: "registrationPass")
                 println("login unsuccessful")
                 let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
+        } else {
+            Crashlytics.setObjectValue("invalid Values", forKey: "registrationResult")
         }
     }
     
@@ -159,11 +167,12 @@ class registerViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func go(sender: AnyObject) {
+        Crashlytics.setObjectValue("attemptRegistration", forKey: "registrationAction")
         self.registerLogic()
     }
 
     @IBAction func cancel(sender: AnyObject) {
-        
+        Crashlytics.setObjectValue("cancel", forKey: "registrationAction")
         self.navigationController.popToRootViewControllerAnimated(true)
     }
     /*

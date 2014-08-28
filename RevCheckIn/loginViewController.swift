@@ -90,6 +90,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
 
     func loginLogic() {
+        Crashlytics.setObjectValue("login", forKey: "loginAction")
         var helper: HTTPHelper = HTTPHelper()
         helper.login(username.text, password: password.text)
         var myList: Array<AnyObject> = []
@@ -102,12 +103,15 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
                 println("login successful")
+                Crashlytics.setObjectValue("success", forKey: "loginResult")
                 self.performSegueWithIdentifier("login", sender: self)
             }
             else{
+                Crashlytics.setObjectValue("selectedItem.valueForKeyPath(\"username\") == \"-1\"", forKey: "loginResult")
                 println("login unsuccessful")
             }
         }else{
+            Crashlytics.setObjectValue("selectedItem.valueForKeyPath(\"username\") == nil", forKey: "loginResult")
             println("login unsuccessful!")
         }
     }
@@ -150,6 +154,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
 
     @IBAction func register(sender: AnyObject) {
+        Crashlytics.setObjectValue("register", forKey: "loginAction")
             self.performSegueWithIdentifier("register", sender: self)
     }
     
