@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;
 @property (weak, nonatomic) IBOutlet UITableView *teamsTable;
 @property (strong, nonatomic) UIRefreshControl *refresh;
+@property (weak, nonatomic) IBOutlet UIButton *anchor;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorTopSpace;
 
 @property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingView;
 

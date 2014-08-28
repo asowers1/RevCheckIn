@@ -8,6 +8,7 @@
 
 #import "AllTeamsViewController.h"
 #import "TeamTableViewCell.h"
+#import "TeamInfoViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
 @interface AllTeamsViewController ()
@@ -16,7 +17,9 @@
 
 @implementation AllTeamsViewController {
     NSMutableDictionary *allTeams;
-    NSMutableDictionary *teamPhotos;
+    
+    NSDictionary *selectedTeam;
+    NSString *selectedMember;
 }
 
 - (void)viewDidLoad {
@@ -80,31 +83,31 @@
     
     
     for (NSManagedObject *record in fetchedRecords){
-        /*
-        if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
-            
-            if ([allTeams valueForKey:[record valueForKey:@"business_name"]]){
-                [[allTeams valueForKey:[record valueForKey:@"business_name"]] addObject:record];
-            } else {
-                NSMutableArray *new = [NSMutableArray arrayWithObject:record];
-                [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
-            }
-            
-        }
-        */
         
         if ([allTeams valueForKey:[record valueForKey:@"business_name"]]){
+            NSMutableDictionary *teamInfo = allTeams[[record valueForKey:@"business_name"]];
             
-            [[allTeams valueForKey:[record valueForKey:@"business_name"]] addObject:record];
+            if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
+                [teamInfo[@"checkedIn"] addObject:record];
+            }
+            [teamInfo[@"members"] addObject:record];
+            
         } else {
-            NSMutableArray *new = [NSMutableArray arrayWithObject:record];
+            // Download Team Image
+            UIImage *teamLogo = [UIImage imageNamed:@"push.png"];
+            NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo"]];
+
+            if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
+                [teamInfo[@"checkedIn"] addObject:record];
+            }
+            [teamInfo[@"members"] addObject:record];
             
-            [allTeams setValue:new forKey:[record valueForKey:@"business_name"]];
+            [allTeams setValue:teamInfo forKey:[record valueForKey:@"business_name"]];
         }
     }
     
     for (NSString *key in allTeams.allKeys){
-        NSMutableArray *members = [allTeams objectForKey:key];
+        NSMutableArray *members = [[allTeams objectForKey:key] objectForKey:@"members"];
         
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp"
@@ -113,7 +116,7 @@
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
         
-        [allTeams setObject:sortedArray forKey:key];
+        [[allTeams objectForKey:key] setObject:sortedArray forKey:@"members"];
         
         
     }
@@ -136,16 +139,26 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TeamTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"teamCell"];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    cell.team = allTeams.allKeys[indexPath.row];
-    [cell.teamImage setImage:[UIImage imageNamed:@"push.png"]];
+    cell.team = [allTeams objectForKey:allTeams.allKeys[indexPath.row]];
+    [cell.teamImage setImage:[allTeams[[allTeams.allKeys objectAtIndex:indexPath.row]] objectForKey:@"logo"]];
 // Set Team logo cell.teamLogo.image = [Team Image]
 
-    [cell.teamMembers setTeamName:cell.team];
+    [cell.teamMembers setTeamName:allTeams.allKeys[indexPath.row]];
     [cell.teamMembers setDataSource:self];
     [cell.teamMembers setDelegate:self];
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    selectedMember = nil;
+    selectedTeam = [(TeamTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] team];
+    self.anchorTopSpace.constant = [tableView cellForRowAtIndexPath:indexPath].frame.origin.y + (tableView.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
+    NSLog(@"%f", self.anchorTopSpace.constant);
+    [self.view layoutIfNeeded];
+    
+    [self performSegueWithIdentifier:@"showTeam" sender:self];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -154,12 +167,12 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] count];
+    return [[[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectForKey:@"members"] count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MemberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"memberCell" forIndexPath:indexPath];
-    NSManagedObject *user = [[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectAtIndex:indexPath.row];
+    NSManagedObject *user = [[[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectForKey:@"members"] objectAtIndex:indexPath.row];
     [cell.memberImage setImage:[UIImage imageWithData:[user valueForKey:@"picture"]]];
     [cell.memberImage.layer setCornerRadius:cell.memberImage.frame.size.width/2.0];
     [cell.memberImage setClipsToBounds:YES];
@@ -188,6 +201,35 @@
     cell.timeStamp.text = timestamp;
     
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    selectedTeam = [allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]];
+    selectedMember = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] name] text];
+    UIView *view = collectionView;
+    while (view && ![view isKindOfClass:[UITableViewCell class]]){
+        view = view.superview;
+    }
+    self.anchorTopSpace.constant = view.frame.origin.y + (self.teamsTable.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
+    NSLog(@"%f", self.anchorTopSpace.constant);
+    [self.view layoutIfNeeded];
+    
+    [self performSegueWithIdentifier:@"showTeam" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"showTeam"]){
+        [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeam:selectedTeam];
+        
+        if (selectedMember){
+            selectedMember = nil;
+            [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:[NSNumber numberWithInt:1]];
+        } else {
+            [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:[NSNumber numberWithInt:0]];
+        }
+    }
 }
 
 
