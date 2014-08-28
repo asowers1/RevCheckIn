@@ -179,7 +179,7 @@ class HTTPHelper: NSObject {
                     
                     println(picture)
                     
-                    var newItem = userDeviceModel(entity: en, insertIntoManagedObjectContext: context)
+                    var newItem = userModel(entity: en, insertIntoManagedObjectContext: context)
                     newItem.setValue(username, forKey:"username")
                     newItem.setValue(business_name, forKey:"business_name")
                     let imageURL : NSURL = NSURL.URLWithString(picture)
