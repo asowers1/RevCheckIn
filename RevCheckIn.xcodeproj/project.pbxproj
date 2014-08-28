@@ -28,6 +28,7 @@
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
+		AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */; };
 		AB43415F19AD2F9700AA40BD /* AllTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */; };
 		AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */; };
 		AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */; };
@@ -78,6 +79,7 @@
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
+		AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
 		AB43415D19AD2F9700AA40BD /* AllTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTeamsViewController.h; sourceTree = "<group>"; };
 		AB43415E19AD2F9700AA40BD /* AllTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTeamsViewController.m; sourceTree = "<group>"; };
 		AB43416019AD2FBE00AA40BD /* TeamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTableViewCell.h; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +138,7 @@
 		499459BF19981BE500DDD773 /* RevCheckIn */ = {
 			isa = PBXGroup;
 			children = (
+				AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */,
 				499459E319981BFD00DDD773 /* AppDelegate.swift */,
 				499459E419981BFD00DDD773 /* rootViewController.swift */,
 				499459E519981BFD00DDD773 /* userModel.swift */,
@@ -214,6 +218,7 @@
 				499459B919981BE500DDD773 /* Sources */,
 				499459BA19981BE500DDD773 /* Frameworks */,
 				499459BB19981BE500DDD773 /* Resources */,
+				AB2E1F7C19AF7241000F5690 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -299,6 +304,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB2E1F7C19AF7241000F5690 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 6e63974ab6878886d46e46575c43005ded0cfa08 f6ab159dc485d68d8e3ab7929d50ea2fa90052c3518ce0f98874b30bfe22a3e8";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		499459B919981BE500DDD773 /* Sources */ = {
@@ -435,8 +456,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
@@ -451,8 +477,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";

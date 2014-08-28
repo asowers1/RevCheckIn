@@ -64,6 +64,7 @@ import CoreLocation
     
         UINavigationBar.appearance().barTintColor = UIColor(red: (246/255.0), green: (86/255.0), blue: (12/255.0), alpha: 1)
 
+        Crashlytics.startWithAPIKey("6e63974ab6878886d46e46575c43005ded0cfa08")
         
         return true
     }
