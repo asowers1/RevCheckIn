@@ -160,6 +160,7 @@ class HTTPHelper: NSObject {
             }
             context.save(nil)
             
+            
             // iterate through users in JSON
             if let ar: [AnyObject] = jsonObject as? [AnyObject]{
                 for user in ar{
@@ -175,9 +176,8 @@ class HTTPHelper: NSObject {
                     let username: String!         = user["username"] as String
                     // add each user per iteration
                     
-                    picture = picture + username
-                    
-                    println(picture)
+                    //fixed this, no loner needed
+                    //picture = picture + username
                     
                     var newItem = userModel(entity: en, insertIntoManagedObjectContext: context)
                     newItem.setValue(username, forKey:"username")
@@ -197,6 +197,8 @@ class HTTPHelper: NSObject {
             
             context.save(nil)
             
+            // do not call this unless users are present in the userModel - requires error handling.
+            //self.checkUserModel()
             
             NSNotificationCenter.defaultCenter().postNotificationName("displayUsers", object: self)
         },failure: {(error: NSError) -> Void in
@@ -204,6 +206,21 @@ class HTTPHelper: NSObject {
         })
     }
     
+    func checkUserModel(){
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        var freq = NSFetchRequest(entityName: "User")
+        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+        for item in myList {
+            if let selectedItem: NSManagedObject = item as? NSManagedObject{
+                println(item.valueForKeyPath("username") as String)
+                println(item.valueForKeyPath("phone") as String)
+            }else{
+                println("users nil");
+            }
+        }
+    }
     
     
     func getState() -> String {

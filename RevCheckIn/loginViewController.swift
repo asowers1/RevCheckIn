@@ -99,14 +99,16 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-        var user: String = selectedItem.valueForKeyPath("username") as String
-        
-        if user != "-1" {
-            println("login successful")
-             self.performSegueWithIdentifier("login", sender: self)
-        }
-        else{
-            println("login unsuccessful")
+        if let user: String = selectedItem.valueForKeyPath("username") as? String {
+            if user != "-1" {
+                println("login successful")
+                self.performSegueWithIdentifier("login", sender: self)
+            }
+            else{
+                println("login unsuccessful")
+            }
+        }else{
+            println("login unsuccessful!")
         }
     }
     
