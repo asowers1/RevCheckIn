@@ -45,8 +45,12 @@ class HTTPRequestSerializer: NSObject {
     }
     ///creates a request from the url, HTTPMethod, and parameters
     func createRequest(url: NSURL, method: HTTPMethod, parameters: Dictionary<String,AnyObject>?) -> (request: NSURLRequest, error: NSError?) {
+
+        Crashlytics.setObjectValue("createRequest", forKey: "HTTPRequestSerializer Step 1")
         
         var request = newRequest(url, method: method)
+        Crashlytics.setObjectValue("initNewRequest", forKey: "HTTPRequestSerializer Step 1")
+        Crashlytics.setObjectValue(url, forKey: "HTTPRequest url")
         var isMultiForm = false
         //do a check for upload objects to see if we are multi form
         if let params = parameters {
@@ -57,6 +61,7 @@ class HTTPRequestSerializer: NSObject {
                 }
             }
         }
+        Crashlytics.setBoolValue(isMultiForm, forKey: "isMultiForm")
         if isMultiForm {
             if(method != .POST || method != .PUT) {
                 request.HTTPMethod = HTTPMethod.POST.toRaw() // you probably wanted a post
@@ -68,8 +73,11 @@ class HTTPRequestSerializer: NSObject {
         }
         var queryString = ""
         if parameters != nil {
+            Crashlytics.setObjectValue("parameters != nil", forKey: "HTTPRequestSerializer Step 2")
             queryString = self.stringFromParameters(parameters!)
         }
+        
+        Crashlytics.setObjectValue(queryString, forKey: "HTTPRequestSerializer Step 3: query")
         if isURIParam(method) {
             var para = (request.URL.query != nil) ? "&" : "?"
             var newUrl = "\(request.URL.absoluteString!)\(para)\(queryString)"
@@ -87,9 +95,34 @@ class HTTPRequestSerializer: NSObject {
     
     ///convert the parameter dict to its HTTP string representation
     func stringFromParameters(parameters: Dictionary<String,AnyObject>) -> String {
-        return join("&", map(serializeObject(parameters, key: nil), {(pair) in
+        var cnt = 0
+        var key = "Crashlytics step "
+
+        var altRet = ""
+        var first = true
+        for (key, value) in parameters{
+            if (!first){
+                altRet += "&"
+            }
+            
+            altRet += key
+            altRet += "="
+            altRet += value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+
+            first = false
+        }
+        
+/*
+        Crashlytics.setObjectValue("startingStringFromParameters", forKey: "StringFromparameters step 1")
+        let ret = join("&", map(serializeObject(parameters, key: nil), {(pair) in
+            var newKey = key + String(cnt)
+            cnt++
+            Crashlytics.setObjectValue(pair.stringValue(), forKey: newKey)
             return pair.stringValue()
             }))
+*/
+        Crashlytics.setObjectValue(altRet, forKey: "stringFromParams return")
+        return altRet
     }
     ///check if enum is a HTTPMethod that requires the params in the URL
     func isURIParam(method: HTTPMethod) -> Bool {

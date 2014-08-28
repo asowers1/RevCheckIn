@@ -73,20 +73,26 @@ class HTTPHelper: NSObject {
         Crashlytics.setObjectValue(params, forKey:"ParamsCount")
         var request = HTTPTask()
         self.deleteActiveUser()
-        Crashlytics.setObjectValue("deleteActiveUser", forKey: "lastAction")
+        Crashlytics.setObjectValue("deleteActiveUser", forKey: "completedHTTPtask")
+        Crashlytics.setObjectValue("startingLogin", forKey: "LastAction")
         request.GET("http://experiencepush.com/rev/rest/", parameters: params, success: {(response: HTTPResponse) -> Void in
+            Crashlytics.setObjectValue("Received response from login request", forKey: "loginRequest")
             if response.responseObject != nil {
+                Crashlytics.setObjectValue("response not nil", forKey: "loginRequest")
                 let data = response.responseObject as NSData
                 let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
                 if datastring == "1" {
+                    Crashlytics.setObjectValue("success", forKey: "loginRequest")
                     println("success")
                     self.setUserContext(username);
                 }else {
                     println("failure")
+                    Crashlytics.setObjectValue("response != 1", forKey: "loginRequest")
                     self.setUserContext("-1")
                 }
             }
             },failure: {(error: NSError) -> Void in
+                Crashlytics.setObjectValue("failure", forKey: "loginRequest")
                 println("error: \(error)")
                 self.setUserContext("-1")
             })

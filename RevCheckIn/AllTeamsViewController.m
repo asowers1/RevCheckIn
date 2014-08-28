@@ -8,6 +8,7 @@
 
 #import "AllTeamsViewController.h"
 #import "TeamTableViewCell.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface AllTeamsViewController ()
 
@@ -46,6 +47,9 @@
     HTTPHelper *helper = [[HTTPHelper alloc] init];
     
     [helper getAllUsers];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
