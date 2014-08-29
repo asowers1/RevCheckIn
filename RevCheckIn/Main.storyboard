@@ -34,19 +34,6 @@
                                     <action selector="startEditingLogin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="5Ur-bx-2jN"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbC-HQ-1bR">
-                                <rect key="frame" x="16" y="283" width="568" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="XaS-hS-rmY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="create new account">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJt-OE-UiY"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-Va-2c3">
                                 <rect key="frame" x="16" y="343" width="568" height="52"/>
                                 <constraints>
@@ -118,6 +105,19 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbC-HQ-1bR">
+                                <rect key="frame" x="16" y="283" width="568" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="XaS-hS-rmY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="create new account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJt-OE-UiY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.50980392156862742" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -890,7 +890,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="750" constant="294" id="iT6-Y5-xjG"/>
                                                 </constraints>
-                                                <mutableString key="text">active was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push </mutableString>
+                                                <string key="text">active was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>

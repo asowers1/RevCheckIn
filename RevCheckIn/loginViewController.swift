@@ -30,25 +30,6 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         
         
-        var myList: Array<AnyObject> = []
-        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-        let freq = NSFetchRequest(entityName: "Active_user")
-        
-        myList = context2.executeFetchRequest(freq, error: nil)
-        if (myList.count > 0){
-            
-            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
-            
-            if user != "-1" {
-                println("login successful")
-                self.performSegueWithIdentifier("login", sender: self)
-            }
-            else{
-                println("login unsuccessful")
-            }
-        }
         self.navigationController.navigationBar.hidden = true
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName :UIFont(name: "AppleSDGothicNeo-Thin", size: 28.0)]
@@ -69,6 +50,28 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         username.layer.borderColor = UIColor.whiteColor().CGColor
         password.layer.borderColor = UIColor.whiteColor().CGColor
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        let freq = NSFetchRequest(entityName: "Active_user")
+        
+        myList = context2.executeFetchRequest(freq, error: nil)
+        if (myList.count > 0){
+            
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                println("login successful: \(user)")
+                self.performSegueWithIdentifier("login", sender: self)
+            }
+            else{
+                println("login unsuccessful")
+            }
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {
