@@ -108,7 +108,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         NSArray *fetchedRecords = [delegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         
         NSString *userName = [fetchedRecords[0] valueForKey:@"username"];
-        // userName = @"Calvin.chestnut.me.com";
+        userName = @"Calvin.chestnut.me.com";
         
         HTTPImage *imageUpload = [[HTTPImage alloc] init];
     

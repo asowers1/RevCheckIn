@@ -24,8 +24,8 @@ class HTTPHelper: NSObject {
             for item in myList {
                 context.deleteObject(item as NSManagedObject)
             }
+            context.save(nil)
         }
-        context.save(nil)
     }
     
     func deleteActiveDevice(){
@@ -66,23 +66,14 @@ class HTTPHelper: NSObject {
     }
 
     func login(username:String, password:String){
-        Crashlytics.setObjectValue("login", forKey: "HTTPHelperAction")
-        Crashlytics.setObjectValue(username, forKey: "username")
-        Crashlytics.setBoolValue(password.isEmpty, forKey: "passwordEmpty")
         var params = ["PUSH_ID":"123", "username":username, "password":password, "call":"login"] as Dictionary
-        Crashlytics.setObjectValue(params, forKey:"ParamsCount")
         var request = HTTPTask()
         self.deleteActiveUser()
-        Crashlytics.setObjectValue("deleteActiveUser", forKey: "completedHTTPtask")
-        Crashlytics.setObjectValue("startingLogin", forKey: "LastAction")
         request.GET("http://experiencepush.com/rev/rest/", parameters: params, success: {(response: HTTPResponse) -> Void in
-            Crashlytics.setObjectValue("Received response from login request", forKey: "loginRequest")
             if response.responseObject != nil {
-                Crashlytics.setObjectValue("response not nil", forKey: "loginRequest")
                 let data = response.responseObject as NSData
                 let datastring = NSString(data: data, encoding: NSUTF8StringEncoding)
                 if datastring == "1" {
-                    Crashlytics.setObjectValue("success", forKey: "loginRequest")
                     println("success")
                     self.setUserContext(username);
                     
@@ -91,15 +82,14 @@ class HTTPHelper: NSObject {
                     
                 }else {	
                     println("failure")
-                    Crashlytics.setObjectValue("response != 1", forKey: "loginRequest")
                     self.setUserContext("-1")
                 }
             }
             },failure: {(error: NSError) -> Void in
-                Crashlytics.setObjectValue("failure", forKey: "loginRequest")
                 println("error: \(error)")
                 self.setUserContext("-1")
             })
+        println("done")
     }
     
     func register(username:String, password:String, name:String, email:String, registrationCode:String, role:String, phone:String) {

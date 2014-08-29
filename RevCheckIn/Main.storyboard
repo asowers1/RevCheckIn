@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Dg-L8-CSa">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -23,7 +22,7 @@
                                 <rect key="frame" x="604" y="283" width="568" height="52"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0q-Z1-SZm">
                                 <rect key="frame" x="604" y="343" width="568" height="52"/>
@@ -593,10 +592,10 @@
             </objects>
             <point key="canvasLocation" x="91" y="339"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Main Nav Controller-->
         <scene sceneID="Fj6-rb-Six">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="flT-6n-Fp5" customClass="rootViewController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="flT-6n-Fp5" customClass="MainNavController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xFS-b9-wfY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -772,7 +771,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="IyL-fn-7oV"/>
+                    <navigationItem key="navigationItem" id="IyL-fn-7oV">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="wzL-Ag-DxB">
+                            <connections>
+                                <action selector="logout:" destination="HwP-1Y-77h" id="CAK-5j-K9I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="anchor" destination="h2C-gg-Axa" id="CyY-EI-KC8"/>
                         <outlet property="anchorLeftSpace" destination="gLw-V1-t2d" id="MxJ-Em-jXC"/>
@@ -780,16 +785,17 @@
                         <outlet property="anchorWidth" destination="Qs7-sa-nHo" id="kb5-88-mXU"/>
                         <outlet property="loadingView" destination="fbT-Tr-JUa" id="eeJ-hQ-4kc"/>
                         <outlet property="teamsTable" destination="04b-bw-DIt" id="NU7-Gb-su5"/>
+                        <segue destination="3Dg-L8-CSa" kind="presentation" identifier="logout" id="pVf-53-w9Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huo-mX-5qR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2185" y="339"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Main Nav Controller-->
         <scene sceneID="tRr-N1-HbY">
             <objects>
-                <navigationController id="3QP-Xw-UTE" customClass="rootViewController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="3QP-Xw-UTE" customClass="MainNavController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pn0-hb-1gH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

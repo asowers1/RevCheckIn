@@ -228,7 +228,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"showTeam"]){
+    i   f ([segue.identifier isEqualToString:@"showTeam"]){
         [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeam:selectedTeam];
         
         if (selectedMember){
@@ -246,4 +246,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)logout:(id)sender {
+    [[[HTTPHelper alloc] init] deleteActiveDevice];
+    [[[HTTPHelper alloc] init] deleteActiveUser];
+    [self performSegueWithIdentifier:@"logout" sender:self];
+}
 @end
