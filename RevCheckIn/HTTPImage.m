@@ -43,15 +43,15 @@
     
 }
 
--(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)business_name
+-(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)username
 {
     NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(image.size.height/2.0, image.size.width/2.0)];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(320, 320)];
     NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
     NSData* imageData = UIImagePNGRepresentation(image);
     NSLog(@"data length: %d",imageData.length);
     //UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imageData], nil, nil, nil);
-    NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setBusinessPicture&business_name=%@",business_name];
+    NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setBusinessPicture&business_name=%@",username];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -63,7 +63,7 @@
     
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@.png\"\r\n",business_name] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"%@.png\"\r\n",[[[username stringByReplacingOccurrencesOfString:@"." withString:@""] componentsSeparatedByString:@"@"] objectAtIndex:0]] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:imageData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -73,7 +73,6 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
     return returnString;
-    
 }
 
 - (UIImage*)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize{
