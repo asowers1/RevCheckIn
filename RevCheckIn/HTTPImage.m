@@ -51,7 +51,7 @@
     NSData* imageData = UIImagePNGRepresentation(image);
     NSLog(@"data length: %d",imageData.length);
     //UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imageData], nil, nil, nil);
-    NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setBusinessPicture&business_name=%@",username];
+    NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setBusinessPicture&username=%@",username];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];

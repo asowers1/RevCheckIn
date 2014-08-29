@@ -13,6 +13,9 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 
 @interface TeamInfoViewController ()
+{
+    NSString *username;
+}
 
 @end
 
@@ -21,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    username = @"";
     
     [self.control setSelectedSegmentIndex:[[NSNumber numberWithBool:self.member.boolValue] intValue]];
     [self changeSubview:self.control];
@@ -58,6 +63,7 @@
             user = users[0];
             
             if ([[user valueForKey:@"business_name"] isEqualToString:self.team[@"teamName"]]){
+                username = [user valueForKey:@"username"];
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeImage)];
                 [self.logo setUserInteractionEnabled:YES];
                 [self.logo addGestureRecognizer:tapGesture];
@@ -176,7 +182,7 @@
     [self.loadingIndicator startAnimating];
     [self.logo setImage:newLogo];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *resp = [[[HTTPImage alloc] init] setLogo:newLogo forTeam:self.team[@"teamName"]];
+        NSString *resp = [[[HTTPImage alloc] init] setLogo:newLogo forTeam:username];
 // Build handler for image load failure
         
         dispatch_async(dispatch_get_main_queue(), ^{
