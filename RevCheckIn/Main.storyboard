@@ -777,6 +777,7 @@
                         <outlet property="anchor" destination="h2C-gg-Axa" id="CyY-EI-KC8"/>
                         <outlet property="anchorLeftSpace" destination="gLw-V1-t2d" id="MxJ-Em-jXC"/>
                         <outlet property="anchorTopSpace" destination="xt9-ej-sAR" id="27a-Gh-Nbv"/>
+                        <outlet property="anchorWidth" destination="Qs7-sa-nHo" id="kb5-88-mXU"/>
                         <outlet property="loadingView" destination="fbT-Tr-JUa" id="eeJ-hQ-4kc"/>
                         <outlet property="teamsTable" destination="04b-bw-DIt" id="NU7-Gb-su5"/>
                     </connections>

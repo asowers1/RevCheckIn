@@ -159,6 +159,7 @@
     selectedTeam = [(TeamTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] team];
     self.anchorTopSpace.constant = [tableView cellForRowAtIndexPath:indexPath].frame.origin.y + (tableView.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
     self.anchorLeftSpace.constant = defaultLeft;
+    self.anchorWidth.constant = 1;
     NSLog(@"%f", self.anchorTopSpace.constant);
     [self.view layoutIfNeeded];
     
@@ -217,8 +218,10 @@
         view = view.superview;
     }
     self.anchorTopSpace.constant = view.frame.origin.y + (self.teamsTable.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
-    self.anchorLeftSpace.constant = [[collectionView cellForItemAtIndexPath:indexPath] frame].origin.x + ([[collectionView cellForItemAtIndexPath:indexPath] frame].size.width / 2.0) + collectionView.frame.origin.x;
-    NSLog(@"%f", self.anchorTopSpace.constant);
+    
+// Modify the anchor space to fit match the selected Cell
+    //self.anchorLeftSpace.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].origin.x + collectionView.frame.origin.x + [collectionView layoutAttributesForItemAtIndexPath:indexPath].frame.origin.x;
+    //self.anchorWidth.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].size.width;
     [self.view layoutIfNeeded];
     
     [self performSegueWithIdentifier:@"showTeam" sender:self];
