@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *control;
 @property (weak, nonatomic) IBOutlet UITableView *employeeTable;
 @property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingIndicator;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *peekTop;
+@property (weak, nonatomic) IBOutlet UIImageView *peek;
 
 @property (strong, nonatomic) NSDictionary *team;
 @property (strong, nonatomic) NSNumber *member;

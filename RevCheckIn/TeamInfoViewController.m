@@ -71,8 +71,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    //[self.employeeTable scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:self.member.integerValue inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    if (self.member){
+        [self.employeeTable scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:self.member.integerValue inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    if (self.member){
+        [self.employeeTable selectRowAtIndexPath:[NSIndexPath indexPathForItem:self.member.integerValue inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,6 +101,49 @@
     [cell passMember:[[self.team objectForKey:@"members"] objectAtIndex:indexPath.row]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    
+    UITableViewRowAction *call = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Call" handler:^(UITableViewRowAction *action, NSIndexPath *index){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://3014733513"]];
+        [tableView setEditing:NO animated:YES];
+    }];
+    [call setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
+    [ret addObject:call];
+    UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
+        // Send Email
+        [tableView setEditing:NO animated:YES];
+    }];
+    [email setBackgroundColor:[UIColor colorWithRed:(50/255.0) green:(161/255.0) blue:(249/255.0) alpha:1]];
+    [ret addObject:email];
+    
+    return ret;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.peek setHidden:NO];
+    self.peekTop.constant = [tableView rectForRowAtIndexPath:indexPath].origin.y;
+    [tableView setBackgroundColor:[UIColor clearColor]];
+    [UIView animateWithDuration:0.2f animations:^{
+        
+        [tableView cellForRowAtIndexPath:indexPath].frame = CGRectOffset([tableView cellForRowAtIndexPath:indexPath].frame, -40, 0);
+    } completion:^(BOOL finished){
+        [UIView animateWithDuration:0.2f animations:^{
+            [tableView cellForRowAtIndexPath:indexPath].frame = CGRectOffset([tableView cellForRowAtIndexPath:indexPath].frame, 40, 0);
+        } completion:^(BOOL finished){
+            [tableView setBackgroundColor:[UIColor whiteColor]];
+            [self.peek setHidden:YES];
+        }];
+
+    }];
+
 }
 
 -(void)changeImage{

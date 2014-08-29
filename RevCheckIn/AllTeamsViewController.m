@@ -216,11 +216,11 @@
     while (view && ![view isKindOfClass:[UITableViewCell class]]){
         view = view.superview;
     }
-    self.anchorTopSpace.constant = view.frame.origin.y + (self.teamsTable.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
+    self.anchorTopSpace.constant = view.frame.origin.y + [(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage].frame.origin.y + ([(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage].frame.size.height / 2.0) + self.teamsTable.frame.origin.y;
     
 // Modify the anchor space to fit match the selected Cell
-    //self.anchorLeftSpace.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].origin.x + collectionView.frame.origin.x + [collectionView layoutAttributesForItemAtIndexPath:indexPath].frame.origin.x;
-    //self.anchorWidth.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].size.width;
+    self.anchorLeftSpace.constant = [collectionView convertRect:[collectionView cellForItemAtIndexPath:indexPath].frame toView:self.view].origin.x;
+    self.anchorWidth.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].size.width;
     [self.view layoutIfNeeded];
     
     [self performSegueWithIdentifier:@"showTeam" sender:self];

@@ -821,6 +821,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="peek" translatesAutoresizingMaskIntoConstraints="NO" id="a4r-hN-mDZ">
+                                <rect key="frame" x="560" y="290" width="40" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="D9d-Mu-xsS"/>
+                                    <constraint firstAttribute="height" constant="90" id="p0v-xv-e8M"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erV-P2-qPG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="262"/>
                                 <subviews>
@@ -923,7 +930,8 @@
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0V9-bT-JEn">
                                 <rect key="frame" x="0.0" y="290" width="600" height="310"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="employeeCell" rowHeight="90" id="1UJ-mm-j6v" customClass="EmployeeTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1023,6 +1031,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="erV-P2-qPG" firstAttribute="top" secondItem="B6s-xt-4CM" secondAttribute="topMargin" id="5Za-EB-0P6"/>
+                            <constraint firstItem="a4r-hN-mDZ" firstAttribute="top" secondItem="i2u-0g-8cS" secondAttribute="bottom" id="BEq-6B-w4S"/>
                             <constraint firstItem="hJf-Uf-gPR" firstAttribute="top" secondItem="B6s-xt-4CM" secondAttribute="topMargin" constant="70" id="JRK-vS-ZzH"/>
                             <constraint firstItem="c5F-Qc-ERb" firstAttribute="top" secondItem="dsb-hB-Rlg" secondAttribute="bottom" id="LNx-gP-OHf"/>
                             <constraint firstItem="dsb-hB-Rlg" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="M7u-fg-KBY"/>
@@ -1032,6 +1041,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0V9-bT-JEn" secondAttribute="trailing" constant="-16" id="aV2-4x-ydM"/>
                             <constraint firstItem="c5F-Qc-ERb" firstAttribute="top" secondItem="0V9-bT-JEn" secondAttribute="bottom" id="cM4-ij-beC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i2u-0g-8cS" secondAttribute="trailing" constant="-18" id="dyK-zo-8Jb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a4r-hN-mDZ" secondAttribute="trailing" constant="-16" id="hgv-bp-B4K"/>
                             <constraint firstItem="i2u-0g-8cS" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-18" id="lAa-Qe-eFd"/>
                             <constraint firstItem="erV-P2-qPG" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="qyf-ef-PDJ"/>
                             <constraint firstItem="0V9-bT-JEn" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="uBf-f8-oPG"/>
@@ -1052,16 +1062,19 @@
                         <outlet property="control" destination="i2u-0g-8cS" id="mc9-QC-ua4"/>
                         <outlet property="employeeTable" destination="0V9-bT-JEn" id="r61-g9-Ie8"/>
                         <outlet property="logo" destination="QZe-aw-um3" id="ipZ-7b-ehU"/>
+                        <outlet property="peek" destination="a4r-hN-mDZ" id="DwM-Po-alp"/>
+                        <outlet property="peekTop" destination="BEq-6B-w4S" id="anp-ix-GbE"/>
                         <outlet property="teamNameLabel" destination="4sD-ge-dft" id="Tzz-ky-Zeu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rlH-nx-Zep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3684" y="337.5"/>
+            <point key="canvasLocation" x="3684" y="337"/>
         </scene>
     </scenes>
     <resources>
         <image name="businessMan" width="200" height="200"/>
+        <image name="peek" width="40" height="90"/>
         <image name="poweredbypush" width="300" height="165"/>
         <image name="push.png" width="1625" height="1781"/>
         <image name="revCircle" width="191" height="191"/>
