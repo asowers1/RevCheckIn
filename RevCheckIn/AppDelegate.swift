@@ -101,10 +101,17 @@ import CoreLocation
                                             .stringByTrimmingCharactersInSet( characterSet )
                                             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
-        println( deviceTokenString )
+
 
         //record user device
+        var helper: HTTPHelper = HTTPHelper()
         
+        helper.deleteActiveDevice()
+        helper.setDeviceContext(deviceTokenString)
+
+        var coreDataHelper: CoreDataHelper = CoreDataHelper()
+        println(coreDataHelper.getUserId())
+    
         
     }
 

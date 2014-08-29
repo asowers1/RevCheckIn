@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4940922B19ABC33700CD84EA /* HTTPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940922A19ABC33700CD84EA /* HTTPImage.m */; };
 		498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498299201999C52E00CEEE4E /* userDeviceModel.swift */; };
+		499291BF19AFE6B600D59720 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499291BE19AFE6B600D59720 /* CoreDataHelper.swift */; };
 		499459D919981BE600DDD773 /* RevCheckInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459D819981BE600DDD773 /* RevCheckInTests.swift */; };
 		499459F419981BFD00DDD773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E319981BFD00DDD773 /* AppDelegate.swift */; };
 		499459F519981BFD00DDD773 /* rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499459E419981BFD00DDD773 /* rootViewController.swift */; };
@@ -55,6 +56,7 @@
 		4940922919ABC33700CD84EA /* HTTPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPImage.h; sourceTree = "<group>"; };
 		4940922A19ABC33700CD84EA /* HTTPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPImage.m; sourceTree = "<group>"; };
 		498299201999C52E00CEEE4E /* userDeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userDeviceModel.swift; sourceTree = "<group>"; };
+		499291BE19AFE6B600D59720 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = ../CoreDataHelper.swift; sourceTree = "<group>"; };
 		499459BD19981BE500DDD773 /* RevCheckIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevCheckIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499459C119981BE500DDD773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		499459D219981BE600DDD773 /* RevCheckInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RevCheckInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 			children = (
 				AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */,
 				499459E319981BFD00DDD773 /* AppDelegate.swift */,
+				499291BE19AFE6B600D59720 /* CoreDataHelper.swift */,
 				499459E419981BFD00DDD773 /* rootViewController.swift */,
 				499459E519981BFD00DDD773 /* userModel.swift */,
 				498299201999C52E00CEEE4E /* userDeviceModel.swift */,
@@ -339,6 +342,7 @@
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
 				AB2E1F8119AFB318000F5690 /* TeamInfoViewController.m in Sources */,
 				ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */,
+				499291BF19AFE6B600D59720 /* CoreDataHelper.swift in Sources */,
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
 				ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,

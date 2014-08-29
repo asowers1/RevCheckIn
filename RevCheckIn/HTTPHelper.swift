@@ -85,7 +85,10 @@ class HTTPHelper: NSObject {
                     Crashlytics.setObjectValue("success", forKey: "loginRequest")
                     println("success")
                     self.setUserContext(username);
-                }else {
+                    
+                    let coreDataHelper: CoreDataHelper = CoreDataHelper()
+                    self.setUserDevice(username, device: coreDataHelper.getUserId())
+                }else {	
                     println("failure")
                     Crashlytics.setObjectValue("response != 1", forKey: "loginRequest")
                     self.setUserContext("-1")
@@ -135,7 +138,7 @@ class HTTPHelper: NSObject {
     }
     
     func setUserDevice(username: String, device: String){
-        let params = ["PUSH_ID":"123","username":username,"device":device] as Dictionary
+        let params = ["PUSH_ID":"123","username":username,"device":device,"call":"linkDeviceToUser"] as Dictionary
         var request = HTTPTask()
         request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
             let datastring:String = NSString(data:response.responseObject! as NSData, encoding:NSUTF8StringEncoding)
