@@ -29,13 +29,19 @@
     [self.logo.layer setBorderWidth:5];
     
     [self.employeeTable setRowHeight:90];
-    /*
+    
     [self.employeeTable setDataSource:self];
     [self.employeeTable setDelegate:self];
-    */
+    
     self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 178, 39)];
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
     [(UIImageView *)self.navigationItem.titleView setImage:[UIImage imageNamed:@"revWithText"]];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.employeeTable scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:self.member.integerValue inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
