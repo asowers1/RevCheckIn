@@ -88,6 +88,7 @@ class HTTPHelper: NSObject {
                     
                     let coreDataHelper: CoreDataHelper = CoreDataHelper()
                     self.setUserDevice(username, device: coreDataHelper.getUserId())
+                    
                 }else {	
                     println("failure")
                     Crashlytics.setObjectValue("response != 1", forKey: "loginRequest")
