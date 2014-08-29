@@ -72,6 +72,7 @@
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
+    NSLog(@"returnString:%@:",returnString);
     return returnString;
 }
 
