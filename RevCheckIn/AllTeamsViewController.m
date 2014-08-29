@@ -48,8 +48,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable) name:@"displayUsers" object:nil];
     
-    allTeams = [[NSMutableDictionary alloc] init];
-    
     HTTPHelper *helper = [[HTTPHelper alloc] init];
     
     [helper getAllUsers];
@@ -70,6 +68,7 @@
         });
     }
     
+    allTeams = [[NSMutableDictionary alloc] init];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -228,7 +227,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    i   f ([segue.identifier isEqualToString:@"showTeam"]){
+    if ([segue.identifier isEqualToString:@"showTeam"]){
         [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeam:selectedTeam];
         
         if (selectedMember){

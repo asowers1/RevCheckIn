@@ -11,4 +11,5 @@
 
 @interface HTTPImage : NSObject
 -(NSString *)setUserPicture:(UIImage *)image :(NSString*)username;
+-(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)business_name;
 @end

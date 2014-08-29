@@ -51,7 +51,7 @@ class HTTPHelper: NSObject {
         let en = NSEntityDescription.entityForName("Active_user", inManagedObjectContext: context)
         
         var newItem = activeUserModel(entity: en, insertIntoManagedObjectContext: context)
-        newItem.username = username
+        newItem.username = (username as NSString).lowercaseString
         context.save(nil)
     }
     
