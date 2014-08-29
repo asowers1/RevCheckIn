@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UIRefreshControl *refresh;
 @property (weak, nonatomic) IBOutlet UIButton *anchor;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorTopSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorLeftSpace;
 
 @property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingView;
 

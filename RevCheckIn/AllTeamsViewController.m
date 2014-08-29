@@ -20,11 +20,14 @@
     
     NSDictionary *selectedTeam;
     NSString *selectedMember;
+    CGFloat defaultLeft;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    defaultLeft = self.anchorLeftSpace.constant;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 178, 39)];
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
@@ -155,6 +158,7 @@
     selectedMember = nil;
     selectedTeam = [(TeamTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] team];
     self.anchorTopSpace.constant = [tableView cellForRowAtIndexPath:indexPath].frame.origin.y + (tableView.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
+    self.anchorLeftSpace.constant = defaultLeft;
     NSLog(@"%f", self.anchorTopSpace.constant);
     [self.view layoutIfNeeded];
     
@@ -213,6 +217,7 @@
         view = view.superview;
     }
     self.anchorTopSpace.constant = view.frame.origin.y + (self.teamsTable.rowHeight / 2.0) + self.teamsTable.frame.origin.y;
+    self.anchorLeftSpace.constant = [[collectionView cellForItemAtIndexPath:indexPath] frame].origin.x + ([[collectionView cellForItemAtIndexPath:indexPath] frame].size.width / 2.0) + collectionView.frame.origin.x;
     NSLog(@"%f", self.anchorTopSpace.constant);
     [self.view layoutIfNeeded];
     
