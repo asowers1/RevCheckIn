@@ -36,7 +36,8 @@ import CoreLocation
 //                )
 //            )
 //        }
-        
+/*
+Problems with iOS 7
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
             UIUserNotificationType.Alert |
             UIUserNotificationType.Sound
@@ -45,7 +46,7 @@ import CoreLocation
         
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
-        
+*/
         var uuidString:String = "AAAAAAAA-BBBB-BBBB-CCCC-CCCCDDDDDDDD" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)

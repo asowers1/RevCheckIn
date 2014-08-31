@@ -146,8 +146,10 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     
     
     @IBAction func showLogin(sender: AnyObject) {
+        println(self.leadingConstraint.constant)
         self.leadingConstraint.constant = self.view.frame.origin.x - (self.newAccountButton.frame.size.width + 20)
         self.trailingConstraint.constant = -1 * (self.newAccountButton.frame.size.width + 20)
+        println(self.leadingConstraint.constant)
         
         UIView.animateWithDuration(0.25, animations: {
             self.view.layoutIfNeeded()

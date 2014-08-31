@@ -28,6 +28,7 @@
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
+		AB08CFEF19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB08CFEE19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m */; };
 		AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */; };
 		AB2E1F8119AFB318000F5690 /* TeamInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2E1F8019AFB318000F5690 /* TeamInfoViewController.m */; };
 		AB2E1F8319AFBF0F000F5690 /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2E1F8219AFBF0F000F5690 /* push.png */; };
@@ -36,6 +37,7 @@
 		AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */; };
 		AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */; };
 		AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */; };
+		ABCB792119B366DE004899CB /* MainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB792019B366DE004899CB /* MainNavController.swift */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
 		ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */; };
@@ -81,6 +83,8 @@
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
+		AB08CFED19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPhoneNumberFormatter.h; sourceTree = "<group>"; };
+		AB08CFEE19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPhoneNumberFormatter.m; sourceTree = "<group>"; };
 		AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
 		AB2E1F7F19AFB318000F5690 /* TeamInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamInfoViewController.h; sourceTree = "<group>"; };
 		AB2E1F8019AFB318000F5690 /* TeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewController.m; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMembersCollectionView.m; sourceTree = "<group>"; };
 		AB43416619AD2FFD00AA40BD /* MemberCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCollectionViewCell.h; sourceTree = "<group>"; };
 		AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCollectionViewCell.m; sourceTree = "<group>"; };
+		ABCB792019B366DE004899CB /* MainNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavController.swift; sourceTree = "<group>"; };
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
 		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
@@ -149,10 +154,13 @@
 				499291BE19AFE6B600D59720 /* CoreDataHelper.swift */,
 				499459E419981BFD00DDD773 /* rootViewController.swift */,
 				499459E519981BFD00DDD773 /* userModel.swift */,
+				ABCB792019B366DE004899CB /* MainNavController.swift */,
 				498299201999C52E00CEEE4E /* userDeviceModel.swift */,
 				499459E619981BFD00DDD773 /* activeUserModel.swift */,
 				499459E719981BFD00DDD773 /* userStatusModel.swift */,
 				499459E819981BFD00DDD773 /* usersTableViewController.swift */,
+				AB08CFED19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.h */,
+				AB08CFEE19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m */,
 				ABF2CFAB19AE69D90037F0FD /* MarqueeLabel.h */,
 				ABF2CFAC19AE69D90037F0FD /* MarqueeLabel.m */,
 				AB2E1F8419AFD4A5000F5690 /* EmployeeTableViewCell.h */,
@@ -346,12 +354,14 @@
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,
 				ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */,
 				49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */,
+				AB08CFEF19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m in Sources */,
 				49945A0119981BFD00DDD773 /* HTTPUpload.swift in Sources */,
 				499459F519981BFD00DDD773 /* rootViewController.swift in Sources */,
 				AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */,
 				499459FB19981BFD00DDD773 /* registerViewController.swift in Sources */,
 				AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */,
 				49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */,
+				ABCB792119B366DE004899CB /* MainNavController.swift in Sources */,
 				AB2E1F8619AFD4A5000F5690 /* EmployeeTableViewCell.m in Sources */,
 				49945A0019981BFD00DDD773 /* HTTPTask.swift in Sources */,
 				499459F819981BFD00DDD773 /* userStatusModel.swift in Sources */,
@@ -474,7 +484,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
@@ -495,7 +505,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RevCheckIn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";

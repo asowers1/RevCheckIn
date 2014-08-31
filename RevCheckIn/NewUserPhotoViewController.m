@@ -77,7 +77,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [self.cameraButton setUserInteractionEnabled:NO];
     [self.libraryButton setUserInteractionEnabled:NO];
     [self.skipButton setUserInteractionEnabled:NO];
-    [self.label setText:@"uploading image"];
+    [self.label setText:@"uploading image..."];
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

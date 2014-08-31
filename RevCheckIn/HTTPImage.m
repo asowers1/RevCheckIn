@@ -12,11 +12,8 @@
 
 -(NSString *)setUserPicture:(UIImage *)image :(NSString*)username
 {
-    NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(320, 320)];
-    NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
+    image = [self imageWithImage:image scaledToSize:[self getNewImageSize:image.size]];
     NSData* imageData = UIImagePNGRepresentation(image);
-    NSLog(@"data length: %d",imageData.length);
     //UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imageData], nil, nil, nil);
     NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setUserPicture&username=%@",username];
     
@@ -45,11 +42,8 @@
 
 -(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)username
 {
-    NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(320, 320)];
-    NSLog(@"Image W: %.0f H: %.0f", image.size.height, image.size.width);
+    image = [self imageWithImage:image scaledToSize:[self getNewImageSize:image.size]];
     NSData* imageData = UIImagePNGRepresentation(image);
-    NSLog(@"data length: %d",imageData.length);
     //UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:imageData], nil, nil, nil);
     NSString *urlString = [NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=setBusinessPicture&username=%@",username];
     
@@ -73,6 +67,23 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
     return returnString;
+}
+
+-(CGSize)getNewImageSize:(CGSize)sizeIn{
+    CGFloat ratio;
+    CGFloat height;
+    CGFloat width;
+    if (sizeIn.height >= sizeIn.width){
+        ratio = sizeIn.width / sizeIn.height;
+        height = 320;
+        width = height * ratio;
+    } else {
+        ratio = sizeIn.height / sizeIn.width;
+        width = 320;
+        height = width * ratio;
+    }
+    return CGSizeMake(width, height);
+    
 }
 
 - (UIImage*)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize{

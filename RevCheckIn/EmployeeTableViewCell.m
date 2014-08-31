@@ -16,6 +16,8 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+    [self.contentView setBackgroundColor:[UIColor whiteColor]];
 
     // Configure the view for the selected state
 }
@@ -29,7 +31,7 @@
     [self.nameLabel setText:[self.member valueForKey:@"name"]];
     [self.roleLabel setText:[self.member valueForKey:@"role"]];
     [self.emailLabel setText:[self.member valueForKey:@"email"]];
-    [self.phoneLabel setText:[self.member valueForKey:@"phone"]];
+    [self.phoneLabel setText:[[[ECPhoneNumberFormatter alloc] init] stringForObjectValue:[self.member valueForKey:@"phone"]]];
     
     if ([[self.member valueForKey:@"state"] isEqualToString:@"1"]){
         [self.statusImage setImage:[UIImage imageNamed:@"in"]];

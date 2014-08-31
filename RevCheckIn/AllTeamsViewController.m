@@ -11,6 +11,8 @@
 #import "TeamInfoViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
 @interface AllTeamsViewController ()
 
 @end
@@ -33,7 +35,7 @@
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
     [(UIImageView *)self.navigationItem.titleView setImage:[UIImage imageNamed:@"revWithText"]];
     
-    [self.teamsTable setRowHeight:100];
+    [self.teamsTable setRowHeight:110];
     
     [self.teamsTable setDataSource:self];
     [self.teamsTable setDelegate:self];
@@ -96,7 +98,14 @@
             
         } else {
             // Download Team Image
-            UIImage *teamLogo = [UIImage imageNamed:@"push.png"];
+            NSURL *teamURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=getBusinessPicture&username=%@", [record valueForKey:@"username"]]];
+            NSData *logoData = [NSData dataWithContentsOfURL:teamURL];
+            UIImage *teamLogo;
+            if (logoData.length > 0){
+                teamLogo = [UIImage imageWithData:logoData];
+            } else {
+                teamLogo = [UIImage imageNamed:@"defaultLogo"];
+            }
             NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo"]];
 
             if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
@@ -162,7 +171,27 @@
     NSLog(@"%f", self.anchorTopSpace.constant);
     [self.view layoutIfNeeded];
     
-    [self performSegueWithIdentifier:@"showTeam" sender:self];
+    if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
+        [self performSegueWithIdentifier:@"showTeam" sender:self];
+    } else {
+        UIViewController *info = [self.storyboard instantiateViewControllerWithIdentifier:@"teamModal"];
+        
+        [(TeamInfoViewController *)[(UINavigationController *)info viewControllers][0] setTeam:selectedTeam];
+        
+        if (selectedMember){
+            [(TeamInfoViewController *)[(UINavigationController *)info viewControllers][0] setMember:selectedMember];
+            selectedMember = nil;
+        }
+        
+        if (!IPAD){
+            [self presentViewController:info animated:YES completion:nil];
+        } else {
+            
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:info];
+            popover.popoverContentSize = CGSizeMake(644, 425); //your custom size.
+            [popover presentPopoverFromRect:self.anchor.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
+    }
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -223,7 +252,27 @@
     self.anchorWidth.constant = [[(MemberCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath] memberImage] frame].size.width;
     [self.view layoutIfNeeded];
     
-    [self performSegueWithIdentifier:@"showTeam" sender:self];
+    if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
+        [self performSegueWithIdentifier:@"showTeam" sender:self];
+    } else {
+        UIViewController *info = [self.storyboard instantiateViewControllerWithIdentifier:@"teamModal"];
+        
+        [(TeamInfoViewController *)[(UINavigationController *)info viewControllers][0] setTeam:selectedTeam];
+        
+        if (selectedMember){
+            [(TeamInfoViewController *)[(UINavigationController *)info viewControllers][0] setMember:selectedMember];
+            selectedMember = nil;
+        }
+        
+        if (!IPAD){
+            [self presentViewController:info animated:YES completion:nil];
+        } else {
+            
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:info];
+            popover.popoverContentSize = CGSizeMake(644, 425); //your custom size.
+            [popover presentPopoverFromRect:self.anchor.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -231,10 +280,8 @@
         [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeam:selectedTeam];
         
         if (selectedMember){
+            [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:selectedMember];
             selectedMember = nil;
-            [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:[NSNumber numberWithInt:1]];
-        } else {
-            [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:[NSNumber numberWithInt:0]];
         }
     }
 }
@@ -246,8 +293,19 @@
 }
 
 - (IBAction)logout:(id)sender {
+    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"confirm logout?" message:@"are you sure you want to log out? this device won't update your check-in status until you log back in" preferredStyle:UIAlertControllerStyleAlert];
+    [confirm addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [confirm addAction:[UIAlertAction actionWithTitle:@"confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+        [self confirmLogout];
+    }]];
+    [self presentViewController:confirm animated:YES completion:nil];
+}
+
+-(void)confirmLogout{
     [[[HTTPHelper alloc] init] deleteActiveDevice];
     [[[HTTPHelper alloc] init] deleteActiveUser];
     [self performSegueWithIdentifier:@"logout" sender:self];
 }
+
+
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
+#import "ECPhoneNumberFormatter.h"
 
 @interface EmployeeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *statusImage;

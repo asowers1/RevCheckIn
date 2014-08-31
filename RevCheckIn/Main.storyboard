@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Dg-L8-CSa">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -633,9 +632,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3QP-Xw-UTE" kind="popoverPresentation" identifier="showTeam" popoverAnchorView="h2C-gg-Axa" id="Gvt-Ky-gYj">
-                                        <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="3QP-Xw-UTE" kind="presentation" identifier="showTeam" id="Gvt-Ky-gYj"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="149" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="04b-bw-DIt">
@@ -643,7 +640,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamCell" rowHeight="100" id="Gpo-MT-30a" customClass="TeamTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamCell" rowHeight="105" id="Gpo-MT-30a" customClass="TeamTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gpo-MT-30a" id="qbp-k5-5cI">
@@ -721,20 +718,44 @@
                                                 </collectionView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="push.png" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-zK-cA6">
                                                     <rect key="frame" x="8" y="5" width="90" height="90"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="6c2-xk-8nM"/>
                                                         <constraint firstAttribute="height" constant="90" id="T9F-kA-f81"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuL-lK-rjk">
+                                                    <rect key="frame" x="0.0" y="100" width="600" height="5"/>
+                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.50980392159999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="5" id="TIj-Q2-uJe"/>
+                                                        <constraint firstAttribute="height" constant="5" id="ktP-Yz-IJZ"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eAh-qV-W9e" firstAttribute="top" secondItem="qbp-k5-5cI" secondAttribute="topMargin" constant="-8" id="1lh-gA-1CD"/>
+                                                <constraint firstItem="kuL-lK-rjk" firstAttribute="leading" secondItem="qbp-k5-5cI" secondAttribute="leadingMargin" constant="-8" id="29U-CC-2TP"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kuL-lK-rjk" secondAttribute="bottom" constant="-8" id="8de-iU-aUk"/>
                                                 <constraint firstAttribute="centerY" secondItem="OkH-zK-cA6" secondAttribute="centerY" id="9s2-Ga-ry2"/>
+                                                <constraint firstItem="kuL-lK-rjk" firstAttribute="leading" secondItem="qbp-k5-5cI" secondAttribute="leadingMargin" constant="-8" id="BCp-we-MGo"/>
+                                                <constraint firstItem="kuL-lK-rjk" firstAttribute="top" secondItem="eAh-qV-W9e" secondAttribute="bottom" id="GYc-Kt-hRn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="eAh-qV-W9e" secondAttribute="trailing" constant="-8" id="Jc9-UU-U1b"/>
                                                 <constraint firstItem="eAh-qV-W9e" firstAttribute="leading" secondItem="OkH-zK-cA6" secondAttribute="trailing" constant="8" id="LbW-Zb-ZjH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="kuL-lK-rjk" secondAttribute="bottom" constant="-8" id="MTM-r7-Cer"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kuL-lK-rjk" secondAttribute="trailing" constant="-8" id="UIQ-YJ-6Yt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kuL-lK-rjk" secondAttribute="trailing" constant="-8" id="Vwh-T7-jgf"/>
+                                                <constraint firstItem="OkH-zK-cA6" firstAttribute="top" secondItem="qbp-k5-5cI" secondAttribute="topMargin" constant="-3" id="fMc-xn-cCx"/>
                                                 <constraint firstItem="OkH-zK-cA6" firstAttribute="leading" secondItem="qbp-k5-5cI" secondAttribute="leadingMargin" id="oZY-f1-b2l"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="eAh-qV-W9e" secondAttribute="bottom" constant="-8" id="xYI-lo-whP"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="eAh-qV-W9e" secondAttribute="bottom" constant="2" id="xYI-lo-whP"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="9s2-Ga-ry2"/>
+                                                    <exclude reference="MTM-r7-Cer"/>
+                                                    <exclude reference="xYI-lo-whP"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -791,12 +812,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huo-mX-5qR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="339"/>
+            <point key="canvasLocation" x="2171" y="337"/>
         </scene>
-        <!--Main Nav Controller-->
+        <!--teamModal-->
         <scene sceneID="tRr-N1-HbY">
             <objects>
-                <navigationController id="3QP-Xw-UTE" customClass="MainNavController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="teamModal" id="3QP-Xw-UTE" customClass="MainNavController" customModule="RevCheckIn" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pn0-hb-1gH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

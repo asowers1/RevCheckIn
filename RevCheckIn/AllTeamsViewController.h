@@ -13,7 +13,7 @@
 #import "TransLoadingIndicator.h"
 #import "MarqueeLabel.h"
 
-@interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface AllTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *revLogo;
 @property (weak, nonatomic) IBOutlet UITableView *teamsTable;
 @property (strong, nonatomic) UIRefreshControl *refresh;

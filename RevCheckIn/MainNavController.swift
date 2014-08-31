@@ -2,7 +2,7 @@
 //  MainNavController.swift
 //  RevCheckIn
 //
-//  Created by Calvin Chestnut on 8/29/14.
+//  Created by Calvin Chestnut on 8/31/14.
 //  Copyright (c) 2014 Andrew Sowers. All rights reserved.
 //
 
@@ -12,18 +12,17 @@ class MainNavController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        preferredStatusBarStyle()
-        
+
         // Do any additional setup after loading the view.
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
 
