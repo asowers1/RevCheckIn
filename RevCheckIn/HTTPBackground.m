@@ -7,13 +7,73 @@
 //
 
 #import "HTTPBackground.h"
+#import "RevCheckIn-Swift.h"
+
 
 @implementation HTTPBackground
 
 
--(void)sendState:(NSString*)username :(NSString*)device :(NSString*)context
+-(void)updateUserState:(NSString*)username :(NSString*)state
 {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"com.experiencepush.transfer"];
+    configuration.allowsCellularAccess = YES;
     
+    _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    
+    NSURL *url = [NSURL URLWithString:@"experiencepush.com/rev/rest/"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"PUSH_ID=123&call=updateUserState&username=%@&state=%@",username,state];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    _downloadTask = [self.session downloadTaskWithRequest:request];
+    
+    [_downloadTask resume];
 }
 
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
+{
+    NSLog(@"didFinishDownloadToURL: get reply");
+    
+    NSLog(@"url: %@",downloadURL);
+    
+
+}
+
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    if (error == nil)
+    {
+        NSLog(@"Task %@ completed successfully", task);
+    }
+    else
+    {
+        NSLog(@"Task %@ completed with error: %@", task,
+              [error localizedDescription]);
+    }
+    _downloadTask = nil;
+}
+
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.completionHandler) {
+        void (^completionHandler)() = appDelegate.completionHandler;
+        appDelegate.completionHandler = nil;
+        completionHandler();
+    }
+    NSLog(@"Task complete");
+}
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+}
 @end
