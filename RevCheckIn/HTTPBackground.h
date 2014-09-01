@@ -12,4 +12,6 @@
 NSURLSessionDownloadDelegate>
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
+
+-(void)updateUserState:(NSString*)username :(NSString*)state;
 @end

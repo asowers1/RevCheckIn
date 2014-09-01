@@ -15,12 +15,14 @@
 
 -(void)updateUserState:(NSString*)username :(NSString*)state
 {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"com.experiencepush.transfer"];
+    NSUUID *uuid = [[NSUUID alloc] init];
+    NSString *config = [NSString stringWithFormat:@"com.experiencepush.transfer.%@",[uuid UUIDString]];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:config];
     configuration.allowsCellularAccess = YES;
     
     _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
-    NSURL *url = [NSURL URLWithString:@"experiencepush.com/rev/rest/"];
+    NSURL *url = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/index.php"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -36,8 +38,6 @@
     NSLog(@"didFinishDownloadToURL: get reply");
     
     NSLog(@"url: %@",downloadURL);
-    
-
 }
 
 
