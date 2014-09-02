@@ -38,6 +38,35 @@
     NSLog(@"didFinishDownloadToURL: get reply");
     
     NSLog(@"url: %@",downloadURL);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray *URLs =
+    [fileManager URLsForDirectory:NSDocumentDirectory
+                        inDomains:NSUserDomainMask];
+    NSURL *documentsDirectory = [URLs objectAtIndex:0];
+    
+    NSURL *fromURL = [[downloadTask originalRequest] URL];
+    NSURL *destinationURL =
+    [documentsDirectory URLByAppendingPathComponent:[fromURL
+                                                     lastPathComponent]];
+    
+    NSError *error;
+    
+    // Remove file at the destination if it already exists.
+    [fileManager removeItemAtURL:destinationURL error:NULL];
+    
+    BOOL success = [fileManager copyItemAtURL:downloadURL
+                                        toURL:destinationURL error:&error];
+    
+    if (success)
+    {
+        NSString * file = [[NSString alloc] initWithContentsOfFile:[destinationURL path] encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"FILE:%@:",file);
+    }
+    else
+    {
+        NSLog(@"File copy failed: %@", [error localizedDescription]);
+    }
 }
 
 

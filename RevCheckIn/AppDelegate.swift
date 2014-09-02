@@ -78,8 +78,7 @@ Problems with iOS 7
     func applicationDidEnterBackground(application: UIApplication!) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        var httpBackgrounder: HTTPBackground = HTTPBackground()
-        //httpBackgrounder.updateUserState("andrew@expereincepush.com", "1")
+        
 
     }
 
@@ -261,8 +260,11 @@ extension AppDelegate: CLLocationManagerDelegate {
             if user != "-1" {
                 NSLog("You've checked in, \(user)")
                 sendLocalNotificationWithMessage("You've checked in")
-                var helper = HTTPHelper()
-                helper.pushStateChange(user, state: "1")
+                //var helper = HTTPHelper()
+                //helper.pushStateChange(user, state: "1")
+                var httpBackgrounder: HTTPBackground = HTTPBackground()
+                httpBackgrounder.updateUserState("andrew@expereincepush.com"
+, "1")
             }
             else{
             }
@@ -286,9 +288,12 @@ extension AppDelegate: CLLocationManagerDelegate {
             
             if user != "-1" {
                 NSLog("You've checked out, \(user)")
+
                 sendLocalNotificationWithMessage("You've checked out")
-                var helper = HTTPHelper()
-                helper.pushStateChange(user, state: "0")
+                //var helper = HTTPHelper()
+                //helper.pushStateChange(user, state: "0")
+                var httpBackgrounder: HTTPBackground = HTTPBackground()
+                httpBackgrounder.updateUserState("andrew@expereincepush.com", "0")
             }
             else{
             }
