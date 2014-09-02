@@ -112,18 +112,24 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         HTTPImage *imageUpload = [[HTTPImage alloc] init];
     
-        [imageUpload setUserPicture:imageIn :userName];
+        BOOL success = [[imageUpload setUserPicture:imageIn :userName] isEqualToString:@"1"];
         
-#warning checkForFail
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.label setText:@"done"];
-            [self.uploadIndicator setHidesWhenStopped:YES];
-            [self.uploadIndicator stopAnimating];
-            
-            [self performSegueWithIdentifier:@"go" sender:self];
-
-        });
+        if (success){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.label setText:@"done"];
+                [self.uploadIndicator setHidesWhenStopped:YES];
+                [self.uploadIndicator stopAnimating];
+                
+                [self performSegueWithIdentifier:@"go" sender:self];
+                
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.label setText:@"upload failed"];
+                [self.uploadIndicator setHidesWhenStopped:YES];
+                [self.uploadIndicator stopAnimating];
+            });
+        }
     });
 }
 

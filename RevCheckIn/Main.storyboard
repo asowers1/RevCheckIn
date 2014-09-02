@@ -801,6 +801,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="IyL-fn-7oV">
+                        <barButtonItem key="leftBarButtonItem" title="account" id="i2e-UT-abd">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="account" style="plain" id="Hjk-Al-eUY">
                             <connections>
                                 <segue destination="szQ-5Y-rwh" kind="popoverPresentation" identifier="accountSettings" popoverAnchorBarButtonItem="Hjk-Al-eUY" id="8Da-SX-0pB">
@@ -1087,11 +1090,15 @@
                                 <action selector="close:" destination="9RO-FK-fgN" id="WfC-Sc-rpT"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="close" id="OZX-10-3Y2">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bioView" destination="dsb-hB-Rlg" id="aKv-5b-oFf"/>
                         <outlet property="control" destination="i2u-0g-8cS" id="mc9-QC-ua4"/>
                         <outlet property="employeeTable" destination="0V9-bT-JEn" id="r61-g9-Ie8"/>
+                        <outlet property="loadingIndicator" destination="hJf-Uf-gPR" id="DFB-be-klp"/>
                         <outlet property="logo" destination="QZe-aw-um3" id="ipZ-7b-ehU"/>
                         <outlet property="peek" destination="a4r-hN-mDZ" id="DwM-Po-alp"/>
                         <outlet property="peekTop" destination="BEq-6B-w4S" id="anp-ix-GbE"/>
@@ -1338,7 +1345,7 @@
         <image name="revWithText" width="300" height="74"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Ki-gv-fNG"/>
+        <segue reference="pVf-53-w9Z"/>
         <segue reference="9jm-pO-BwN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

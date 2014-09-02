@@ -163,6 +163,18 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         return true
     }
     
+    func textFieldDidEndEditing(textField: UITextField!) {
+        if textField == self.emailTextField || textField == passwordTestField {
+            if ((textField.text as NSString).containsString(" ")){
+                println("found space")
+                textField.text = textField.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil);
+                let noSpace = UIAlertController(title: "no spaces", message: "spaces are not allowed in emails or passwords", preferredStyle: UIAlertControllerStyle.Alert)
+                noSpace.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(noSpace, animated: true, completion: nil)
+            }
+        }
+    }
+    
     func registerLogic(){
         if passwordTestField.text != "" && nameTextField.text != "" && emailTextField.text != "" && registrationCode.text != "" && phone.text != "" && role.text != "" && passwordTestField.text == confirmPasswordTextField.text {
             Crashlytics.setObjectValue("valie Values", forKey: "registrationResult")
@@ -186,13 +198,17 @@ class registerViewController: UIViewController, UITextFieldDelegate{
                 user = "-1"
             }
             println("active user: \(user)")
-            if user != "-1" {
+            if user == "1" {
                 Crashlytics.setObjectValue("user not -1", forKey: "registrationPass")
                 println("login successful")
                 
                 self.performSegueWithIdentifier("uploadImage", sender: self)
             }
-            else{
+            else if (user == "-2"){
+                let alert = UIAlertController(title: "We're sorry", message: "the registration code entered is invalid. please try again or contact Rev managment", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "I'll try again", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
                 Crashlytics.setObjectValue("user == -1", forKey: "registrationPass")
                 println("login unsuccessful")
                 let alert = UIAlertController(title: "We're sorry", message: "That username, name or email has already been registered or the connection failed", preferredStyle: UIAlertControllerStyle.Alert)
@@ -201,6 +217,37 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             }
         } else {
             Crashlytics.setObjectValue("invalid Values", forKey: "registrationResult")
+            var error: String = ""
+            if (self.registrationCode.text == ""){
+                error = "registration code is empty"
+            }
+            if (self.role.text == ""){
+                error = "title field is empty"
+            }
+            if (self.phone.text == ""){
+                error = "phone number is blank"
+            }
+            if (self.confirmPasswordTextField.text == ""){
+                error = "confirm password"
+            }
+            if (self.passwordTestField.text == ""){
+                error = "enter a password"
+            }
+            if (self.nameTextField.text == ""){
+                error = "name is empty"
+            }
+            if (self.emailTextField.text == ""){
+                error = "enter an email address"
+            }
+            if (error == ""){
+                if (self.passwordTestField.text != self.confirmPasswordTextField.text){
+                    error = "passwords do not match"
+                }
+            }
+            
+            let fail : UIAlertController = UIAlertController(title: "registration failed", message: error, preferredStyle:UIAlertControllerStyle.Alert)
+            fail.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(fail, animated: true, completion: nil)
         }
     }
     
