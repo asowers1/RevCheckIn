@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTTPBackground : NSObject
+@interface HTTPBackground : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate,
+NSURLSessionDownloadDelegate>
+@property (nonatomic) NSURLSession *session;
+@property (nonatomic) NSURLSessionDownloadTask *downloadTask;
 
+-(void)updateUserState:(NSString*)username :(NSString*)state;
 @end

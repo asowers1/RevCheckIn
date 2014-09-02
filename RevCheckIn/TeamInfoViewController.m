@@ -8,7 +8,7 @@
 
 #import "TeamInfoViewController.h"
 #import "EmployeeTableViewCell.h"
-#import "RevCheckIn-swift.h"
+#import "RevCheckIn-Swift.h"
 #import "HTTPImage.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 

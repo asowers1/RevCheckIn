@@ -141,7 +141,13 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
             Crashlytics.setObjectValue("executed fetch request", forKey: "lastAction")
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
+            var user:String = ""
+            if let userUnwrap: String = selectedItem.valueForKeyPath("username") as? String{
+                user = userUnwrap
+            }
+            else{
+                user = "-1"
+            }
             println("active user: \(user)")
             if user != "-1" {
                 Crashlytics.setObjectValue("user not -1", forKey: "registrationPass")

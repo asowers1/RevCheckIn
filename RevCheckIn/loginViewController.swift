@@ -116,6 +116,8 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         }else{
             Crashlytics.setObjectValue("selectedItem.valueForKeyPath(\"username\") == nil", forKey: "loginResult")
             println("login unsuccessful!")
+            var helper:HTTPHelper = HTTPHelper()
+            helper.setUserContext("-1")
         }
     }
     
