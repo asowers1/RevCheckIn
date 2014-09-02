@@ -105,6 +105,11 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
                 println("login successful")
+                
+                let helper: HTTPHelper = HTTPHelper()
+                let data: CoreDataHelper = CoreDataHelper()
+                helper.setUserDevice(user, device: data.getUserId())
+            
                 self.performSegueWithIdentifier("login", sender: self)
             }
             else{

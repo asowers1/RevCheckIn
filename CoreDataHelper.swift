@@ -19,9 +19,9 @@ class CoreDataHelper: NSObject {
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User_device")
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
-        if myList[0].valueForKeyPath("device") != nil {
-            return myList[0].valueForKeyPath("device") as String
+        if let device = myList[0].valueForKeyPath("device") as? String {
+            return device
         }
-        return ""
+        return "-1"
     }
 }
