@@ -87,7 +87,7 @@
 
 -(void)setUp{
     
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];;
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];;
     UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     [blurEffectView setFrame:self.bounds];
     [self addSubview:blurEffectView];
@@ -101,7 +101,6 @@
     
     self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 108, 150, 42)];
     [self.textLabel setText:@"Label"];
-    [self.textLabel setTextColor:[UIColor whiteColor]];
     [self.textLabel setTextAlignment:NSTextAlignmentCenter];
     [self.textLabel setNumberOfLines:2];
     
