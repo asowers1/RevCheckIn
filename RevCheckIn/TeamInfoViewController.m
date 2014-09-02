@@ -140,7 +140,7 @@
     [ret addObject:call];
     UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
-        [mail setDelegate:self];
+        [mail setMailComposeDelegate:self];
         [mail setToRecipients:@[[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] emailLabel] text]]];
         [self presentViewController:mail animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
@@ -148,7 +148,7 @@
     [email setBackgroundColor:[UIColor colorWithRed:(50/255.0) green:(161/255.0) blue:(249/255.0) alpha:1]];
     UITableViewRowAction *text = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"text" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMessageComposeViewController *text = [[MFMessageComposeViewController alloc] init];
-        [text setDelegate:self];
+        [text setMessageComposeDelegate:self];
         [text setRecipients:@[[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] phoneLabel] text]]];
         [self presentViewController:text animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
@@ -209,12 +209,12 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [[(EmployeeTableViewCell *)[self.employeeTable cellForRowAtIndexPath:selected] phoneLabel] text]]]];
         } else if (buttonIndex == 1){
             MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
-            [mail setDelegate:self];
+            [mail setMailComposeDelegate:self];
             [mail setToRecipients:@[[[(EmployeeTableViewCell *)[self.employeeTable cellForRowAtIndexPath:selected] emailLabel] text]]];
             [self presentViewController:mail animated:YES completion:nil];
         } else if (buttonIndex == 2){
             MFMessageComposeViewController *text = [[MFMessageComposeViewController alloc] init];
-            [text setDelegate:self];
+            [text setMessageComposeDelegate:self];
             [text setRecipients:@[[[(EmployeeTableViewCell *)[self.employeeTable cellForRowAtIndexPath:selected] phoneLabel] text]]];
             [self presentViewController:text animated:YES completion:nil];
         }
@@ -249,6 +249,7 @@
         [changeLogo showFromRect:self.view.frame inView:self.view animated:YES];
     }
 }
+
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     [controller dismissViewControllerAnimated:YES completion:nil];
