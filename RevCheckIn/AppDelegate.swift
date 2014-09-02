@@ -258,13 +258,12 @@ extension AppDelegate: CLLocationManagerDelegate {
             var user: String = selectedItem.valueForKeyPath("username") as String
             
             if user != "-1" {
-                NSLog("You've checked in, \(user)")
+                NSLog("You've checked in, :\(user):")
                 sendLocalNotificationWithMessage("You've checked in")
                 //var helper = HTTPHelper()
                 //helper.pushStateChange(user, state: "1")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
-                httpBackgrounder.updateUserState("andrew@expereincepush.com"
-, "1")
+                httpBackgrounder.updateUserState(user, "1")
             }
             else{
             }
@@ -287,13 +286,13 @@ extension AppDelegate: CLLocationManagerDelegate {
             var user: String = selectedItem.valueForKeyPath("username") as String
             
             if user != "-1" {
-                NSLog("You've checked out, \(user)")
+                NSLog("You've checked out, :\(user):")
 
                 sendLocalNotificationWithMessage("You've checked out")
                 //var helper = HTTPHelper()
                 //helper.pushStateChange(user, state: "0")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
-                httpBackgrounder.updateUserState("andrew@expereincepush.com", "0")
+                httpBackgrounder.updateUserState(user, "0")
             }
             else{
             }
