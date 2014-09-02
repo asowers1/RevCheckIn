@@ -37,6 +37,8 @@
 		AB43416219AD2FBE00AA40BD /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416119AD2FBE00AA40BD /* TeamTableViewCell.m */; };
 		AB43416519AD2FE300AA40BD /* TeamMembersCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */; };
 		AB43416819AD2FFD00AA40BD /* MemberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */; };
+		AB84ADA219B602180077BB6D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB84ADA119B602180077BB6D /* QuartzCore.framework */; };
+		AB84ADA519B613F40077BB6D /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84ADA419B613F40077BB6D /* AccountTableViewController.m */; };
 		ABCB792119B366DE004899CB /* MainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB792019B366DE004899CB /* MainNavController.swift */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
@@ -99,6 +101,9 @@
 		AB43416419AD2FE300AA40BD /* TeamMembersCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMembersCollectionView.m; sourceTree = "<group>"; };
 		AB43416619AD2FFD00AA40BD /* MemberCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCollectionViewCell.h; sourceTree = "<group>"; };
 		AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCollectionViewCell.m; sourceTree = "<group>"; };
+		AB84ADA119B602180077BB6D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AB84ADA319B613F40077BB6D /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewController.h; sourceTree = "<group>"; };
+		AB84ADA419B613F40077BB6D /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
 		ABCB792019B366DE004899CB /* MainNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavController.swift; sourceTree = "<group>"; };
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
@@ -114,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB84ADA219B602180077BB6D /* QuartzCore.framework in Frameworks */,
 				AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +137,7 @@
 		499459B419981BE500DDD773 = {
 			isa = PBXGroup;
 			children = (
+				AB84ADA119B602180077BB6D /* QuartzCore.framework */,
 				499459BF19981BE500DDD773 /* RevCheckIn */,
 				499459D519981BE600DDD773 /* RevCheckInTests */,
 				499459BE19981BE500DDD773 /* Products */,
@@ -179,6 +186,8 @@
 				AB43416719AD2FFD00AA40BD /* MemberCollectionViewCell.m */,
 				ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */,
 				ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */,
+				AB84ADA319B613F40077BB6D /* AccountTableViewController.h */,
+				AB84ADA419B613F40077BB6D /* AccountTableViewController.m */,
 				499459E919981BFD00DDD773 /* loginViewController.swift */,
 				499459EA19981BFD00DDD773 /* registerViewController.swift */,
 				499459EC19981BFD00DDD773 /* HTTPHelper.swift */,
@@ -345,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABF2CFAD19AE69D90037F0FD /* MarqueeLabel.m in Sources */,
+				AB84ADA519B613F40077BB6D /* AccountTableViewController.m in Sources */,
 				4940922B19ABC33700CD84EA /* HTTPImage.m in Sources */,
 				498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */,
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,

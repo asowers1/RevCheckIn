@@ -28,7 +28,11 @@
     
     username = @"";
     
-    [self.control setSelectedSegmentIndex:[[NSNumber numberWithBool:self.member == nil] intValue]];
+    if (self.member){
+        [self.control setSelectedSegmentIndex:1];
+    } else {
+        [self.control setSelectedSegmentIndex:0];
+    }
     [self changeSubview:self.control];
     
     [self setPreferredContentSize:CGSizeMake(320, 750)];
@@ -224,7 +228,7 @@
 -(void)changeImage{
     
     
-    if (![[UIDevice currentDevice] systemVersion].floatValue >= 8){
+    if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Change Logo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){

@@ -93,7 +93,6 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
 
     func loginLogic() {
-        Crashlytics.setObjectValue("login", forKey: "loginAction")
         var helper: HTTPHelper = HTTPHelper()
         helper.login(username.text, password: password.text)
         var myList: Array<AnyObject> = []
@@ -106,15 +105,12 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
                 println("login successful")
-                Crashlytics.setObjectValue("success", forKey: "loginResult")
                 self.performSegueWithIdentifier("login", sender: self)
             }
             else{
-                Crashlytics.setObjectValue("selectedItem.valueForKeyPath(\"username\") == \"-1\"", forKey: "loginResult")
                 println("login unsuccessful")
             }
         }else{
-            Crashlytics.setObjectValue("selectedItem.valueForKeyPath(\"username\") == nil", forKey: "loginResult")
             println("login unsuccessful!")
             var helper:HTTPHelper = HTTPHelper()
             helper.setUserContext("-1")
@@ -143,6 +139,15 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     @IBAction func login(sender: AnyObject) {
         if (self.username.text != "" && self.password.text != ""){
             self.loginLogic()
+        } else {
+            var field = "username"
+            if (self.password.text == "" && self.username.text != ""){
+                field = "password"
+            }
+            let incomplete: UIAlertController = UIAlertController(title: "incomplete login", message: "\(field) field cannot be blank", preferredStyle: UIAlertControllerStyle.Alert)
+            incomplete.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.presentViewController(incomplete, animated: true, completion: nil)
         }
     }
     

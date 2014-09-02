@@ -186,18 +186,63 @@ class HTTPHelper: NSObject {
                     //picture = picture + username
                     
                     var newItem = userModel(entity: en, insertIntoManagedObjectContext: context)
-                    newItem.setValue(username, forKey:"username")
-                    newItem.setValue(business_name, forKey:"business_name")
-                    let imageURL : NSURL = NSURL.URLWithString(picture)
-                    var err: NSError?
-                    let photoData : NSData = NSData(contentsOfURL: imageURL)
-                    newItem.setValue(photoData, forKey:"picture")
-                    newItem.setValue(name, forKey: "name")
-                    newItem.setValue(phone, forKey: "phone")
-                    newItem.setValue(role, forKey: "role")
-                    newItem.setValue(state.stringValue, forKey: "state")
-                    newItem.setValue(timestamp, forKey: "timestamp")
-                    newItem.setValue(email, forKey: "email")
+                    
+                    if (username as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad Username", forKey: "username")
+                    } else {
+                        newItem.setValue(username, forKey: "username")
+                    }
+                    
+                    if (business_name as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad business_name", forKey: "business_name")
+                    } else {
+                        newItem.setValue(business_name, forKey: "business_name")
+                    }
+                    
+                    if (picture as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad picture", forKey: "timepictureStamp")
+                    } else {
+                        let imageURL : NSURL = NSURL.URLWithString(picture)
+                        var err: NSError?
+                        let photoData : NSData = NSData(contentsOfURL: imageURL)
+                        newItem.setValue(photoData, forKey:"picture")
+                    }
+                    
+                    if (name as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad name", forKey: "name")
+                    } else {
+                        newItem.setValue(name, forKey: "name")
+                    }
+                    
+                    if (phone as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad phone", forKey: "phone")
+                    } else {
+                        newItem.setValue(phone, forKey: "phone")
+                    }
+                    
+                    if (role as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad role", forKey: "role")
+                    } else {
+                        newItem.setValue(role, forKey: "role")
+                    }
+                    
+                    if (state as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad state", forKey: "state")
+                    } else {
+                        newItem.setValue(state.stringValue, forKey: "state")
+                    }
+                    
+                    if (timestamp as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad badTimeStamp", forKey: "timeStamp")
+                    } else {
+                        newItem.setValue(timestamp, forKey: "timestamp")
+                    }
+                    
+                    if (email as NSObject == NSNull()){
+                        Crashlytics.setObjectValue("bad Email", forKey: "email")
+                    } else {
+                        newItem.setValue(email, forKey: "email")
+                    }
                 }
             }
             

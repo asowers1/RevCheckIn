@@ -9,6 +9,7 @@
 #import "AllTeamsViewController.h"
 #import "TeamTableViewCell.h"
 #import "TeamInfoViewController.h"
+#import "accountTableViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
 #define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
@@ -19,6 +20,9 @@
 
 @implementation AllTeamsViewController {
     NSMutableDictionary *allTeams;
+    
+    NSManagedObject *activeUser;
+    NSDictionary *activeTeam;
     
     NSDictionary *selectedTeam;
     NSString *selectedMember;
@@ -56,6 +60,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    //[self reloadTable];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -74,6 +79,16 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
+    NSFetchRequest *fetch = [[NSFetchRequest alloc] initWithEntityName:@"Active_user"];
+    
+    NSArray *actuveUserArray = [delegate.managedObjectContext executeFetchRequest:fetch error:nil];
+    if (actuveUserArray.count > 0){
+        
+        activeUser = actuveUserArray[0];
+        
+    }
     
     //Setting Entity to be Queried
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User"
@@ -96,6 +111,11 @@
             }
             [teamInfo[@"members"] addObject:record];
             
+            if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
+                activeTeam = teamInfo;
+                activeUser = record;
+            }
+            
         } else {
             // Download Team Image
             NSURL *teamURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://experiencepush.com/rev/rest/index.php?PUSH_ID=123&call=getBusinessPicture&username=%@", [record valueForKey:@"username"]]];
@@ -113,6 +133,11 @@
             }
             [teamInfo[@"members"] addObject:record];
             
+            if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
+                activeTeam = teamInfo;
+                activeUser = record;
+            }
+            
             [allTeams setValue:teamInfo forKey:[record valueForKey:@"business_name"]];
         }
     }
@@ -122,7 +147,7 @@
         
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp"
-                                                     ascending:YES];
+                                                     ascending:NO];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
@@ -199,6 +224,10 @@
     // return 2 to see non-checked in users
 }
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(0, 0, 0, 5);
+}
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [[[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectForKey:@"members"] count];
 }
@@ -211,18 +240,11 @@
     [cell.memberImage setClipsToBounds:YES];
     cell.name.text = [user valueForKey:@"name"];
     
-    /*
-    MarqueeLabel *scrollName = [[MarqueeLabel alloc] initWithFrame:cell.name.frame rate:10 andFadeLength:5];
-    [scrollName setFont:cell.name.font];
-    scrollName.text = [user valueForKey:@"name"];
-    [scrollName setMarqueeType:MLContinuous];
-    [scrollName setAnimationDelay:2];
-    scrollName.continuousMarqueeExtraBuffer = 40;
-    scrollName.textColor = cell.name.textColor;
-    [scrollName setTextAlignment:NSTextAlignmentCenter];
-    [cell.contentView addSubview:scrollName];
-    [cell.name setHidden:YES];
-    */
+    [cell.name setMarqueeType:MLContinuous];
+    [cell.name setContinuousMarqueeExtraBuffer:20];
+    [cell.name setAnimationDelay:2];
+    [cell.name setRate:10];
+    [cell.name setFadeLength:5];
     
     NSString *timestamp = [user valueForKey:@"timestamp"];
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
@@ -283,6 +305,10 @@
             [(TeamInfoViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setMember:selectedMember];
             selectedMember = nil;
         }
+    } else if ([segue.identifier isEqualToString:@"accountSettings"]){
+        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeamInfo:activeTeam];
+        
+        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setUser:activeUser];
     }
 }
 
@@ -290,21 +316,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)logout:(id)sender {
-    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"confirm logout?" message:@"are you sure you want to log out? this device won't update your check-in status until you log back in" preferredStyle:UIAlertControllerStyleAlert];
-    [confirm addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [confirm addAction:[UIAlertAction actionWithTitle:@"confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-        [self confirmLogout];
-    }]];
-    [self presentViewController:confirm animated:YES completion:nil];
-}
-
--(void)confirmLogout{
-    [[[HTTPHelper alloc] init] deleteActiveDevice];
-    [[[HTTPHelper alloc] init] deleteActiveUser];
-    [self performSegueWithIdentifier:@"logout" sender:self];
 }
 
 
