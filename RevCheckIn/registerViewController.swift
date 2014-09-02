@@ -33,7 +33,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             
             let numberToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, self.scrollView.frame.size.width, 50))
             numberToolbar.barStyle = UIBarStyle.Default
-            numberToolbar.items = NSArray(objects: UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: "toolbarPressDone:"))
+            numberToolbar.items = NSArray(objects: UIBarButtonItem(title: "prev ", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack:"), UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: "goNext:") ,UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: "toolbarPressDone:"))
             passwordTestField.inputAccessoryView = numberToolbar;
             confirmPasswordTextField.inputAccessoryView = numberToolbar;
             nameTextField.inputAccessoryView = numberToolbar;
@@ -96,6 +96,43 @@ class registerViewController: UIViewController, UITextFieldDelegate{
     @IBAction func skip(sender: AnyObject) {
         self.performSegueWithIdentifier("uploadImage", sender: self)
     }
+    
+    func goBack(sender: AnyObject){
+        if (self.emailTextField.isFirstResponder()){
+            
+        } else if(nameTextField.isFirstResponder()){
+            self.emailTextField.becomeFirstResponder()
+        } else if(passwordTestField.isFirstResponder()){
+            self.nameTextField.becomeFirstResponder()
+        } else if (self.confirmPasswordTextField.isFirstResponder()){
+            self.passwordTestField.becomeFirstResponder()
+        }else if(phone.isFirstResponder()){
+            confirmPasswordTextField.becomeFirstResponder()
+        }else if(role.isFirstResponder()){
+            phone.becomeFirstResponder()
+        }else if(registrationCode.isFirstResponder()){
+            role.becomeFirstResponder()
+        }
+    }
+    
+    func goNext(sender: AnyObject){
+        if (self.emailTextField.isFirstResponder()){
+            self.nameTextField.becomeFirstResponder()
+        } else if(nameTextField.isFirstResponder()){
+            self.passwordTestField.becomeFirstResponder()
+        } else if(passwordTestField.isFirstResponder()){
+            self.confirmPasswordTextField.becomeFirstResponder()
+        } else if (self.confirmPasswordTextField.isFirstResponder()){
+            self.phone.becomeFirstResponder()
+        }else if(phone.isFirstResponder()){
+            role.becomeFirstResponder()
+        }else if(role.isFirstResponder()){
+            registrationCode.becomeFirstResponder()
+        }else if(registrationCode.isFirstResponder()){
+            
+        }
+    }
+    
     func toolbarPressDone(sender: AnyObject){
         nameTextField.resignFirstResponder()
         passwordTestField.resignFirstResponder()
