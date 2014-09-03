@@ -45,7 +45,7 @@
     [self.teamNameLabel setText:[self.team objectForKey:@"teamName"]];
     
     [self.bioLabel setText:[self.team objectForKey:@"bio"]];
-    [self.bioLabel setPreferredMaxLayoutWidth:self.bioView.bounds.size.width - 16];
+    [self.bioLabel setPreferredMaxLayoutWidth:self.view.bounds.size.width - 16];
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];
