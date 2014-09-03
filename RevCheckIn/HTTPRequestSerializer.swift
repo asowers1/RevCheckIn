@@ -46,11 +46,8 @@ class HTTPRequestSerializer: NSObject {
     ///creates a request from the url, HTTPMethod, and parameters
     func createRequest(url: NSURL, method: HTTPMethod, parameters: Dictionary<String,AnyObject>?) -> (request: NSURLRequest, error: NSError?) {
 
-        Crashlytics.setObjectValue("createRequest", forKey: "HTTPRequestSerializer Step 1")
         
         var request = newRequest(url, method: method)
-        Crashlytics.setObjectValue("initNewRequest", forKey: "HTTPRequestSerializer Step 1")
-        Crashlytics.setObjectValue(url, forKey: "HTTPRequest url")
         var isMultiForm = false
         //do a check for upload objects to see if we are multi form
         if let params = parameters {
@@ -61,7 +58,6 @@ class HTTPRequestSerializer: NSObject {
                 }
             }
         }
-        Crashlytics.setBoolValue(isMultiForm, forKey: "isMultiForm")
         if isMultiForm {
             if(method != .POST || method != .PUT) {
                 request.HTTPMethod = HTTPMethod.POST.toRaw() // you probably wanted a post
@@ -73,11 +69,9 @@ class HTTPRequestSerializer: NSObject {
         }
         var queryString = ""
         if parameters != nil {
-            Crashlytics.setObjectValue("parameters != nil", forKey: "HTTPRequestSerializer Step 2")
             queryString = self.stringFromParameters(parameters!)
         }
         
-        Crashlytics.setObjectValue(queryString, forKey: "HTTPRequestSerializer Step 3: query")
         if isURIParam(method) {
             var para = (request.URL.query != nil) ? "&" : "?"
             var newUrl = "\(request.URL.absoluteString!)\(para)\(queryString)"

@@ -43,7 +43,9 @@
     [self.logo setImage:[self.team objectForKey:@"logo"]];
     
     [self.teamNameLabel setText:[self.team objectForKey:@"teamName"]];
-
+    
+    [self.bioLabel setText:[self.team objectForKey:@"bio"]];
+    [self.bioLabel setPreferredMaxLayoutWidth:self.bioView.bounds.size.width - 16];
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];
@@ -167,6 +169,10 @@
     return ret;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] emailLabel] restartLabel];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -174,7 +180,7 @@
     
     if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
         [self.peek setHidden:NO];
-        self.peekTop.constant = [tableView rectForRowAtIndexPath:indexPath].origin.y;
+        self.peekTop.constant = [tableView convertRect:[tableView rectForRowAtIndexPath:indexPath] toView:self.view].origin.y - tableView.frame.origin.y;
         [tableView setBackgroundColor:[UIColor clearColor]];
         [UIView animateWithDuration:0.2f animations:^{
             
@@ -244,7 +250,7 @@
             [[picker navigationBar] setTintColor:[UIColor whiteColor]];
             [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
+            [picker setAllowsEditing:NO];
             [self presentViewController:picker animated:YES completion:nil];
             
         }];
@@ -269,7 +275,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    UIImage *newLogo = info[UIImagePickerControllerEditedImage];
+    UIImage *newLogo = info[UIImagePickerControllerOriginalImage];
     [self.loadingIndicator setUp];
     
     [self.loadingIndicator changeText:@"uploading image..."];

@@ -16,10 +16,10 @@
 @interface EmployeeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *statusImage;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet MarqueeLabel *nameLabel;
-@property (weak, nonatomic) IBOutlet MarqueeLabel *roleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roleLabel;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *emailLabel;
-@property (weak, nonatomic) IBOutlet MarqueeLabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @property (strong, nonatomic) NSManagedObject *member;
 
