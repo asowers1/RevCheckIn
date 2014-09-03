@@ -134,7 +134,7 @@ Problems with iOS 7
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL!)
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -205,7 +205,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             let freq = NSFetchRequest(entityName: "Active_user")
             
-            myList = context2.executeFetchRequest(freq, error: nil)
+            myList = context2.executeFetchRequest(freq, error: nil)!
             if !myList.isEmpty {
                 var selectedItem: NSManagedObject = myList[0] as
                 NSManagedObject
@@ -253,7 +253,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             var freq = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
             var user: String = selectedItem.valueForKeyPath("username") as String
             
@@ -280,7 +280,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             let freq = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
             var selectedItem: NSManagedObject = myList[0] as
             NSManagedObject
             var user: String = selectedItem.valueForKeyPath("username") as String
@@ -304,7 +304,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let context: NSManagedObjectContext = appDel.managedObjectContext!
         let en = NSEntityDescription.entityForName("User_status", inManagedObjectContext: context)
-        var newItem = userStatusModel(entity: en, insertIntoManagedObjectContext: context)
+        var newItem = userStatusModel(entity: en!, insertIntoManagedObjectContext: context)
         newItem.checked_in = state
         context.save(nil)
         println("set state: \(state)")
@@ -316,7 +316,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         let freq = NSFetchRequest(entityName: "User_status")
         
         var myList: Array<AnyObject> = []
-        myList = context.executeFetchRequest(freq, error: nil)
+        myList = context.executeFetchRequest(freq, error: nil)!
         if !myList.isEmpty{
             println("deleting context")
             for item in myList {

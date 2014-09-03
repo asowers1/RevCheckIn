@@ -30,10 +30,10 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         
         
-        self.navigationController.navigationBar.hidden = true
+        self.navigationController?.navigationBar.hidden = true
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName :UIFont(name: "AppleSDGothicNeo-Thin", size: 28.0)]
-        self.navigationController.navigationBar.titleTextAttributes = titleDict
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict
         self.title = "Rev Check-in"
         
         username.delegate = self
@@ -58,7 +58,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         let freq = NSFetchRequest(entityName: "Active_user")
         
-        myList = context2.executeFetchRequest(freq, error: nil)
+        myList = context2.executeFetchRequest(freq, error: nil)!
         if (myList.count > 0){
             
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
@@ -100,7 +100,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         let freq = NSFetchRequest(entityName: "Active_user")
         
-        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
@@ -176,7 +176,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "register" {
                 println("segue")
         }

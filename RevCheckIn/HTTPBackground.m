@@ -33,7 +33,7 @@
     [_downloadTask resume];
 }
 
--(void)updateUserDevice:(NSString*)username :(NSString*)device
+-(void)linkUserToDevice:(NSString*)username :(NSString*)device
 {
     NSUUID *uuid = [[NSUUID alloc] init];
     NSString *config=[NSString stringWithFormat:@"com.experiencepush.com.device.transfer.%@",[uuid UUIDString]];

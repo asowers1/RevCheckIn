@@ -10,6 +10,22 @@
 #import <UIKit/UIKit.h>
 
 @interface HTTPImage : NSObject
+
+/*
+ *  setUserPicture
+ *
+ *  @PARAM UIImage: image, NSString: username
+ *
+ *  sends new user photo to server
+ */
 -(NSString *)setUserPicture:(UIImage *)image :(NSString*)username;
--(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)business_name;
+
+/*
+ *  setLogo
+ *
+ *  @PARAM UIImage: image, NSString: username
+ *
+ *  sets a logo to a company server side
+ */
+-(NSString *)setLogo:(UIImage *)image forTeam:(NSString*)username;
 @end

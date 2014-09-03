@@ -8,10 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTTPBackground : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate,
-NSURLSessionDownloadDelegate>
+@interface HTTPBackground : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDownloadDelegate>
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
 
+/*
+ *  updateUserState
+ *
+ *  @PARAM NSString: username, NSString, state
+ *
+ *  sends new user state to server
+ */
 -(void)updateUserState:(NSString*)username :(NSString*)state;
+
+/*
+ *  linkUserToDevice
+ *
+ *  @PARAM NSString: username, NSString device(token id)
+ *
+ *  sends new device token id to server for updating
+ */
+-(void)linkUserToDevice:(NSString*)username :(NSString*)device;
+
 @end

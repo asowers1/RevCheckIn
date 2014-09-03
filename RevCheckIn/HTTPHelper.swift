@@ -18,7 +18,7 @@ class HTTPHelper: NSObject {
         let freq = NSFetchRequest(entityName: "Active_user")
         
         var myList: Array<AnyObject> = []
-        myList = context.executeFetchRequest(freq, error: nil)
+        myList = context.executeFetchRequest(freq, error: nil)!
         if !myList.isEmpty{
             println("deleting context")
             for item in myList {
@@ -34,7 +34,7 @@ class HTTPHelper: NSObject {
         let freq = NSFetchRequest(entityName: "User_device")
         
         var myList: Array<AnyObject> = []
-        myList = context.executeFetchRequest(freq, error: nil)
+        myList = context.executeFetchRequest(freq, error: nil)!
         if !myList.isEmpty{
             println("deleting context")
             for item in myList {
@@ -50,7 +50,7 @@ class HTTPHelper: NSObject {
         let context: NSManagedObjectContext = appDel.managedObjectContext!
         let en = NSEntityDescription.entityForName("Active_user", inManagedObjectContext: context)
         
-        var newItem = activeUserModel(entity: en, insertIntoManagedObjectContext: context)
+        var newItem = activeUserModel(entity: en!, insertIntoManagedObjectContext: context)
         newItem.username = (username as NSString).lowercaseString
         context.save(nil)
     }
@@ -60,7 +60,7 @@ class HTTPHelper: NSObject {
         let context: NSManagedObjectContext = appDel.managedObjectContext!
         let en = NSEntityDescription.entityForName("User_device", inManagedObjectContext: context)
         
-        var newItem = userDeviceModel(entity: en, insertIntoManagedObjectContext: context)
+        var newItem = userDeviceModel(entity: en!, insertIntoManagedObjectContext: context)
         newItem.device = device
         context.save(nil)
     }
@@ -157,7 +157,7 @@ class HTTPHelper: NSObject {
             let freq = NSFetchRequest(entityName: "User")
         
             var myList: Array<AnyObject> = []
-            myList = context.executeFetchRequest(freq, error: nil)
+            myList = context.executeFetchRequest(freq, error: nil)!
             if !myList.isEmpty{
                 println("deleting context")
                 for item in myList {
@@ -185,7 +185,7 @@ class HTTPHelper: NSObject {
                     //fixed this, no loner needed
                     //picture = picture + username
                     
-                    var newItem = userModel(entity: en, insertIntoManagedObjectContext: context)
+                    var newItem = userModel(entity: en!, insertIntoManagedObjectContext: context)
                     
                     if (username as NSObject == NSNull()){
                         Crashlytics.setObjectValue("bad Username", forKey: "username")
@@ -262,7 +262,7 @@ class HTTPHelper: NSObject {
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User")
-        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
         for item in myList {
             if let selectedItem: NSManagedObject = item as? NSManagedObject{
                 println(item.valueForKeyPath("username") as String)
@@ -279,7 +279,7 @@ class HTTPHelper: NSObject {
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User_status")
-        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         return selectedItem.valueForKeyPath("checked_in") as String
     }
