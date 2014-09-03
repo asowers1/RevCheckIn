@@ -26,7 +26,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController.navigationBar.hidden = true;
+        self.navigationController?.navigationBar.hidden = true;
         
         if (UIDevice.currentDevice().model != "iPad"){
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardOpen:", name:UIKeyboardDidShowNotification, object: nil)
@@ -187,7 +187,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             let freq = NSFetchRequest(entityName: "Active_user")
             
             Crashlytics.setObjectValue("define fetch request for Active_user", forKey: "lastAction")
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)}
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
             Crashlytics.setObjectValue("executed fetch request", forKey: "lastAction")
             var selectedItem: NSManagedObject = myList[0] as NSManagedObject
             var user:String = ""
@@ -263,7 +263,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
 
     @IBAction func cancel(sender: AnyObject) {
         Crashlytics.setObjectValue("cancel", forKey: "registrationAction")
-        self.navigationController.popToRootViewControllerAnimated(true)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     /*
     // MARK: - Navigation

@@ -73,8 +73,9 @@ class HTTPRequestSerializer: NSObject {
         }
         
         if isURIParam(method) {
-            var para = (request.URL.query != nil) ? "&" : "?"
-            var newUrl = "\(request.URL.absoluteString!)\(para)\(queryString)"
+            var para = (request.URL?.query != nil) ? "&" : "?"
+            var newUrl = "\(request.URL!.absoluteString!)\(para)\(queryString)"
+            println("PARAM:\(para):NEWURL:\(newUrl)")
             request.URL = NSURL.URLWithString(newUrl)
         } else {
             var charset = CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(self.stringEncoding));
