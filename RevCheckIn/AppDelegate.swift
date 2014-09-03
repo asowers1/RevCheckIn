@@ -241,7 +241,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 message = "No beacons are nearby"
             }
             
-            //NSLog("%@", message)
+            NSLog("%@", message)
             //sendLocalNotificationWithMessage(message)
     }
     func locationManager(manager: CLLocationManager!,
@@ -257,22 +257,25 @@ extension AppDelegate: CLLocationManagerDelegate {
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
             
+            var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq2, error: nil)!}
-            var selectedItem2: NSManagedObject = myList[0] as NSManagedObject
+            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
             var user: String = selectedItem2.valueForKeyPath("username") as String
-            
+            println("checking in, :\(user): previous state:\(state):")
             if user != "-1" && state != "1" {
                 NSLog("You've checked in, :\(user):")
                 sendLocalNotificationWithMessage("You've checked in")
                 self.setUserState("1")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "1")
+                httpBackgrounder.getAllUsers()
             }
             else{
+                self.setUserState("1")
             }
 
 
@@ -291,23 +294,26 @@ extension AppDelegate: CLLocationManagerDelegate {
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
             
+            var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
             var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq2, error: nil)!}
-            var selectedItem2: NSManagedObject = myList[0] as NSManagedObject
+            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
             var user: String = selectedItem2.valueForKeyPath("username") as String
-            
+            println("checking out, :\(user): previous state:\(state):")
             if user != "-1" && state != "0" {
                 NSLog("You've checked out, :\(user):")
                 sendLocalNotificationWithMessage("You've checked out")
                 self.setUserState("0")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "0")
+                httpBackgrounder.getAllUsers()
                 
             }
             else{
+                self.setUserState("0")
             }
 
     }
