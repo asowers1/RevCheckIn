@@ -100,15 +100,21 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         let freq = NSFetchRequest(entityName: "Active_user")
         
+        println("login logic")
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
+        println("got context")
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
                 println("login successful")
                 
-                let helper: HTTPHelper = HTTPHelper()
+                let network: HTTPBackground = HTTPBackground()
                 let data: CoreDataHelper = CoreDataHelper()
-                helper.setUserDevice(user, device: data.getUserId())
+                let device:String = data.getUserId()
+                
+                network.linkUserToDevice(user, device)
+                
+                println("user:\(user): device:\(device):")
             
                 self.performSegueWithIdentifier("login", sender: self)
             }

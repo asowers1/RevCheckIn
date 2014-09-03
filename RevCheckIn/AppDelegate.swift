@@ -249,19 +249,26 @@ extension AppDelegate: CLLocationManagerDelegate {
             manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.startUpdatingLocation()
             var myList: Array<AnyObject> = []
+            var appDel1: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context1: NSManagedObjectContext = appDel1.managedObjectContext!
+            var freq1 = NSFetchRequest(entityName: "User_status")
+            
+            while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
+            var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
+            var state: String = selectedItem1.valueForKeyPath("checked_in") as String
+            
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            var freq = NSFetchRequest(entityName: "Active_user")
+            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem2.valueForKeyPath("username") as String
             
-            if user != "-1" {
+            if user != "-1" && state != "1" {
                 NSLog("You've checked in, :\(user):")
                 sendLocalNotificationWithMessage("You've checked in")
-                //var helper = HTTPHelper()
-                //helper.pushStateChange(user, state: "1")
+                self.setUserState("1")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "1")
             }
@@ -276,23 +283,29 @@ extension AppDelegate: CLLocationManagerDelegate {
             manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.stopUpdatingLocation()
             var myList: Array<AnyObject> = []
+            var appDel1: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context1: NSManagedObjectContext = appDel1.managedObjectContext!
+            var freq1 = NSFetchRequest(entityName: "User_status")
+            
+            while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
+            var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
+            var state: String = selectedItem1.valueForKeyPath("checked_in") as String
+            
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            let freq = NSFetchRequest(entityName: "Active_user")
+            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-            var selectedItem: NSManagedObject = myList[0] as
-            NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
+            while myList.isEmpty {myList = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem2.valueForKeyPath("username") as String
             
-            if user != "-1" {
+            if user != "-1" && state != "0" {
                 NSLog("You've checked out, :\(user):")
-
                 sendLocalNotificationWithMessage("You've checked out")
-                //var helper = HTTPHelper()
-                //helper.pushStateChange(user, state: "0")
+                self.setUserState("0")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "0")
+                
             }
             else{
             }
