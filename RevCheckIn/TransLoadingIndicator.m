@@ -28,9 +28,66 @@
     return self;
 }
 
+-(void)setLightStyle{
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];;
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [blurEffectView setFrame:self.bounds];
+    [self addSubview:blurEffectView];
+    
+    // Vibrancy effect
+    UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
+    UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyEffect];
+    [vibrancyEffectView setFrame:self.bounds];
+    
+    // Add label to the vibrancy view
+    [[vibrancyEffectView contentView] addSubview:self.textLabel];
+    [[vibrancyEffectView contentView] addSubview:self.indicator];
+    
+    // Add the vibrancy view to the blur view
+    [[blurEffectView contentView] addSubview:vibrancyEffectView];
+}
+
+-(void)setExtraLightStyle{
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];;
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [blurEffectView setFrame:self.bounds];
+    [self addSubview:blurEffectView];
+    
+    // Vibrancy effect
+    UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
+    UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyEffect];
+    [vibrancyEffectView setFrame:self.bounds];
+    
+    // Add label to the vibrancy view
+    [[vibrancyEffectView contentView] addSubview:self.textLabel];
+    [[vibrancyEffectView contentView] addSubview:self.indicator];
+    
+    // Add the vibrancy view to the blur view
+    [[blurEffectView contentView] addSubview:vibrancyEffectView];
+}
+
+-(void)setDarkStyle{
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];;
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [blurEffectView setFrame:self.bounds];
+    [self addSubview:blurEffectView];
+    
+    // Vibrancy effect
+    UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
+    UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyEffect];
+    [vibrancyEffectView setFrame:self.bounds];
+    
+    // Add label to the vibrancy view
+    [[vibrancyEffectView contentView] addSubview:self.textLabel];
+    [[vibrancyEffectView contentView] addSubview:self.indicator];
+    
+    // Add the vibrancy view to the blur view
+    [[blurEffectView contentView] addSubview:vibrancyEffectView];
+}
+
 -(void)setUp{
     
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];;
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];;
     UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     [blurEffectView setFrame:self.bounds];
     [self addSubview:blurEffectView];
@@ -44,7 +101,6 @@
     
     self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 108, 150, 42)];
     [self.textLabel setText:@"Label"];
-    [self.textLabel setTextColor:[UIColor whiteColor]];
     [self.textLabel setTextAlignment:NSTextAlignmentCenter];
     [self.textLabel setNumberOfLines:2];
     
@@ -61,6 +117,19 @@
     [self.layer setCornerRadius:25];
     [self setClipsToBounds:YES];
     
+}
+
+-(void)fadeAway{
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(animate) userInfo:nil repeats:NO];
+}
+
+-(void)animate{
+    [UIView animateWithDuration:1 animations:^{
+        [self setAlpha:0];
+    } completion:^(BOOL finished){
+        [self hide];
+        [self setOpaque:YES];
+    }];
 }
 
 -(void)changeText:(NSString *)textIn{

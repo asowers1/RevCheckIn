@@ -51,7 +51,7 @@
     [self.employeeTable setDelegate:self];
     
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 178, 39)];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
     [(UIImageView *)self.navigationItem.titleView setImage:[UIImage imageNamed:@"revWithText"]];
     
@@ -137,7 +137,10 @@
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     
     UITableViewRowAction *call = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"call" handler:^(UITableViewRowAction *action, NSIndexPath *index){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] phoneLabel] text]]]];
+        NSString *number;
+        NSString *error;
+        [[[ECPhoneNumberFormatter alloc] init] getObjectValue:&number forString:[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] phoneLabel] text] errorDescription:&error];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
         [tableView setEditing:NO animated:YES];
     }];
     [call setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
@@ -267,16 +270,24 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     UIImage *newLogo = info[UIImagePickerControllerEditedImage];
+    [self.loadingIndicator setUp];
+    
     [self.loadingIndicator changeText:@"uploading image..."];
     [self.loadingIndicator startAnimating];
     [self.logo setImage:newLogo];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[[HTTPImage alloc] init] setLogo:newLogo forTeam:username];
+        BOOL success = [[[[HTTPImage alloc] init] setLogo:newLogo forTeam:username] isEqualToString:@"1"];
 // Build handler for image load failure
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.loadingIndicator hide];
-        });
+        if (success){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loadingIndicator hide];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loadingIndicator changeText:@"upload failed"];
+                [self.loadingIndicator fadeAway];
+            });
+        }
     });
     
 }

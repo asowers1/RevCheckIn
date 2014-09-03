@@ -25,4 +25,6 @@
 
 -(void)hide;
 
+-(void)fadeAway;
+
 @end

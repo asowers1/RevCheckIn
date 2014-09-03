@@ -35,7 +35,7 @@
     
     defaultLeft = self.anchorLeftSpace.constant;
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 178, 39)];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
     [(UIImageView *)self.navigationItem.titleView setImage:[UIImage imageNamed:@"revWithText"]];
     
@@ -145,10 +145,11 @@
     for (NSString *key in allTeams.allKeys){
         NSMutableArray *members = [[allTeams objectForKey:key] objectForKey:@"members"];
         
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp"
+        NSSortDescriptor *sortState;
+        sortState = [[NSSortDescriptor alloc] initWithKey:@"state"
                                                      ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortState, name, nil];
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
         
@@ -238,6 +239,16 @@
     [cell.memberImage setImage:[UIImage imageWithData:[user valueForKey:@"picture"]]];
     [cell.memberImage.layer setCornerRadius:cell.memberImage.frame.size.width/2.0];
     [cell.memberImage setClipsToBounds:YES];
+    
+    if ([[user valueForKey:@"state"] isEqualToString:@"1"]){
+        [cell.memberImage.layer setBorderColor:[UIColor greenColor].CGColor];
+        [cell.memberImage.layer setBorderWidth:2];
+        [cell.timeStamp setHidden:NO];
+    } else {
+        [cell.memberImage.layer setBorderWidth:0];
+        [cell.timeStamp setHidden:YES];
+    }
+    
     cell.name.text = [user valueForKey:@"name"];
     
     [cell.name setMarqueeType:MLContinuous];

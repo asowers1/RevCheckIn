@@ -127,30 +127,101 @@
     if ([imageChanged isEqualToString:@"logo"]){
         
         UIImage *newLogo = info[UIImagePickerControllerEditedImage];
-        [self.logo setImage:newLogo];
+        
+        self.loadingIndicator = [[TransLoadingIndicator alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2.0) - 75, (self.view.frame.size.height / 2.0) - 75, 150, 150)];
+        [self.loadingIndicator setUp];
+        [self.loadingIndicator startAnimating];
+        
+        [self.loadingIndicator changeText:@"uploading logo"];
+        
+        [self.navigationController.view addSubview:self.loadingIndicator];
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [[[HTTPImage alloc] init] setLogo:newLogo forTeam:[self.user valueForKey:@"username"]];
+            
+            BOOL success = [[[[HTTPImage alloc] init] setLogo:newLogo forTeam:[self.user valueForKey:@"username"]] isEqualToString:@"1"];
             // Build handler for image load failure
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Show finished
-            });
+            if (success){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.logo setImage:newLogo];
+                    [self.loadingIndicator hide];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.loadingIndicator changeText:@"upload failed"];
+                    [self.loadingIndicator fadeAway];
+                });
+            }
+            
         });
     } else if ([imageChanged isEqualToString:@"photo"]){
         UIImage *newImage = info[UIImagePickerControllerEditedImage];
-        [self.profilePicView setImage:newImage];
+        
+        self.loadingIndicator = [[TransLoadingIndicator alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2.0) - 75, (self.view.frame.size.height / 2.0) - 75, 150, 150)];
+        [self.loadingIndicator setUp];
+        [self.loadingIndicator startAnimating];
+        
+        [self.loadingIndicator changeText:@"uploading image"];
+        
+        [self.navigationController.view addSubview:self.loadingIndicator];
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [[[HTTPImage alloc] init] setUserPicture:newImage :[self.user valueForKey:@"username"]];
+            BOOL success = [[[[HTTPImage alloc] init] setUserPicture:newImage :[self.user valueForKey:@"username"]] isEqualToString:@"1"];
             // Build handler for image load failure
-            [[[HTTPHelper alloc] init] getAllUsers];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Show finished
-            });
+            if (success){
+                [[[HTTPHelper alloc] init] getAllUsers];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.loadingIndicator hide];
+                    [self.profilePicView setImage:newImage];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.loadingIndicator changeText:@"upload failed"];
+                    [self.loadingIndicator fadeAway];
+                });
+            }
+            
         });
     }
     
     
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if ([actionSheet.title isEqualToString:@"Change Picture"]){
+        if (buttonIndex == 0){
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            
+            picker.delegate = self;
+            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+            [picker setAllowsEditing:YES];
+            [self presentViewController:picker animated:YES completion:nil];
+        } else if (buttonIndex == 1){
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            
+            picker.delegate = self;
+            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+            [picker setAllowsEditing:YES];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    } else if ([actionSheet.title isEqualToString:@"Change Logo"]){
+        if (buttonIndex == 0){
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            
+            picker.delegate = self;
+            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+            [picker setAllowsEditing:YES];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }
 }
 
 - (IBAction)clickDone:(id)sender {

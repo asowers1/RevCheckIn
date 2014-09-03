@@ -10,11 +10,14 @@
 #import "RevCheckIn-Swift.h"
 #import <CoreData/CoreData.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TransLoadingIndicator.h"
 
 @interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) NSDictionary *teamInfo;
 @property (strong, nonatomic) NSManagedObject *user;
+
+@property (strong, nonatomic) TransLoadingIndicator *loadingIndicator;
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicView;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
