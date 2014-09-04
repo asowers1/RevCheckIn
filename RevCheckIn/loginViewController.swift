@@ -66,6 +66,14 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
             
             if user != "-1" {
                 println("login successful: \(user)")
+                
+                let network: HTTPBackground = HTTPBackground()
+                let data: CoreDataHelper = CoreDataHelper()
+                //let device:String = data.getUserId()
+                let device:String = "test1"
+                network.linkUserToDevice(user, device)
+                
+                println("user:\(user): device:\(device):")
                 self.performSegueWithIdentifier("login", sender: self)
             }
             else{
