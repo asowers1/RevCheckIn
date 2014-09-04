@@ -53,10 +53,12 @@
     [self.loadingView startAnimating];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable) name:@"displayUsers" object:nil];
+    
+    [self reloadUsers];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [self reloadUsers];
+    [super viewDidAppear:animated];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -136,7 +138,20 @@
             } else {
                 teamLogo = [UIImage imageNamed:@"defaultLogo"];
             }
-            NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo, @"Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things"] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo", @"bio"]];
+            NSString *username = [record valueForKey:@"username"];
+            NSURL *checkPassURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://experiencepush.com/rev/rest/?PUSH_ID=123&call=getCompanyBio&username=%@", [username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]];
+            NSURLRequest *req = [NSURLRequest requestWithURL:checkPassURL];
+            NSURLResponse *response;
+            NSError *error = nil;
+            
+            NSData *result = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+            NSString *bio = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+            
+            if ([bio isEqualToString:@""]){
+                bio = @"No Bio Available";
+            }
+        
+            NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo, bio] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo", @"bio"]];
 
             if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
                 [teamInfo[@"checkedIn"] addObject:record];
@@ -158,7 +173,7 @@
         NSSortDescriptor *sortState;
         sortState = [[NSSortDescriptor alloc] initWithKey:@"state"
                                                      ascending:NO];
-        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObjects:sortState, name, nil];
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
@@ -275,7 +290,7 @@
     [cell.memberImage setClipsToBounds:YES];
     
     if ([[user valueForKey:@"state"] isEqualToString:@"1"]){
-        [cell.memberImage.layer setBorderColor:[UIColor greenColor].CGColor];
+        [cell.memberImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
         [cell.memberImage.layer setBorderWidth:2];
         [cell.timeStamp setHidden:NO];
     } else {

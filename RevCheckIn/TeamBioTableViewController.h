@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AccountTableViewController.h"
 
-@interface TeamBioTableViewController : UITableViewController
+@interface TeamBioTableViewController : UITableViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (strong, nonatomic) AccountTableViewController *parent;

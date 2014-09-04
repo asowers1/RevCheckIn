@@ -114,9 +114,15 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
             }
             else{
                 println("login unsuccessful")
+                let networkIssue = UIAlertController(title: "Login unsuccessful", message: "Your username or password is incorrect", preferredStyle: UIAlertControllerStyle.Alert)
+                networkIssue.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(networkIssue, animated: true, completion: nil)
             }
         }else{
             println("login unsuccessful!")
+            let networkIssue = UIAlertController(title: "Network Issue", message: "Could not log in", preferredStyle: UIAlertControllerStyle.Alert)
+            networkIssue.addAction(UIAlertAction(title: "Try Later", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(networkIssue, animated: true, completion: nil)
             var helper:HTTPHelper = HTTPHelper()
             helper.setUserContext("-1")
         }
@@ -175,6 +181,15 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
             self.performSegueWithIdentifier("register", sender: self)
     }
     
+    @IBAction func sendToWeb(sender: AnyObject) {
+        let viewWeb : UIAlertController = UIAlertController(title: "learn more", message:"visit Push on the web", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        viewWeb.addAction(UIAlertAction(title:"cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        viewWeb.addAction(UIAlertAction(title: "view", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in println("Foo")
+            UIApplication.sharedApplication().openURL(NSURL.URLWithString("http://www.experiencepush.com"))
+        }))
+        
+        self.presentViewController(viewWeb, animated: true, completion: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "register" {

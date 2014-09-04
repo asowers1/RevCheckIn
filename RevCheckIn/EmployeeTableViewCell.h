@@ -14,7 +14,6 @@
 #import "MarqueeLabel.h"
 
 @interface EmployeeTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *statusImage;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roleLabel;

@@ -33,10 +33,12 @@
     [self.emailLabel setText:[self.member valueForKey:@"email"]];
     [self.phoneLabel setText:[[[ECPhoneNumberFormatter alloc] init] stringForObjectValue:[self.member valueForKey:@"phone"]]];
     
+    
     if ([[self.member valueForKey:@"state"] isEqualToString:@"1"]){
-        [self.statusImage setImage:[UIImage imageNamed:@"in"]];
+        [self.userImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
+        [self.userImage.layer setBorderWidth:2];
     } else {
-        [self.statusImage setImage:[UIImage imageNamed:@"out"]];
+        [self.userImage.layer setBorderWidth:0];
     }
 }
 

@@ -145,8 +145,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
         [tableView setEditing:NO animated:YES];
     }];
-    [call setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
-    [ret addObject:call];
+    [call setBackgroundColor:[UIColor colorWithRed:(255/255.0) green:(130/255.0) blue:(01/255.0) alpha:1]];
     UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
         [mail setMailComposeDelegate:self];
@@ -154,7 +153,7 @@
         [self presentViewController:mail animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
     }];
-    [email setBackgroundColor:[UIColor colorWithRed:(50/255.0) green:(161/255.0) blue:(249/255.0) alpha:1]];
+    [email setBackgroundColor:[UIColor colorWithRed:(232/255.0) green:(91/255.0) blue:(11/255.0) alpha:1]];
     UITableViewRowAction *text = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"text" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMessageComposeViewController *text = [[MFMessageComposeViewController alloc] init];
         [text setMessageComposeDelegate:self];
@@ -162,8 +161,9 @@
         [self presentViewController:text animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
     }];
-    [text setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
+    [text setBackgroundColor:[UIColor colorWithRed:(255/255.0) green:(190/255.0) blue:(13/255.0) alpha:1]];
     [ret addObject:email];
+    [ret addObject:call];
     [ret addObject:text];
     
     return ret;
