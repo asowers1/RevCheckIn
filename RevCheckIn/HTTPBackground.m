@@ -93,6 +93,7 @@
     if (error == nil)
     {
         NSLog(@"Task %@ completed successfully", task);
+        [[[HTTPHelper alloc] init] getAllUsers];
     }
     else
     {

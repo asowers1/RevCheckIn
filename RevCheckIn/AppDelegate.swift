@@ -17,6 +17,8 @@ import CoreLocation
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
     var myList: Array<AnyObject> = []
+    
+    var isIn : Bool = false
 
     var completionHandler:()->Void={}
     
@@ -219,8 +221,11 @@ extension AppDelegate: CLLocationManagerDelegate {
                         return;
                 }
 
-                if myList.isEmpty || user == "-1" {
-                    self.setUserState("1")
+                if myList.isEmpty || user != "-1" {
+                    if !isIn{
+                        isIn = true
+                        self.setUserState("1")
+                    }
                 }
                 
                 lastProximity = nearestBeacon.proximity;
@@ -235,13 +240,16 @@ extension AppDelegate: CLLocationManagerDelegate {
                     return
                 }
             } else {
-                if myList.isEmpty || user == "-1" {
+                if myList.isEmpty || user != "-1" {
+                }
+                if isIn{
+                    isIn = false
                     self.setUserState("0")
                 }
                 message = "No beacons are nearby"
             }
             
-            //NSLog("%@", message)
+            NSLog("%@", message)
             //sendLocalNotificationWithMessage(message)
     }
     func locationManager(manager: CLLocationManager!,
@@ -308,6 +316,35 @@ extension AppDelegate: CLLocationManagerDelegate {
         newItem.checked_in = state
         context.save(nil)
         println("set state: \(state)")
+        
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        let freq = NSFetchRequest(entityName: "Active_user")
+        
+        while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
+        var selectedItem: NSManagedObject = myList[0] as
+        NSManagedObject
+        var user: String = selectedItem.valueForKeyPath("username") as String
+        
+        if user != "-1" {
+            NSLog("You've checked out, :\(user):")
+            
+            if (state == "0"){
+                sendLocalNotificationWithMessage("You've checked out")
+                //var helper = HTTPHelper()
+                //helper.pushStateChange(user, state: "0")
+                var httpBackgrounder: HTTPBackground = HTTPBackground()
+                httpBackgrounder.updateUserState(user, "0")
+            } else if (state == "1"){
+                NSLog("You've checked in, :\(user):")
+                sendLocalNotificationWithMessage("You've checked in")
+                //var helper = HTTPHelper()
+                //helper.pushStateChange(user, state: "1")
+                var httpBackgrounder: HTTPBackground = HTTPBackground()
+                httpBackgrounder.updateUserState(user, "1")
+            }
+        }
     }
     
     func deleteUserStatus(){

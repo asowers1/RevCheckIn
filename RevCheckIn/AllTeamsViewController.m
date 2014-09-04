@@ -126,6 +126,7 @@
             if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
                 activeTeam = teamInfo;
                 activeUser = record;
+                [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
             }
             
         } else {
@@ -161,6 +162,7 @@
             if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
                 activeTeam = teamInfo;
                 activeUser = record;
+                [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
             }
             
             [allTeams setValue:teamInfo forKey:[record valueForKey:@"business_name"]];
