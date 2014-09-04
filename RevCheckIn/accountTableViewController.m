@@ -64,6 +64,42 @@
     }
 }
 
+-(void)updateName:(NSString *)nameIn andRole:(NSString *)roleIn andPhone:(NSString *)phoneIn{
+    
+    NSURL *newUrl = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/"];
+    NSString *username = [self.user valueForKey:@"username"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:newUrl];
+        [req setHTTPMethod:@"POST"];
+        NSString *body = [NSString stringWithFormat:@"username=%@&PUSH_ID=123&call=updateNameRolePhone&name=%@&role=%@&phone=%@", [username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]],[nameIn stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]],[roleIn stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]],[phoneIn stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+        [req setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLResponse *response;
+        NSError *error = nil;
+        
+        NSData *result = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+        NSString *check = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([check isEqualToString:@"1"]){
+                [self.phoneDetailLabel setText:phoneIn];
+                [self.roleDetailLabel setText:roleIn];
+                [self.nameDetailLabel setText:nameIn];
+                
+                [[[HTTPHelper alloc] init] getAllUsers];
+            } else {
+                // Upload failed
+                UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"Change Failed" message:@"Try again later" preferredStyle:UIAlertControllerStyleAlert];
+                [fail addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil]];
+                
+                [self presentViewController:fail animated:YES completion:nil];
+            }
+        });
+        
+    });
+}
+
 -(void)changeNumber{
     UIAlertController *number = [UIAlertController alertControllerWithTitle:@"change number" message:@"enter your updated number. no formatting, just the digits" preferredStyle:UIAlertControllerStyleAlert];
     [number addTextFieldWithConfigurationHandler:^(UITextField *textField){
@@ -81,8 +117,7 @@
             }]];
             [self presentViewController:error animated:YES completion:nil];
         } else {
-            // Save name
-            [self.phoneDetailLabel setText:[[number textFields][0] text]];
+            [self updateName:[self.nameDetailLabel text] andRole:[self.roleDetailLabel text] andPhone:[number.textFields[0] text]];
         }
     }]];
     [self presentViewController:number animated:YES completion:nil];
@@ -105,8 +140,7 @@
             }]];
             [self presentViewController:error animated:YES completion:nil];
         } else {
-            // Save name
-            [self.roleDetailLabel setText:newRole];
+            [self updateName:[self.nameDetailLabel text] andRole:newRole andPhone:[self.phoneDetailLabel text]];
         }
     }]];
     [self presentViewController:role animated:YES completion:nil];
@@ -129,8 +163,7 @@
             }]];
             [self presentViewController:error animated:YES completion:nil];
         } else {
-            // Save name
-            [self.nameDetailLabel setText:newName];
+            [self updateName:newName andRole:[self.roleDetailLabel text] andPhone:[self.phoneDetailLabel text]];
         }
     }]];
     [self presentViewController:name animated:YES completion:nil];
@@ -163,14 +196,45 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([check isEqualToString:@"1"]){
-                        // Check if valid password
                         UIAlertController *newPass = [UIAlertController alertControllerWithTitle:@"new password" message:@"enter your new password" preferredStyle:UIAlertControllerStyleAlert];
                         [newPass addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
                         [newPass addAction:[UIAlertAction actionWithTitle:@"save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                             NSString *pass = [[newPass textFields][0] text];
                             NSString *conf = [[newPass textFields][1] text];
                             if ([pass isEqualToString:conf]){
-                                // Save Password
+                                NSURL *checkPassURL = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/"];
+                                
+                                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                    
+                                    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:checkPassURL];
+                                    [req setHTTPMethod:@"POST"];
+                                    NSString *body = [NSString stringWithFormat:@"username=%@&PUSH_ID=123&call=updateUserPassword&oldPassword=%@&newPassword=%@&newPasswordCheck=%@", [username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]], [currentPass stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]], [pass stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]], [conf stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+                                    [req setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+                                    NSURLResponse *response;
+                                    NSError *error = nil;
+                                    
+                                    NSData *result = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+                                    NSString *check = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        if ([check isEqualToString:@"1"]){
+                                            // Upload finished
+                                            UIAlertController *finished = [UIAlertController alertControllerWithTitle:@"Finished" message:@"Your password has been updated" preferredStyle:UIAlertControllerStyleAlert];
+                                            [finished addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil]];
+                                            
+                                            [self presentViewController:finished animated:YES completion:nil];
+                                            
+                                            [[[HTTPHelper alloc] init] getAllUsers];
+                                        } else {
+                                            // Upload failed
+                                            UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"Change Failed" message:@"Try again later" preferredStyle:UIAlertControllerStyleAlert];
+                                            [fail addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil]];
+                                            
+                                            [self presentViewController:fail animated:YES completion:nil];
+                                        }
+                                    });
+                                    
+                                });
                             } else {
                                 UIAlertController *error = [UIAlertController alertControllerWithTitle:@"error" message:@"passwords do not match" preferredStyle:UIAlertControllerStyleAlert];
                                 [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
