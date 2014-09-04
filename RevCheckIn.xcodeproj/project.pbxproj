@@ -40,6 +40,7 @@
 		AB84ADA219B602180077BB6D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB84ADA119B602180077BB6D /* QuartzCore.framework */; };
 		AB84ADA519B613F40077BB6D /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84ADA419B613F40077BB6D /* AccountTableViewController.m */; };
 		ABCB792119B366DE004899CB /* MainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB792019B366DE004899CB /* MainNavController.swift */; };
+		ABCDB5BB19B7AD2E00F9DC4B /* TeamBioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCDB5BA19B7AD2E00F9DC4B /* TeamBioTableViewController.m */; };
 		ABDA603019ABFBBC00F40CC2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDA602F19ABFBBC00F40CC2 /* test.png */; };
 		ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */; };
 		ABF2CFA819AE36720037F0FD /* TransLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2CFA719AE36720037F0FD /* TransLoadingIndicator.m */; };
@@ -105,6 +106,8 @@
 		AB84ADA319B613F40077BB6D /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewController.h; sourceTree = "<group>"; };
 		AB84ADA419B613F40077BB6D /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
 		ABCB792019B366DE004899CB /* MainNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavController.swift; sourceTree = "<group>"; };
+		ABCDB5B919B7AD2E00F9DC4B /* TeamBioTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamBioTableViewController.h; sourceTree = "<group>"; };
+		ABCDB5BA19B7AD2E00F9DC4B /* TeamBioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamBioTableViewController.m; sourceTree = "<group>"; };
 		ABDA602F19ABFBBC00F40CC2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		ABDA603119AD0F8C00F40CC2 /* NewUserPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserPhotoViewController.h; sourceTree = "<group>"; };
 		ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserPhotoViewController.m; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				ABDA603219AD0F8C00F40CC2 /* NewUserPhotoViewController.m */,
 				AB84ADA319B613F40077BB6D /* AccountTableViewController.h */,
 				AB84ADA419B613F40077BB6D /* AccountTableViewController.m */,
+				ABCDB5B919B7AD2E00F9DC4B /* TeamBioTableViewController.h */,
+				ABCDB5BA19B7AD2E00F9DC4B /* TeamBioTableViewController.m */,
 				499459E919981BFD00DDD773 /* loginViewController.swift */,
 				499459EA19981BFD00DDD773 /* registerViewController.swift */,
 				499459EC19981BFD00DDD773 /* HTTPHelper.swift */,
@@ -359,6 +364,7 @@
 				498299211999C52E00CEEE4E /* userDeviceModel.swift in Sources */,
 				499459FA19981BFD00DDD773 /* loginViewController.swift in Sources */,
 				AB2E1F8119AFB318000F5690 /* TeamInfoViewController.m in Sources */,
+				ABCDB5BB19B7AD2E00F9DC4B /* TeamBioTableViewController.m in Sources */,
 				ABDA603319AD0F8C00F40CC2 /* NewUserPhotoViewController.m in Sources */,
 				499291BF19AFE6B600D59720 /* CoreDataHelper.swift in Sources */,
 				499459F719981BFD00DDD773 /* activeUserModel.swift in Sources */,

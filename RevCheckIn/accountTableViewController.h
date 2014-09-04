@@ -12,7 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TransLoadingIndicator.h"
 
-@interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSDictionary *teamInfo;
 @property (strong, nonatomic) NSManagedObject *user;

@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSDictionary *team;
 @property (weak, nonatomic) IBOutlet UIImageView *teamImage;
 @property (weak, nonatomic) IBOutlet TeamMembersCollectionView *teamMembers;
+@property (weak, nonatomic) IBOutlet UIView *bar;
 
 @end

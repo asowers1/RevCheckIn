@@ -33,36 +33,12 @@
     [self.emailLabel setText:[self.member valueForKey:@"email"]];
     [self.phoneLabel setText:[[[ECPhoneNumberFormatter alloc] init] stringForObjectValue:[self.member valueForKey:@"phone"]]];
     
-    /*
-    [self.nameLabel setMarqueeType:MLContinuous];
-    [self.nameLabel setContinuousMarqueeExtraBuffer:20];
-    [self.nameLabel setAnimationDelay:2];
-    [self.nameLabel setRate:10];
-    [self.nameLabel setFadeLength:5];
-    
-    [self.roleLabel setMarqueeType:MLContinuous];
-    [self.roleLabel setContinuousMarqueeExtraBuffer:20];
-    [self.roleLabel setAnimationDelay:2];
-    [self.roleLabel setRate:10];
-    [self.roleLabel setFadeLength:5];
-     
-    [self.emailLabel setMarqueeType:MLContinuous];
-    [self.emailLabel setContinuousMarqueeExtraBuffer:20.0f];
-    [self.emailLabel setRate:10.0f];
-    [self.emailLabel setAnimationDelay:0];
-    [self.emailLabel setFadeLength:5.0f];
-     
-    [self.phoneLabel setMarqueeType:MLContinuous];
-    [self.phoneLabel setContinuousMarqueeExtraBuffer:20];
-    [self.phoneLabel setAnimationDelay:2];
-    [self.phoneLabel setRate:10];
-    [self.phoneLabel setFadeLength:5];
-    */
     
     if ([[self.member valueForKey:@"state"] isEqualToString:@"1"]){
-        [self.statusImage setImage:[UIImage imageNamed:@"in"]];
+        [self.userImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
+        [self.userImage.layer setBorderWidth:2];
     } else {
-        [self.statusImage setImage:[UIImage imageNamed:@"out"]];
+        [self.userImage.layer setBorderWidth:0];
     }
 }
 

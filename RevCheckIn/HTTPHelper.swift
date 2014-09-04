@@ -64,7 +64,7 @@ class HTTPHelper: NSObject {
         newItem.device = device
         context.save(nil)
     }
-
+    
     func login(username:String, password:String){
         var params = ["PUSH_ID":"123", "username":username, "password":password, "call":"login"] as Dictionary
         var request = HTTPTask()
@@ -84,7 +84,7 @@ class HTTPHelper: NSObject {
             },failure: {(error: NSError) -> Void in
                 println("error: \(error)")
                 self.setUserContext("-1")
-            })
+        })
         println("done")
     }
     

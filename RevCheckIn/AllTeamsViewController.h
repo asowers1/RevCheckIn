@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "RevCheckIn-Swift.h"
 #import "TeamMembersCollectionView.h"
 #import "MemberCollectionViewCell.h"

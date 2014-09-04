@@ -46,7 +46,7 @@
     
     self.refresh = [[UIRefreshControl alloc] init];
     
-    [self.refresh addTarget:self action:@selector(reloadTable) forControlEvents:UIControlEventValueChanged];
+    [self.refresh addTarget:self action:@selector(reloadUsers) forControlEvents:UIControlEventValueChanged];
     [self.teamsTable addSubview:self.refresh];
     
     [self.loadingView changeText:@"loading teams"];
@@ -61,20 +61,34 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    //[self reloadTable];
+    [super viewDidAppear:animated];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
 
--(void)reloadTable{
-    
-    if (self.loadingView.hidden){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.loadingView startAnimating];
-        });
+-(void)reloadUsers{
+
+    if (self.refresh.refreshing){
+        NSLog(@"refresh");
+        [self.refresh endRefreshing];
+        [self.loadingView startAnimating];
+        [self.teamsTable setUserInteractionEnabled:NO];
+    } else {
+        NSLog(@"not refresh");
     }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        HTTPHelper *helper = [[HTTPHelper alloc] init];
+        
+        [helper getAllUsers];
+    });
+
+}
+
+-(void)reloadTable{
     
     allTeams = [[NSMutableDictionary alloc] init];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -115,6 +129,7 @@
             if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
                 activeTeam = teamInfo;
                 activeUser = record;
+                [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
             }
             
         } else {
@@ -127,7 +142,20 @@
             } else {
                 teamLogo = [UIImage imageNamed:@"defaultLogo"];
             }
-            NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo"]];
+            NSString *username = [record valueForKey:@"username"];
+            NSURL *checkPassURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://experiencepush.com/rev/rest/?PUSH_ID=123&call=getCompanyBio&username=%@", [username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]];
+            NSURLRequest *req = [NSURLRequest requestWithURL:checkPassURL];
+            NSURLResponse *response;
+            NSError *error = nil;
+            
+            NSData *result = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+            NSString *bio = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+            
+            if ([bio isEqualToString:@""]){
+                bio = @"No Bio Available";
+            }
+        
+            NSMutableDictionary *teamInfo = [NSMutableDictionary dictionaryWithObjects:@[[record valueForKey:@"business_name"], [[NSMutableArray alloc] init], [[NSMutableArray alloc] init], teamLogo, bio] forKeys:@[@"teamName", @"checkedIn", @"members", @"logo", @"bio"]];
 
             if ([[record valueForKey:@"state"] isEqualToString:@"1"]){
                 [teamInfo[@"checkedIn"] addObject:record];
@@ -137,6 +165,7 @@
             if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
                 activeTeam = teamInfo;
                 activeUser = record;
+                [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
             }
             
             [allTeams setValue:teamInfo forKey:[record valueForKey:@"business_name"]];
@@ -149,7 +178,7 @@
         NSSortDescriptor *sortState;
         sortState = [[NSSortDescriptor alloc] initWithKey:@"state"
                                                      ascending:NO];
-        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObjects:sortState, name, nil];
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
@@ -162,6 +191,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
         [self.teamsTable reloadData];
+        [self.teamsTable setUserInteractionEnabled:YES];
         [self.refresh endRefreshing];
     });
 }
@@ -179,11 +209,34 @@
     TeamTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"teamCell"];
     cell.team = [allTeams objectForKey:allTeams.allKeys[indexPath.row]];
     [cell.teamImage setImage:[allTeams[[allTeams.allKeys objectAtIndex:indexPath.row]] objectForKey:@"logo"]];
-// Set Team logo cell.teamLogo.image = [Team Image]
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];;
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [blurEffectView setFrame:CGRectMake(0, 0, 96, 105)];
+    [[cell contentView] addSubview:blurEffectView];
+    
+    UIVisualEffectView *blurBuffer = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    [blurBuffer setFrame:CGRectMake(88, 0, 16, 105)];
+    
+    CAGradientLayer *l = [CAGradientLayer layer];
+    l.frame = blurBuffer.bounds;
+    l.colors = [NSArray arrayWithObjects:(id)[UIColor clearColor].CGColor, (id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
+    l.startPoint = CGPointMake(0.0f, 0.5f);
+    l.endPoint = CGPointMake(1.0f, 0.5f);
+    blurBuffer.layer.mask = l;
 
+    [cell.contentView addSubview:blurBuffer];
+    [cell.contentView sendSubviewToBack:blurBuffer];
+    [[cell contentView] sendSubviewToBack:blurEffectView];
+    [[cell contentView] sendSubviewToBack:cell.teamMembers];
+    
     [cell.teamMembers setTeamName:allTeams.allKeys[indexPath.row]];
-    [cell.teamMembers setDataSource:self];
-    [cell.teamMembers setDelegate:self];
+    if (cell.teamMembers.delegate == self){
+        [cell.teamMembers reloadData];
+    } else {
+        [cell.teamMembers setDataSource:self];
+        [cell.teamMembers setDelegate:self];
+    }
 
     return cell;
 }
@@ -227,7 +280,7 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 0, 0, 5);
+    return UIEdgeInsetsMake(0, 106, 0, 5);
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -242,7 +295,7 @@
     [cell.memberImage setClipsToBounds:YES];
     
     if ([[user valueForKey:@"state"] isEqualToString:@"1"]){
-        [cell.memberImage.layer setBorderColor:[UIColor greenColor].CGColor];
+        [cell.memberImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
         [cell.memberImage.layer setBorderWidth:2];
         [cell.timeStamp setHidden:NO];
     } else {

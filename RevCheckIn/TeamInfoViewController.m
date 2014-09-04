@@ -43,7 +43,9 @@
     [self.logo setImage:[self.team objectForKey:@"logo"]];
     
     [self.teamNameLabel setText:[self.team objectForKey:@"teamName"]];
-
+    
+    [self.bioLabel setText:[self.team objectForKey:@"bio"]];
+    [self.bioLabel setPreferredMaxLayoutWidth:self.view.bounds.size.width - 16];
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];
@@ -143,8 +145,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
         [tableView setEditing:NO animated:YES];
     }];
-    [call setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
-    [ret addObject:call];
+    [call setBackgroundColor:[UIColor colorWithRed:(255/255.0) green:(130/255.0) blue:(01/255.0) alpha:1]];
     UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
         [mail setMailComposeDelegate:self];
@@ -152,7 +153,7 @@
         [self presentViewController:mail animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
     }];
-    [email setBackgroundColor:[UIColor colorWithRed:(50/255.0) green:(161/255.0) blue:(249/255.0) alpha:1]];
+    [email setBackgroundColor:[UIColor colorWithRed:(232/255.0) green:(91/255.0) blue:(11/255.0) alpha:1]];
     UITableViewRowAction *text = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"text" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMessageComposeViewController *text = [[MFMessageComposeViewController alloc] init];
         [text setMessageComposeDelegate:self];
@@ -160,11 +161,16 @@
         [self presentViewController:text animated:YES completion:nil];
         [tableView setEditing:NO animated:YES];
     }];
-    [text setBackgroundColor:[UIColor colorWithRed:(59/255.0) green:(197/255.0) blue:(58/255.0) alpha:1]];
+    [text setBackgroundColor:[UIColor colorWithRed:(255/255.0) green:(190/255.0) blue:(13/255.0) alpha:1]];
     [ret addObject:email];
+    [ret addObject:call];
     [ret addObject:text];
     
     return ret;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] emailLabel] restartLabel];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -174,7 +180,7 @@
     
     if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
         [self.peek setHidden:NO];
-        self.peekTop.constant = [tableView rectForRowAtIndexPath:indexPath].origin.y;
+        self.peekTop.constant = [tableView convertRect:[tableView rectForRowAtIndexPath:indexPath] toView:self.view].origin.y - tableView.frame.origin.y;
         [tableView setBackgroundColor:[UIColor clearColor]];
         [UIView animateWithDuration:0.2f animations:^{
             
@@ -244,7 +250,7 @@
             [[picker navigationBar] setTintColor:[UIColor whiteColor]];
             [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
+            [picker setAllowsEditing:NO];
             [self presentViewController:picker animated:YES completion:nil];
             
         }];
@@ -269,7 +275,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    UIImage *newLogo = info[UIImagePickerControllerEditedImage];
+    UIImage *newLogo = info[UIImagePickerControllerOriginalImage];
     [self.loadingIndicator setUp];
     
     [self.loadingIndicator changeText:@"uploading image..."];
