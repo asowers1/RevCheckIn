@@ -138,7 +138,7 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSMutableArray *ret = [[NSMutableArray alloc] init];
     
-    UITableViewRowAction *call = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"call" handler:^(UITableViewRowAction *action, NSIndexPath *index){
+    UITableViewRowAction *call = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Call" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         NSString *number;
         NSString *error;
         [[[ECPhoneNumberFormatter alloc] init] getObjectValue:&number forString:[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] phoneLabel] text] errorDescription:&error];
@@ -146,7 +146,7 @@
         [tableView setEditing:NO animated:YES];
     }];
     [call setBackgroundColor:[UIColor colorWithRed:(255/255.0) green:(130/255.0) blue:(01/255.0) alpha:1]];
-    UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
+    UITableViewRowAction *email = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Email" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
         [mail setMailComposeDelegate:self];
         [mail setToRecipients:@[[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] emailLabel] text]]];
@@ -154,7 +154,7 @@
         [tableView setEditing:NO animated:YES];
     }];
     [email setBackgroundColor:[UIColor colorWithRed:(232/255.0) green:(91/255.0) blue:(11/255.0) alpha:1]];
-    UITableViewRowAction *text = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"text" handler:^(UITableViewRowAction *action, NSIndexPath *index){
+    UITableViewRowAction *text = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Text" handler:^(UITableViewRowAction *action, NSIndexPath *index){
         MFMessageComposeViewController *text = [[MFMessageComposeViewController alloc] init];
         [text setMessageComposeDelegate:self];
         [text setRecipients:@[[[(EmployeeTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] phoneLabel] text]]];
@@ -195,7 +195,7 @@
             
         }];
     } else {
-        UIActionSheet *contactAction = [[UIActionSheet alloc] initWithTitle:@"Contact" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:@"call", @"mail", @"text", nil];
+        UIActionSheet *contactAction = [[UIActionSheet alloc] initWithTitle:@"Contact" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Call", @"Mail", @"Text", nil];
         [contactAction showFromRect:self.view.frame inView:self.view animated:YES];
     }
 
