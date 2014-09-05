@@ -101,18 +101,18 @@
 }
 
 -(void)changeNumber{
-    UIAlertController *number = [UIAlertController alertControllerWithTitle:@"change number" message:@"enter your updated number. no formatting, just the digits" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *number = [UIAlertController alertControllerWithTitle:@"Change Number" message:@"Enter your updated number. No formatting, just the digits" preferredStyle:UIAlertControllerStyleAlert];
     [number addTextFieldWithConfigurationHandler:^(UITextField *textField){
         [textField setKeyboardType:UIKeyboardTypeNumberPad];
         [textField setDelegate:self];
     }];
-    [number addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [number addAction:[UIAlertAction actionWithTitle:@"done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    [number addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [number addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *newRole = [[number textFields][0] text];
         if ([newRole isEqualToString:@""]){
-            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"invalid number" message:@"number cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
-            [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-            [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Number" message:@"Number cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+            [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self presentViewController:number animated:YES completion:nil];
             }]];
             [self presentViewController:error animated:YES completion:nil];
@@ -124,18 +124,18 @@
 }
 
 -(void)changeRole{
-    UIAlertController *role = [UIAlertController alertControllerWithTitle:@"change role" message:@"enter your updated role" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *role = [UIAlertController alertControllerWithTitle:@"Change Role" message:@"Enter your updated role" preferredStyle:UIAlertControllerStyleAlert];
     [role addTextFieldWithConfigurationHandler:^(UITextField *textField){
         [textField setAutocorrectionType:UITextAutocorrectionTypeYes];
         [textField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     }];
-    [role addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [role addAction:[UIAlertAction actionWithTitle:@"done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    [role addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [role addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *newRole = [[role textFields][0] text];
         if ([newRole isEqualToString:@""]){
-            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"invalid role" message:@"role cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
-            [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-            [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Role" message:@"Role cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+            [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self presentViewController:role animated:YES completion:nil];
             }]];
             [self presentViewController:error animated:YES completion:nil];
@@ -147,18 +147,18 @@
 }
 
 -(void)changeName{
-    UIAlertController *name = [UIAlertController alertControllerWithTitle:@"change name" message:@"enter your updated name" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *name = [UIAlertController alertControllerWithTitle:@"Change Name" message:@"Enter your updated name" preferredStyle:UIAlertControllerStyleAlert];
     [name addTextFieldWithConfigurationHandler:^(UITextField *textField){
         [textField setAutocorrectionType:UITextAutocorrectionTypeYes];
         [textField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     }];
-    [name addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [name addAction:[UIAlertAction actionWithTitle:@"done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    [name addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [name addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *newName = [[name textFields][0] text];
         if ([newName isEqualToString:@""]){
-            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"invalid name" message:@"name cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
-            [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-            [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Name" message:@"Name cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+            [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self presentViewController:name animated:YES completion:nil];
             }]];
             [self presentViewController:error animated:YES completion:nil];
@@ -170,14 +170,14 @@
 }
 
 -(void)changePassword{
-    UIAlertController *password = [UIAlertController alertControllerWithTitle:@"change password" message:@"enter your current password" preferredStyle:UIAlertControllerStyleAlert];
-    [password addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [password addAction:[UIAlertAction actionWithTitle:@"done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertController *password = [UIAlertController alertControllerWithTitle:@"Change Password" message:@"Enter your current password" preferredStyle:UIAlertControllerStyleAlert];
+    [password addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [password addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *currentPass = [[password textFields][0] text];
         if ([currentPass isEqualToString:@""]){
-            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"invalid password" message:@"password cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
-            [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-            [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Password" message:@"Password cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
+            [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+            [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 [self presentViewController:password animated:YES completion:nil];
             }]];
             [self presentViewController:error animated:YES completion:nil];
@@ -196,12 +196,19 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([check isEqualToString:@"1"]){
-                        UIAlertController *newPass = [UIAlertController alertControllerWithTitle:@"new password" message:@"enter your new password" preferredStyle:UIAlertControllerStyleAlert];
-                        [newPass addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-                        [newPass addAction:[UIAlertAction actionWithTitle:@"save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                        UIAlertController *newPass = [UIAlertController alertControllerWithTitle:@"New Password" message:@"Enter your new password" preferredStyle:UIAlertControllerStyleAlert];
+                        [newPass addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                        [newPass addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                             NSString *pass = [[newPass textFields][0] text];
                             NSString *conf = [[newPass textFields][1] text];
-                            if ([pass isEqualToString:conf]){
+                            if ([pass isEqualToString:@""]){
+                                UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Password" message:@"Password cannot be empty" preferredStyle:UIAlertControllerStyleAlert];
+                                [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                                [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                                    [self presentViewController:newPass animated:YES completion:nil];
+                                }]];
+                                [self presentViewController:error animated:YES completion:nil];
+                            } else if ([pass isEqualToString:conf]){
                                 NSURL *checkPassURL = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/"];
                                 
                                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -236,27 +243,27 @@
                                     
                                 });
                             } else {
-                                UIAlertController *error = [UIAlertController alertControllerWithTitle:@"error" message:@"passwords do not match" preferredStyle:UIAlertControllerStyleAlert];
-                                [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-                                [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                                UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Error" message:@"Passwords do not match" preferredStyle:UIAlertControllerStyleAlert];
+                                [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                                [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                                     [self presentViewController:newPass animated:YES completion:nil];
                                 }]];
                                 [self presentViewController:error animated:YES completion:nil];
                             }
                         }]];
                         [newPass addTextFieldWithConfigurationHandler:^(UITextField *textField){
-                            [textField setPlaceholder:@"new password"];
+                            [textField setPlaceholder:@"New password"];
                             [textField setSecureTextEntry:YES];
                         }];
                         [newPass addTextFieldWithConfigurationHandler:^(UITextField *textField){
-                            [textField setPlaceholder:@"confirm password"];
+                            [textField setPlaceholder:@"Confirm password"];
                             [textField setSecureTextEntry:YES];
                         }];
                         [self presentViewController:newPass animated:YES completion:nil];
                     } else {
-                        UIAlertController *error = [UIAlertController alertControllerWithTitle:@"invalid password" message:@"password is incorrect" preferredStyle:UIAlertControllerStyleAlert];
-                        [error addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-                        [error addAction:[UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                        UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Invalid Password" message:@"Password is incorrect" preferredStyle:UIAlertControllerStyleAlert];
+                        [error addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                        [error addAction:[UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                             [self presentViewController:password animated:YES completion:nil];
                         }]];
                         [self presentViewController:error animated:YES completion:nil];
@@ -266,7 +273,7 @@
         }
     }]];
     [password addTextFieldWithConfigurationHandler:^(UITextField *textField){
-        [textField setPlaceholder:@"password"];
+        [textField setPlaceholder:@"Password"];
         [textField setSecureTextEntry:YES];
     }];
     [self presentViewController:password animated:YES completion:nil];

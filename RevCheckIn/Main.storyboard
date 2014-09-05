@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Dg-L8-CSa">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -940,8 +941,8 @@
                                     <constraint firstAttribute="height" constant="28" id="uf9-nT-0YL"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="company bio"/>
-                                    <segment title="employees"/>
+                                    <segment title="Company bio"/>
+                                    <segment title="Employees"/>
                                 </segments>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1213,7 +1214,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38f-9d-3XY" id="hgJ-Qr-ngH">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="change name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Np8-4t-fAv">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Change name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Np8-4t-fAv">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1233,7 +1234,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h2d-5q-gVV" id="QR0-Kc-pW3">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="change role" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jHC-Ll-s2T">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Change role" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jHC-Ll-s2T">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1253,7 +1254,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueR-1f-xpR" id="Cuh-oK-DWd">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="change phone number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hY6-pF-qUo">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Change phone number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hY6-pF-qUo">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1285,7 +1286,7 @@
                                                         <constraint firstAttribute="height" constant="100" id="hC5-Ro-T3s"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="change logo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-9P-hQp">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change logo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-9P-hQp">
                                                     <rect key="frame" x="116" y="49" width="476" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="GRx-Zr-cPF"/>
@@ -1309,7 +1310,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myT-Js-ucc" id="YJw-SW-pli">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="change company bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hea-qK-jN0">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Change company bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hea-qK-jN0">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1359,7 +1360,7 @@
             </objects>
             <point key="canvasLocation" x="3684" y="1178"/>
         </scene>
-        <!--team bio-->
+        <!--Team Bio-->
         <scene sceneID="vEj-eL-8EM">
             <objects>
                 <tableViewController id="CNd-lf-2er" customClass="TeamBioTableViewController" sceneMemberID="viewController">
@@ -1399,7 +1400,7 @@
                             <outlet property="delegate" destination="CNd-lf-2er" id="ZcL-3l-tV4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="team bio" id="tOa-fM-435">
+                    <navigationItem key="navigationItem" title="Team Bio" id="tOa-fM-435">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="QJZ-GX-OJX">
                             <connections>
                                 <action selector="save:" destination="CNd-lf-2er" id="PHc-VD-XSS"/>
@@ -1416,11 +1417,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="businessMan" width="200" height="200"/>
+        <image name="businessMan" width="100" height="100"/>
         <image name="peek" width="40" height="90"/>
         <image name="poweredbypush" width="300" height="165"/>
         <image name="push.png" width="1625" height="1781"/>
-        <image name="revCircle" width="191" height="191"/>
+        <image name="revCircle" width="95" height="95"/>
         <image name="revWithText" width="300" height="74"/>
         <image name="settings_gears" width="25" height="25"/>
     </resources>

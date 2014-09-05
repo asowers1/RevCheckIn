@@ -20,11 +20,11 @@
     [self.textField setText:[[self.parent teamInfo] objectForKey:@"bio"]];
     [self.textField setDelegate:self];
     
-    [self setTitle:[NSString stringWithFormat:@"%d / 2048", self.textField.text.length]];
+    [self setTitle:[NSString stringWithFormat:@"%lu / 2048", (long)self.textField.text.length]];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
-    [self setTitle:[NSString stringWithFormat:@"%d / 2048", self.textField.text.length]];
+    [self setTitle:[NSString stringWithFormat:@"%lu / 2048", (long)self.textField.text.length]];
 }
 
 -(IBAction)save:(id)sender{
