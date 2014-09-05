@@ -33,6 +33,14 @@
     [_downloadTask resume];
 }
 
+-(void)getAllUsers
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        HTTPHelper *helper = [[HTTPHelper alloc] init];
+        [helper getAllUsers];
+    });
+}
+
 -(void)linkUserToDevice:(NSString*)username :(NSString*)device
 {
     NSUUID *uuid = [[NSUUID alloc] init];

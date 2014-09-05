@@ -30,4 +30,6 @@
  */
 -(void)linkUserToDevice:(NSString*)username :(NSString*)device;
 
+
+-(void)getAllUsers;
 @end

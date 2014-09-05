@@ -40,6 +40,7 @@ import CoreLocation
 //        }
 /*
 Problems with iOS 7
+*/
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
             UIUserNotificationType.Alert |
             UIUserNotificationType.Sound
@@ -48,7 +49,7 @@ Problems with iOS 7
         
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
-*/
+
         var uuidString:String = "AAAAAAAA-BBBB-BBBB-CCCC-CCCCDDDDDDDD" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
@@ -109,20 +110,50 @@ Problems with iOS 7
 
 
         //record user device
+        
         var helper: HTTPHelper = HTTPHelper()
         
         helper.deleteActiveDevice()
         helper.setDeviceContext(deviceTokenString)
 
-        var coreDataHelper: CoreDataHelper = CoreDataHelper()
-        println(coreDataHelper.getUserId())
-    
+
+
+        println("device token string: \(deviceTokenString)")
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        let freq = NSFetchRequest(entityName: "Active_user")
+        
+        myList = context2.executeFetchRequest(freq, error: nil)!
+        if (myList.count > 0){
+            
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                
+                var coreDataHelper: CoreDataHelper = CoreDataHelper()
+                let network: HTTPBackground = HTTPBackground()
+                let device:String = coreDataHelper.getUserId()
+                network.linkUserToDevice(user, device)
+                
+                println("user:\(user): device:\(device): LINKED")
+            }
+            else{
+                println("login unsuccessful")
+            }
+        }
         
     }
 
     func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError! ) {
         
-        println("Error: \(error.localizedDescription )")
+        println("device token error: \(error.localizedDescription )")
+        var helper: HTTPHelper = HTTPHelper()
+        
+        helper.deleteActiveDevice()
+        helper.setDeviceContext("nil token")
+
     }
 
     // MARK: - Core Data stack
@@ -257,23 +288,33 @@ extension AppDelegate: CLLocationManagerDelegate {
             manager.startRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.startUpdatingLocation()
             var myList: Array<AnyObject> = []
+            var appDel1: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context1: NSManagedObjectContext = appDel1.managedObjectContext!
+            var freq1 = NSFetchRequest(entityName: "User_status")
+            
+            while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
+            var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
+            var state: String = selectedItem1.valueForKeyPath("checked_in") as String
+            
+            var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            var freq = NSFetchRequest(entityName: "Active_user")
+            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
-            
-            if user != "-1" {
+            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
+            var user: String = selectedItem2.valueForKeyPath("username") as String
+            println("checking in, :\(user): previous state:\(state):")
+            if user != "-1" && state != "1" {
                 NSLog("You've checked in, :\(user):")
                 sendLocalNotificationWithMessage("You've checked in")
-                //var helper = HTTPHelper()
-                //helper.pushStateChange(user, state: "1")
+                self.setUserState("1")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "1")
+                httpBackgrounder.getAllUsers()
             }
             else{
+                self.setUserState("1")
             }
 
 
@@ -284,25 +325,33 @@ extension AppDelegate: CLLocationManagerDelegate {
             manager.stopRangingBeaconsInRegion(region as CLBeaconRegion)
             manager.stopUpdatingLocation()
             var myList: Array<AnyObject> = []
+            var appDel1: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            var context1: NSManagedObjectContext = appDel1.managedObjectContext!
+            var freq1 = NSFetchRequest(entityName: "User_status")
+            
+            while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
+            var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
+            var state: String = selectedItem1.valueForKeyPath("checked_in") as String
+            
+            var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            let freq = NSFetchRequest(entityName: "Active_user")
+            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-            var selectedItem: NSManagedObject = myList[0] as
-            NSManagedObject
-            var user: String = selectedItem.valueForKeyPath("username") as String
-            
-            if user != "-1" {
+            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
+            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
+            var user: String = selectedItem2.valueForKeyPath("username") as String
+            println("checking out, :\(user): previous state:\(state):")
+            if user != "-1" && state != "0" {
                 NSLog("You've checked out, :\(user):")
-
                 sendLocalNotificationWithMessage("You've checked out")
-                //var helper = HTTPHelper()
-                //helper.pushStateChange(user, state: "0")
+                self.setUserState("0")
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "0")
+                httpBackgrounder.getAllUsers()
             }
             else{
+                self.setUserState("0")
             }
 
     }

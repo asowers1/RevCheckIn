@@ -76,11 +76,7 @@ class HTTPHelper: NSObject {
                 if datastring == "1" {
                     println("success")
                     self.setUserContext(username);
-                    
-                    let coreDataHelper: CoreDataHelper = CoreDataHelper()
-                    self.setUserDevice(username, device: coreDataHelper.getUserId())
-                    
-                }else {
+                }else {	
                     println("failure")
                     self.setUserContext("-1")
                 }
@@ -262,7 +258,9 @@ class HTTPHelper: NSObject {
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User")
+        println("checkUserModel getContext")
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
+        println("checkUserModel gotContext")
         for item in myList {
             if let selectedItem: NSManagedObject = item as? NSManagedObject{
                 println(item.valueForKeyPath("username") as String)

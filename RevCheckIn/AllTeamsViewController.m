@@ -54,7 +54,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable) name:@"displayUsers" object:nil];
     
-    [self reloadUsers];
+    HTTPHelper *helper = [[HTTPHelper alloc] init];
+    NSLog(@"getAllUsers");
+    [helper getAllUsers];
+    NSLog(@"gotAllUsers");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
