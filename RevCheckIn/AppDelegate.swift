@@ -40,6 +40,7 @@ import CoreLocation
 //        }
 /*
 Problems with iOS 7
+*/
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
             UIUserNotificationType.Alert |
             UIUserNotificationType.Sound
@@ -48,7 +49,7 @@ Problems with iOS 7
         
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
-*/
+
         var uuidString:String = "AAAAAAAA-BBBB-BBBB-CCCC-CCCCDDDDDDDD" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
@@ -109,20 +110,50 @@ Problems with iOS 7
 
 
         //record user device
+        
         var helper: HTTPHelper = HTTPHelper()
         
         helper.deleteActiveDevice()
         helper.setDeviceContext(deviceTokenString)
 
-        var coreDataHelper: CoreDataHelper = CoreDataHelper()
-        println(coreDataHelper.getUserId())
-    
+
+
+        println("device token string: \(deviceTokenString)")
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        let freq = NSFetchRequest(entityName: "Active_user")
+        
+        myList = context2.executeFetchRequest(freq, error: nil)!
+        if (myList.count > 0){
+            
+            var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+            var user: String = selectedItem.valueForKeyPath("username") as String
+            
+            if user != "-1" {
+                
+                var coreDataHelper: CoreDataHelper = CoreDataHelper()
+                let network: HTTPBackground = HTTPBackground()
+                let device:String = coreDataHelper.getUserId()
+                network.linkUserToDevice(user, device)
+                
+                println("user:\(user): device:\(device): LINKED")
+            }
+            else{
+                println("login unsuccessful")
+            }
+        }
         
     }
 
     func application( application: UIApplication!, didFailToRegisterForRemoteNotificationsWithError error: NSError! ) {
         
-        println("Error: \(error.localizedDescription )")
+        println("device token error: \(error.localizedDescription )")
+        var helper: HTTPHelper = HTTPHelper()
+        
+        helper.deleteActiveDevice()
+        helper.setDeviceContext("nil token")
+
     }
 
     // MARK: - Core Data stack
@@ -318,7 +349,6 @@ extension AppDelegate: CLLocationManagerDelegate {
                 var httpBackgrounder: HTTPBackground = HTTPBackground()
                 httpBackgrounder.updateUserState(user, "0")
                 httpBackgrounder.getAllUsers()
-                
             }
             else{
                 self.setUserState("0")
