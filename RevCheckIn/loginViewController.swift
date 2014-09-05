@@ -109,16 +109,22 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
         if let user: String = selectedItem.valueForKeyPath("username") as? String {
             if user != "-1" {
                 println("login successful")
+                //record user device
                 
+                var helper: HTTPHelper = HTTPHelper()
+                
+                let device = helper.getDeviceContext()
+                
+                var coreDataHelper: CoreDataHelper = CoreDataHelper()
                 let network: HTTPBackground = HTTPBackground()
-                let data: CoreDataHelper = CoreDataHelper()
-                //let device:String = data.getUserId()
-                //network.linkUserToDevice(user, device)
-                //println("user:\(user): device:\(device):")
+                network.linkUserToDevice(user, device)
+                
+                println("user:\(user): device:\(device): LINKED")
             
                 self.performSegueWithIdentifier("login", sender: self)
             }
             else{
+                
                 println("login unsuccessful")
                 let networkIssue = UIAlertController(title: "Login unsuccessful", message: "Your username or password is incorrect", preferredStyle: UIAlertControllerStyle.Alert)
                 networkIssue.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))

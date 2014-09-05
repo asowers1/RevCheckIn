@@ -41,6 +41,12 @@ import CoreLocation
 /*
 Problems with iOS 7
 */
+        
+        var helper: HTTPHelper = HTTPHelper()
+        
+        helper.deleteActiveDevice()
+        helper.setDeviceContext("-1")
+        
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
             UIUserNotificationType.Alert |
             UIUserNotificationType.Sound
@@ -115,10 +121,10 @@ Problems with iOS 7
         
         helper.deleteActiveDevice()
         helper.setDeviceContext(deviceTokenString)
+        let device = helper.getDeviceContext()
 
 
-
-        println("device token string: \(deviceTokenString)")
+        println("device token string: \(device)")
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
@@ -134,7 +140,6 @@ Problems with iOS 7
                 
                 var coreDataHelper: CoreDataHelper = CoreDataHelper()
                 let network: HTTPBackground = HTTPBackground()
-                let device:String = coreDataHelper.getUserId()
                 network.linkUserToDevice(user, device)
                 
                 println("user:\(user): device:\(device): LINKED")

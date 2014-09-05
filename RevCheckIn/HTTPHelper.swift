@@ -65,6 +65,16 @@ class HTTPHelper: NSObject {
         context.save(nil)
     }
     
+    func getDeviceContext()->String{
+        var myList: Array<AnyObject> = []
+        var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        var context2: NSManagedObjectContext = appDel2.managedObjectContext!
+        var freq = NSFetchRequest(entityName: "User_device")
+        while myList.isEmpty{myList = context2.executeFetchRequest(freq, error: nil)!}
+        var selectedItem: NSManagedObject = myList[0] as NSManagedObject
+        return selectedItem.valueForKeyPath("device") as String
+    }
+    
     func login(username:String, password:String){
         var params = ["PUSH_ID":"123", "username":username, "password":password, "call":"login"] as Dictionary
         var request = HTTPTask()
