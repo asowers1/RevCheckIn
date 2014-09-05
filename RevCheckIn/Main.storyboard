@@ -656,7 +656,7 @@
                                 </state>
                                 <connections>
                                     <segue destination="3QP-Xw-UTE" kind="popoverPresentation" identifier="showTeam" popoverAnchorView="h2C-gg-Axa" id="Gvt-Ky-gYj">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
                             </button>
@@ -685,7 +685,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="85" height="95"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calvin Chestnut" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUc-OG-Keu" customClass="MarqueeLabel">
@@ -1427,7 +1427,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9jm-pO-BwN"/>
-        <segue reference="9Ki-gv-fNG"/>
+        <segue reference="pVf-53-w9Z"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

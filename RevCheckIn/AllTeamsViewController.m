@@ -175,8 +175,8 @@
         NSSortDescriptor *sortState;
         sortState = [[NSSortDescriptor alloc] initWithKey:@"state"
                                                      ascending:NO];
-        NSSortDescriptor *name = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
-        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortState, name, nil];
+        NSSortDescriptor *time = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortState, time, nil];
         NSMutableArray *sortedArray;
         sortedArray = [NSMutableArray arrayWithArray:[members sortedArrayUsingDescriptors:sortDescriptors]];
         

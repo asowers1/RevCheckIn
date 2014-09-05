@@ -138,6 +138,7 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         var myList: Array<AnyObject> = []
 
     }

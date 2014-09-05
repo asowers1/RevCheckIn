@@ -35,7 +35,7 @@
     }
     [self changeSubview:self.control];
     
-    [self setPreferredContentSize:CGSizeMake(320, 750)];
+    [self setPreferredContentSize:CGSizeMake(320, 568)];
     
     [self.logo.layer setCornerRadius:75];
     [self.logo.layer setBorderColor:[UIColor whiteColor].CGColor];
@@ -45,7 +45,8 @@
     [self.teamNameLabel setText:[self.team objectForKey:@"teamName"]];
     
     [self.bioLabel setText:[self.team objectForKey:@"bio"]];
-    [self.bioLabel setPreferredMaxLayoutWidth:self.view.bounds.size.width - 16];
+    NSLog(@"Width: %f",self.employeeTable.frame.size.width);
+    [self.bioLabel setPreferredMaxLayoutWidth:320 - 16];
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];

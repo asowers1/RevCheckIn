@@ -456,9 +456,9 @@
 }
 
 - (IBAction)clickLogout:(id)sender {
-    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"confirm logout?" message:@"are you sure you want to log out? this device won't update your check-in status until you log back in" preferredStyle:UIAlertControllerStyleAlert];
-    [confirm addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
-    [confirm addAction:[UIAlertAction actionWithTitle:@"confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"Confirm Logout?" message:@"Are you sure you want to log out? This device won't update your check-in status until you log back in" preferredStyle:UIAlertControllerStyleAlert];
+    [confirm addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [confirm addAction:[UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
         [self confirmLogout];
     }]];
     [self presentViewController:confirm animated:YES completion:nil];
