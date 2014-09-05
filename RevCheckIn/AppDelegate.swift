@@ -255,7 +255,9 @@ extension AppDelegate: CLLocationManagerDelegate {
                 if myList.isEmpty || user != "-1" {
                     if !isIn{
                         isIn = true
-                        self.setUserState("1")
+                        if user != "" {
+                            self.setUserState("1")
+                        }
                     }
                 }
                 
@@ -275,7 +277,9 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }
                 if isIn{
                     isIn = false
-                    self.setUserState("0")
+                    if user != "" {
+                        self.setUserState("0")
+                    }
                 }
                 message = "No beacons are nearby"
             }
@@ -314,7 +318,6 @@ extension AppDelegate: CLLocationManagerDelegate {
                 httpBackgrounder.getAllUsers()
             }
             else{
-                self.setUserState("1")
             }
 
 
@@ -351,7 +354,6 @@ extension AppDelegate: CLLocationManagerDelegate {
                 httpBackgrounder.getAllUsers()
             }
             else{
-                self.setUserState("0")
             }
 
     }
