@@ -13,8 +13,25 @@
 @implementation HTTPBackground
 
 
+-(NSString*)getTimestamp
+{
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+    
+    
+    return [DateFormatter stringFromDate:[NSDate date]];
+    
+}
+
 -(void)updateUserState:(NSString*)username :(NSString*)state
 {
+    self.call  = @"updateUserState";
+    self.state = state;
+    
+    NSString *appTimestamp = [self getTimestamp];
+    NSLog(@"APP TIMESTAMP %@",appTimestamp);
+    
     NSUUID *uuid = [[NSUUID alloc] init];
     NSString *config = [NSString stringWithFormat:@"com.experiencepush.state.transfer.%@",[uuid UUIDString]];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:config];
@@ -26,7 +43,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"PUSH_ID=123&call=updateUserState&username=%@&state=%@",username,state];
+    NSString *postString = [NSString stringWithFormat:@"PUSH_ID=123&call=updateUserState&username=%@&state=%@&appTimestamp=%@",username,state,appTimestamp];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     _downloadTask = [self.session downloadTaskWithRequest:request];
     
@@ -88,6 +105,11 @@
     {
         NSString * file = [[NSString alloc] initWithContentsOfFile:[destinationURL path] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"FILE:%@:",file);
+        if([self.call  isEqual: @"updateUserState"]){
+            CoreDataHelper *data = [[CoreDataHelper alloc] init];
+            [data setUserStatus:self.state];
+            [self getAllUsers];
+        }
     }
     else
     {
@@ -96,12 +118,14 @@
 }
 
 
+
+
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if (error == nil)
     {
         NSLog(@"Task %@ completed successfully", task);
-        [[[HTTPHelper alloc] init] getAllUsers];
+        
     }
     else
     {

@@ -108,7 +108,8 @@ class HTTPHelper: NSObject {
                 println("data string: \(datastring)")
                 if datastring == "1" {
                     self.setUserContext(username)
-                    self.pushStateChange(username, state: self.getState())
+                    var backgrounder:HTTPBackground = HTTPBackground()
+                    backgrounder.updateUserState(username, self.getState())
                 }else {
                     self.setUserContext("-1")
                 }
@@ -118,8 +119,8 @@ class HTTPHelper: NSObject {
             })
     }
     
-    func pushStateChange(username: String, state: String){
-        let params = ["PUSH_ID":"123","username":username,"state":state, "call":"updateUserState"] as Dictionary
+    func pushStateChange(username: String, state: String, time:String){
+        let params = ["PUSH_ID":"123","username":username,"state":state, "call":"updateUserState", "appTimestamp": time] as Dictionary
         var request = HTTPTask()
         request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
             let datastring:String = NSString(data:response.responseObject! as NSData, encoding:NSUTF8StringEncoding)
