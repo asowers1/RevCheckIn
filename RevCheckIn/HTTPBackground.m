@@ -78,7 +78,7 @@
     
     NSError *error;
     
-    // Remove file at the destination if it already exists.
+    // Remove fil/Users/asow123/Desktop/RevCheckIn/RevCheckIn/usersTableViewController.swifte at the destination if it already exists.
     [fileManager removeItemAtURL:destinationURL error:NULL];
     
     BOOL success = [fileManager copyItemAtURL:downloadURL

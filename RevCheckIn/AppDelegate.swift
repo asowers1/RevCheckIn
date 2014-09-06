@@ -256,10 +256,18 @@ extension AppDelegate: CLLocationManagerDelegate {
                     nearestBeacon.proximity == CLProximity.Unknown) {
                         return;
                 }
-
-                if myList.isEmpty || user != "-1" || user == ""{
-                    if !isIn{
-                        isIn = true
+                
+                if !isIn{
+                    isIn = true
+                    self.deleteUserStatus()
+                    let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                    let context: NSManagedObjectContext = appDel.managedObjectContext!
+                    let en = NSEntityDescription.entityForName("User_status", inManagedObjectContext: context)
+                    var newItem = userStatusModel(entity: en!, insertIntoManagedObjectContext: context)
+                    newItem.checked_in = "1"
+                    context.save(nil)
+                    println("set state: 1")
+                    if !myList.isEmpty && (user != "-1" && user != ""){
                         self.setUserState("1")
                     }
                 }
@@ -276,12 +284,28 @@ extension AppDelegate: CLLocationManagerDelegate {
                     return
                 }
             } else {
-                if myList.isEmpty || user != "-1" || user == ""{
-                }
                 if isIn{
                     isIn = false
-                    self.setUserState("0")
+                    self.deleteUserStatus()
+                    let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                    let context: NSManagedObjectContext = appDel.managedObjectContext!
+                    let en = NSEntityDescription.entityForName("User_status", inManagedObjectContext: context)
+                    var newItem = userStatusModel(entity: en!, insertIntoManagedObjectContext: context)
+                    newItem.checked_in = "0"
+                    context.save(nil)
+                    println("set state: 0")
+                    if !myList.isEmpty && (user != "-1" && user != ""){
+                        self.setUserState("0")
+                    }
                 }
+                self.deleteUserStatus()
+                let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                let context: NSManagedObjectContext = appDel.managedObjectContext!
+                let en = NSEntityDescription.entityForName("User_status", inManagedObjectContext: context)
+                var newItem = userStatusModel(entity: en!, insertIntoManagedObjectContext: context)
+                newItem.checked_in = "0"
+                context.save(nil)
+                println("set state: 0")
                 message = "No beacons are nearby"
             }
             
@@ -310,7 +334,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
             var user: String = selectedItem2.valueForKeyPath("username") as String
             println("checking in, :\(user): previous state:\(state):")
-            if (user != "-1" || user != "") && state != "1" {
+            if (user != "-1" && user != "") && state != "1" {
                 NSLog("You've checked in, :\(user):")
                 sendLocalNotificationWithMessage("You've checked in")
                 self.setUserState("1")
@@ -379,10 +403,11 @@ extension AppDelegate: CLLocationManagerDelegate {
         NSManagedObject
         var user: String = selectedItem.valueForKeyPath("username") as String
         
-        if user != "-1" {
-            NSLog("You've checked out, :\(user):")
+        if user != "-1" || user != ""{
+            
             
             if (state == "0"){
+                NSLog("You've checked out, :\(user):")
                 sendLocalNotificationWithMessage("You've checked out")
                 //var helper = HTTPHelper()
                 //helper.pushStateChange(user, state: "0")
