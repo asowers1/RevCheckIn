@@ -103,18 +103,25 @@
     
     if (success)
     {
+        NSLog(@"Background success");
         NSString * file = [[NSString alloc] initWithContentsOfFile:[destinationURL path] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"FILE:%@:",file);
-        if([self.call  isEqual: @"updateUserState"]){
+        if([self.call  isEqual: @"updateUserState"]&&[file isEqual:@"1"]){
+            NSLog(@"updated user state");
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             CoreDataHelper *data = [[CoreDataHelper alloc] init];
             [data setUserStatus:self.state];
-            [self getAllUsers];
             if ([self.state isEqual:@"1"]){
-                [appDelegate sendLocalNotificationWithMessage:@"Checking in"];
+                [appDelegate sendLocalNotificationWithMessage:@"Checking in!"];
             }else if([self.state isEqual:@"0"]){
-                [appDelegate sendLocalNotificationWithMessage:@"Checking out"];
+                [appDelegate sendLocalNotificationWithMessage:@"Checking out!"];
             }
+            [self getAllUsers];
+        }else if([self.call isEqual:@"updateUserState"]&&[file isEqual:@"-2"]){
+            NSLog(@"state overlap, got -2");
+            CoreDataHelper *data = [[CoreDataHelper alloc] init];
+            [data setUserStatus:self.state];
+            [self getAllUsers];
         }
     }
     else
@@ -122,9 +129,6 @@
         NSLog(@"File copy failed: %@", [error localizedDescription]);
     }
 }
-
-
-
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {

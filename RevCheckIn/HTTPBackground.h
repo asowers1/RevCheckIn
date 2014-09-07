@@ -11,6 +11,7 @@
 @interface HTTPBackground : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDownloadDelegate>
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
+@property (nonatomic) NSURLSessionDataTask     *dataTask;
 @property (nonatomic, strong) NSString *call;
 @property (nonatomic, strong) NSString *state;
 

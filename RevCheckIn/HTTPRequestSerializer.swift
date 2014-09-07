@@ -32,6 +32,7 @@ class HTTPRequestSerializer: NSObject {
         super.init()
     }
     func newRequest(url: NSURL, method: HTTPMethod) -> NSMutableURLRequest {
+        println("NEW REQUEST")
         var request = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         request.HTTPMethod = method.toRaw()
         request.allowsCellularAccess = self.allowsCellularAccess

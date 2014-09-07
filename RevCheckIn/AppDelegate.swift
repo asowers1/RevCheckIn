@@ -42,15 +42,15 @@ import CoreLocation
 /*
 Problems with iOS 7
 */
-        self.inBounds = 28
-        self.outOfBoundsCount = 28
+        //self.inBounds = 28
+        //self.outOfBoundsCount = 28
         var helper: HTTPHelper = HTTPHelper()
         
         helper.deleteActiveDevice()
         helper.setDeviceContext("-1")
         
         var data: CoreDataHelper = CoreDataHelper()
-        data.setUserStatus("-2")
+        data.setUserStatus("0")
         
         
         var types: UIUserNotificationType = UIUserNotificationType.Badge |
@@ -110,6 +110,7 @@ Problems with iOS 7
     func applicationWillTerminate(application: UIApplication!) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        /*
         var data:CoreDataHelper = CoreDataHelper()
         var backgrounder:HTTPBackground = HTTPBackground()
         self.completionHandler = {}
@@ -121,7 +122,7 @@ Problems with iOS 7
         sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive.")
         println("SENDING TERMINATION STATE")
         data.setUserStatus("-1")
-        
+        */
         self.saveContext()
     }
 
@@ -255,36 +256,37 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!,
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
-            NSLog("didRangeBeacons");
             
             var message:String = ""
-
+            
             var data:CoreDataHelper=CoreDataHelper()
             let username: String = data.getUsername()
             if username == "-1" {
                 println("data: \(username)")
             }
             if(beacons.count > 0) {
-                println("beacons are nearby")
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
-
+                
                 if username == "-1" {
                     println("Set unknown user state to 1")
                     data.setUserStatus("1")
                 }else{
+                    /*
                     self.inBounds++
-                    if self.inBounds > 29 {
+                    if self.inBounds > 20 {
                         if !isIn {
                             isIn=true
                             let state: String = CoreDataHelper().getUserStatus()
                             if state == "0" || state == "-2" || state == "1" {
                                 message = "Setting new state"
-                                self.setUserState("1")
+                                //self.setUserState("1")
                             }
                         }
                         self.inBounds = 0
                     }
+                    */
                 }
+            
                 if(nearestBeacon.proximity == lastProximity ||
                     nearestBeacon.proximity == CLProximity.Unknown) {
                         return;
@@ -308,8 +310,9 @@ extension AppDelegate: CLLocationManagerDelegate {
                     data.setUserStatus("0")
                 }
                 else{
+                    /*
                     self.outOfBoundsCount++
-                    if outOfBoundsCount > 29 {
+                    if outOfBoundsCount > 20 {
                         if isIn {
                             isIn = false
                             let data: CoreDataHelper = CoreDataHelper()
@@ -317,15 +320,15 @@ extension AppDelegate: CLLocationManagerDelegate {
                             if state == "1" {
                                 message = "sending new state"
                                 
-                                self.setUserState("0")
+                                //self.setUserState("0")
                             }
                         }
                         self.outOfBoundsCount = 0
                     }
+                    */
                 }
             }
             NSLog("%@", message)
-            //sendLocalNotificationWithMessage(message)
     }
     func locationManager(manager: CLLocationManager!,
         didEnterRegion region: CLRegion!) {
@@ -339,7 +342,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
-            
+            CoreDataHelper().setUserStatus("1")
             var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
@@ -351,11 +354,12 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking in, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "1" {
+                
                 self.setUserState("1")
             }
             else{
             }
-
+            
 
     }
     
@@ -371,7 +375,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
-            
+            CoreDataHelper().setUserStatus("0")
             var myList1: Array<AnyObject> = []
             var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             var context2: NSManagedObjectContext = appDel2.managedObjectContext!
@@ -383,15 +387,20 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking out, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "0" {
+                //self.isIn = false
+                //self.outOfBoundsCount = 0
+                
                 self.setUserState("0")
+                
             }
             else{
             }
+            
 
     }
     
     func setUserState(state:String){
-
+        
         
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -412,7 +421,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 
                 httpBackgrounder.updateUserState(user, "1")
             }
-            httpBackgrounder.getAllUsers()
+            //httpBackgrounder.getAllUsers()
             
         }
     }

@@ -117,24 +117,25 @@ class HTTPHelper: NSObject {
                 println("error: \(error)")
                 self.setUserContext("-1")
             })
+
     }
-    
-    func pushStateChange(username: String, state: String, time:String){
-        let params = ["PUSH_ID":"123","username":username,"state":state, "call":"updateUserState", "appTimestamp": time] as Dictionary
-        var request = HTTPTask()
-        request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
-            let datastring:String = NSString(data:response.responseObject! as NSData, encoding:NSUTF8StringEncoding)
-            if datastring == "1" {
-                println("state sent: \(state)")
-            }else {
-                println("state send failed: \(state)")
-            }
-            },failure: {(error: NSError) -> Void in
-                println("error: \(error)")
-        })
-        
-    }
-    
+    /*
+//    func pushStateChange(username: String, state: String, time:String){
+//        let params = ["PUSH_ID":"123","username":username,"state":state, "call":"updateUserState", "appTimestamp": time] as Dictionary
+//        var request = HTTPTask()
+//        request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
+//            let datastring:String = NSString(data:response.responseObject! as NSData, encoding:NSUTF8StringEncoding)
+//            if datastring == "1" {
+//                println("state sent: \(state)")
+//            }else {
+//                println("state send failed: \(state)")
+//            }
+//            },failure: {(error: NSError) -> Void in
+//                println("error: \(error)")
+//        })
+//        
+//    }
+    */
     func setUserDevice(username: String, device: String){
         let params = ["PUSH_ID":"123","username":username,"device":device,"call":"linkDeviceToUser"] as Dictionary
         var request = HTTPTask()
