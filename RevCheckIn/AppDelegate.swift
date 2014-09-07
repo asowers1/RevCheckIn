@@ -42,7 +42,8 @@ import CoreLocation
 /*
 Problems with iOS 7
 */
-        
+        self.inBounds = 28
+        self.outOfBoundsCount = 28
         var helper: HTTPHelper = HTTPHelper()
         
         helper.deleteActiveDevice()
@@ -271,23 +272,15 @@ extension AppDelegate: CLLocationManagerDelegate {
                     println("Set unknown user state to 1")
                     data.setUserStatus("1")
                 }else{
-                    
-                    println("username is set")
                     self.inBounds++
-                    println("inBounds: \(self.inBounds)")
-                    message = "You've been in bounds for \(self.outOfBoundsCount) iterations)"
-                    if self.inBounds > 4 {
-                        
-                        let data: CoreDataHelper = CoreDataHelper()
-                        let state: String = data.getUserStatus()
-                        println("inner state: \(state)")
-                        if state == "-2"{
-                            data.setUserStatus("1")
-                        }
-                        if state == "0" || state == "-1"{
-                            message = "Sending new state"
-                            sendLocalNotificationWithMessage("Checking in")
-                            self.setUserState("1")
+                    if self.inBounds > 29 {
+                        if !isIn {
+                            isIn=true
+                            let state: String = CoreDataHelper().getUserStatus()
+                            if state == "0" || state == "-2" || state == "1" {
+                                message = "Setting new state"
+                                self.setUserState("1")
+                            }
                         }
                         self.inBounds = 0
                     }
@@ -314,21 +307,23 @@ extension AppDelegate: CLLocationManagerDelegate {
                     println("Set unknown user state to 0")
                     data.setUserStatus("0")
                 }
-                
-                self.outOfBoundsCount+=1
-                if self.outOfBoundsCount > 4 {
-                    message = "You've been out of bounds for \(self.outOfBoundsCount) iterations)"
-                    let data: CoreDataHelper = CoreDataHelper()
-                    let state: String = data.getUserStatus()
-                    if state == "1" {
-                        message = "sending new state"
-                        sendLocalNotificationWithMessage("Checking out")
-                        self.setUserState("0")
+                else{
+                    self.outOfBoundsCount++
+                    if outOfBoundsCount > 29 {
+                        if isIn {
+                            isIn = false
+                            let data: CoreDataHelper = CoreDataHelper()
+                            let state: String = data.getUserStatus()
+                            if state == "1" {
+                                message = "sending new state"
+                                
+                                self.setUserState("0")
+                            }
+                        }
+                        self.outOfBoundsCount = 0
                     }
-                    self.outOfBoundsCount = 0
                 }
             }
-            
             NSLog("%@", message)
             //sendLocalNotificationWithMessage(message)
     }
@@ -356,7 +351,6 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking in, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "1" {
-                sendLocalNotificationWithMessage("Checking in")
                 self.setUserState("1")
             }
             else{
@@ -389,7 +383,6 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking out, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "0" {
-                sendLocalNotificationWithMessage("Checking out")
                 self.setUserState("0")
             }
             else{

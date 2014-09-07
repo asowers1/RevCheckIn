@@ -24,7 +24,7 @@
     
 }
 
--(void)updateUserState:(NSString*)username :(NSString*)state
+- (void)updateUserState:(NSString*)username :(NSString*)state
 {
     self.call  = @"updateUserState";
     self.state = state;
@@ -50,7 +50,7 @@
     [_downloadTask resume];
 }
 
--(void)getAllUsers
+- (void)getAllUsers
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         HTTPHelper *helper = [[HTTPHelper alloc] init];
@@ -58,7 +58,7 @@
     });
 }
 
--(void)linkUserToDevice:(NSString*)username :(NSString*)device
+- (void)linkUserToDevice:(NSString*)username :(NSString*)device
 {
     NSUUID *uuid = [[NSUUID alloc] init];
     NSString *config=[NSString stringWithFormat:@"com.experiencepush.com.device.transfer.%@",[uuid UUIDString]];
@@ -106,9 +106,15 @@
         NSString * file = [[NSString alloc] initWithContentsOfFile:[destinationURL path] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"FILE:%@:",file);
         if([self.call  isEqual: @"updateUserState"]){
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             CoreDataHelper *data = [[CoreDataHelper alloc] init];
             [data setUserStatus:self.state];
             [self getAllUsers];
+            if ([self.state isEqual:@"1"]){
+                [appDelegate sendLocalNotificationWithMessage:@"Checking in"];
+            }else if([self.state isEqual:@"0"]){
+                [appDelegate sendLocalNotificationWithMessage:@"Checking out"];
+            }
         }
     }
     else
@@ -147,7 +153,7 @@
     NSLog(@"Task complete");
 }
 
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
 }
 
