@@ -110,7 +110,7 @@ Problems with iOS 7
     func applicationWillTerminate(application: UIApplication!) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        /*
+        
         var data:CoreDataHelper = CoreDataHelper()
         var backgrounder:HTTPBackground = HTTPBackground()
         self.completionHandler = {}
@@ -119,10 +119,10 @@ Problems with iOS 7
         println("username: \(data.getUsername())")
         
         
-        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive.")
+        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive!")
         println("SENDING TERMINATION STATE")
         data.setUserStatus("-1")
-        */
+        
         self.saveContext()
     }
 
@@ -271,20 +271,20 @@ extension AppDelegate: CLLocationManagerDelegate {
                     println("Set unknown user state to 1")
                     data.setUserStatus("1")
                 }else{
-                    /*
+                    
                     self.inBounds++
-                    if self.inBounds > 20 {
+                    if self.inBounds > 39 {
                         if !isIn {
                             isIn=true
                             let state: String = CoreDataHelper().getUserStatus()
-                            if state == "0" || state == "-2" || state == "1" {
+                            if state == "0" || state == "-2" || state == "-1" {
                                 message = "Setting new state"
-                                //self.setUserState("1")
+                                self.setUserState("1")
                             }
                         }
                         self.inBounds = 0
                     }
-                    */
+                    
                 }
             
                 if(nearestBeacon.proximity == lastProximity ||
@@ -310,22 +310,22 @@ extension AppDelegate: CLLocationManagerDelegate {
                     data.setUserStatus("0")
                 }
                 else{
-                    /*
+                    
                     self.outOfBoundsCount++
-                    if outOfBoundsCount > 20 {
+                    if outOfBoundsCount > 39 {
                         if isIn {
                             isIn = false
                             let data: CoreDataHelper = CoreDataHelper()
                             let state: String = data.getUserStatus()
-                            if state == "1" {
+                            if state == "1" || state == "-2" || state == "-1" {
                                 message = "sending new state"
                                 
-                                //self.setUserState("0")
+                                self.setUserState("0")
                             }
                         }
                         self.outOfBoundsCount = 0
                     }
-                    */
+                    
                 }
             }
             NSLog("%@", message)
