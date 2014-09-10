@@ -44,6 +44,10 @@ Problems with iOS 7
 */
         //self.inBounds = 28
         //self.outOfBoundsCount = 28
+        
+// Launched from remote notification
+        
+        
         var helper: HTTPHelper = HTTPHelper()
         
         helper.deleteActiveDevice()
@@ -83,6 +87,10 @@ Problems with iOS 7
         Crashlytics.startWithAPIKey("6e63974ab6878886d46e46575c43005ded0cfa08")
         
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+// Received notification in foreground and background
     }
 
     func applicationWillResignActive(application: UIApplication!) {
