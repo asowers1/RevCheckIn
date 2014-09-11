@@ -12,7 +12,8 @@ import CoreLocation
 
 @UIApplicationMain
 @objc class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, NSURLSessionDelegate  {
-                            
+    
+    
     var window: UIWindow?
     var locationManager: CLLocationManager?
     var lastProximity: CLProximity?
