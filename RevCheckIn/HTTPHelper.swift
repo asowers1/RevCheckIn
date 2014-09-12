@@ -99,8 +99,20 @@ class HTTPHelper: NSObject {
     }
     
     func register(username:String, password:String, name:String, email:String, registrationCode:String, role:String, phone:String) {
+        
+        // get user device id token and check for a nil case. If nill, set device to -1(error) state.
+        var device_id_data: String? = CoreDataHelper().getUserId()
+        var device_id:String = ""
+        if let data = device_id_data {
+            device_id = data
+        }else{
+            device_id = "-1"
+        }
+        
         Crashlytics.setObjectValue("register", forKey: "HTTPHelperAction")
-        let params = ["PUSH_ID":"123", "username":username, "password":password, "name":name, "email":email, "code":registrationCode,"role":role,"phone":phone, "call":"addNewUser"] as Dictionary
+        
+        // HTTP POST parameters
+        let params = ["PUSH_ID":"123", "username":username, "password":password, "name":name, "email":email, "code":registrationCode,"role":role,"phone":phone, "call":"addNewUser", "device_id": device_id] as Dictionary
         var request = HTTPTask()
         self.deleteActiveUser()
         request.POST("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
