@@ -290,6 +290,7 @@
 				TargetAttributes = {
 					499459BC19981BE500DDD773 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = A3DHF9BX2R;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -499,7 +500,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Calvin Chestnut (MPA97639RR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Shoecraft (ZA4836Z258)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Shoecraft (ZA4836Z258)";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,6 +511,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b0f6b16e-f0ca-4e5c-9051-e83bae764d59";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -521,7 +524,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Calvin Chestnut (MPA97639RR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tim Shoecraft (ZA4836Z258)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tim Shoecraft (ZA4836Z258)";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +535,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b0f6b16e-f0ca-4e5c-9051-e83bae764d59";
 				SWIFT_OBJC_BRIDGING_HEADER = "RevCheckIn/RevCheckIn-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
