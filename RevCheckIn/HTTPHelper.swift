@@ -70,7 +70,14 @@ class HTTPHelper: NSObject {
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User_device")
-        while myList.isEmpty{myList = context2.executeFetchRequest(freq, error: nil)!}
+        var failsafe : Int = 0;
+        while myList.isEmpty && failsafe < 301{
+            failsafe = failsafe + 1;
+            myList = context2.executeFetchRequest(freq, error: nil)!
+        }
+        if (failsafe > 300){
+            return "-1"
+        }
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         return selectedItem.valueForKeyPath("device") as String
     }

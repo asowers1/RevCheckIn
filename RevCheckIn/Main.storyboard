@@ -392,16 +392,7 @@
                                     <action selector="go:" destination="awS-9i-mtY" eventType="touchUpInside" id="yIE-kb-vU8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGy-xR-dN9">
-                                <rect key="frame" x="150" y="60" width="300" height="74"/>
-                                <state key="normal" backgroundImage="revWithText">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="skip:" destination="awS-9i-mtY" eventType="touchUpInside" id="d7E-xS-lvf"/>
-                                </connections>
-                            </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="revWithText" translatesAutoresizingMaskIntoConstraints="NO" id="FPG-7p-SCc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="revWithText" translatesAutoresizingMaskIntoConstraints="NO" id="FPG-7p-SCc">
                                 <rect key="frame" x="150" y="60" width="300" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="IT3-KJ-tes">
@@ -420,18 +411,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="uW7-lv-SNb" secondAttribute="trailing" constant="-16" id="COt-40-Ck5"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="height" secondItem="6L7-II-4xE" secondAttribute="height" id="Hwa-wh-HXQ"/>
                             <constraint firstAttribute="centerX" secondItem="FPG-7p-SCc" secondAttribute="centerX" id="IDC-5T-PrB"/>
-                            <constraint firstItem="OGy-xR-dN9" firstAttribute="leading" secondItem="FPG-7p-SCc" secondAttribute="leading" id="M1L-6Y-EJV"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="top" secondItem="uW7-lv-SNb" secondAttribute="bottom" constant="8" id="Re5-ue-CfM"/>
                             <constraint firstItem="zDY-0X-AuF" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" id="ReM-FT-ClF"/>
-                            <constraint firstItem="OGy-xR-dN9" firstAttribute="width" secondItem="FPG-7p-SCc" secondAttribute="width" id="Rej-KS-US7"/>
-                            <constraint firstItem="OGy-xR-dN9" firstAttribute="height" secondItem="FPG-7p-SCc" secondAttribute="height" id="YhD-eC-M1m"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="width" secondItem="6L7-II-4xE" secondAttribute="width" id="YlL-Ng-lgd"/>
                             <constraint firstItem="uW7-lv-SNb" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="bottom" constant="8" id="aUv-6O-Ip7">
                                 <variation key="widthClass=compact" constant="23"/>
                             </constraint>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="leading" secondItem="SAq-7a-psr" secondAttribute="leadingMargin" constant="-16" id="d6s-n6-CMv"/>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" multiplier="1:2" id="e92-0S-Dl9"/>
-                            <constraint firstItem="OGy-xR-dN9" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="top" id="f0J-vs-SmY"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="leading" secondItem="6L7-II-4xE" secondAttribute="trailing" id="iSD-SJ-Mfu"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="top" secondItem="6L7-II-4xE" secondAttribute="top" id="mHv-rB-lo1"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="height" secondItem="6L7-II-4xE" secondAttribute="height" id="tLA-MC-MBX"/>
@@ -833,6 +820,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountButton" destination="Hjk-Al-eUY" id="mN1-Lw-dto"/>
                         <outlet property="anchor" destination="h2C-gg-Axa" id="CyY-EI-KC8"/>
                         <outlet property="anchorLeftSpace" destination="gLw-V1-t2d" id="MxJ-Em-jXC"/>
                         <outlet property="anchorTopSpace" destination="xt9-ej-sAR" id="27a-Gh-Nbv"/>

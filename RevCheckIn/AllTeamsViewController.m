@@ -34,6 +34,7 @@
     // Do any additional setup after loading the view.
     
     defaultLeft = self.anchorLeftSpace.constant;
+    [self.accountButton setEnabled:NO];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     [(UIImageView *)self.navigationItem.titleView setContentMode:UIViewContentModeScaleAspectFit];
@@ -79,6 +80,7 @@
         NSLog(@"not refresh");
     }
     
+    [self.accountButton setEnabled:NO];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         HTTPHelper *helper = [[HTTPHelper alloc] init];
@@ -190,6 +192,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
+        [self.accountButton setEnabled:YES];
         [self.teamsTable reloadData];
         [self.teamsTable setUserInteractionEnabled:YES];
         [self.refresh endRefreshing];

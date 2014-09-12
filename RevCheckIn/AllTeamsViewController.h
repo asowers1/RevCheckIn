@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorLeftSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *anchorWidth;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *accountButton;
 
 @property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingView;
 
