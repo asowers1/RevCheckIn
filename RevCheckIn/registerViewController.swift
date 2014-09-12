@@ -218,34 +218,34 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             Crashlytics.setObjectValue("invalid Values", forKey: "registrationResult")
             var error: String = ""
             if (self.registrationCode.text == ""){
-                error = "registration code is empty"
+                error = "Registration code is empty"
             }
             if (self.role.text == ""){
-                error = "title field is empty"
+                error = "Title field is empty"
             }
             if (self.phone.text == ""){
-                error = "phone number is blank"
+                error = "Phone number is blank"
             }
             if (self.confirmPasswordTextField.text == ""){
-                error = "confirm password"
+                error = "Confirm password"
             }
             if (self.passwordTestField.text == ""){
-                error = "enter a password"
+                error = "Enter a password"
             }
             if (self.nameTextField.text == ""){
-                error = "name is empty"
+                error = "Name is empty"
             }
             if (self.emailTextField.text == ""){
-                error = "enter an email address"
+                error = "Enter an email address"
             }
             if (error == ""){
                 if (self.passwordTestField.text != self.confirmPasswordTextField.text){
-                    error = "passwords do not match"
+                    error = "Passwords do not match"
                 }
             }
             
-            let fail : UIAlertController = UIAlertController(title: "registration failed", message: error, preferredStyle:UIAlertControllerStyle.Alert)
-            fail.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+            let fail : UIAlertController = UIAlertController(title: "Registration Failed", message: error, preferredStyle:UIAlertControllerStyle.Alert)
+            fail.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(fail, animated: true, completion: nil)
         }
     }

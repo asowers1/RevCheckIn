@@ -166,9 +166,11 @@ class HTTPHelper: NSObject {
     func getAllUsers(){
         let params = ["PUSH_ID":"123","call":"getAllUsers"];
         var request = HTTPTask()
+        println("Starting User Reload");
         request.GET("http://experiencepush.com/rev/rest/index.php", parameters: params, success: {(response: HTTPResponse) -> Void in
             let jsonObject : AnyObject! = NSJSONSerialization.JSONObjectWithData(response.responseObject! as NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
             
+            println("Removing old users");
             // remove all users here:
             let appDel: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             let context: NSManagedObjectContext = appDel.managedObjectContext!

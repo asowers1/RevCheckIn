@@ -126,12 +126,12 @@ Problems with iOS 7
         let state:String = data.getUserStatus()
         println("username: \(data.getUsername())")
         
-        
-        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive!")
-        println("SENDING TERMINATION STATE")
         data.setUserStatus("-1")
         
         self.saveContext()
+        
+        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive!")
+        println("SENDING TERMINATION STATE")
     }
 
     func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData! ) {
