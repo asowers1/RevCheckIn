@@ -25,8 +25,7 @@ import CoreLocation
     var completionHandler:()->Void={}
 
 
-    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
-        self.completionHandler = completionHandler
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {         self.completionHandler = completionHandler
     }
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
@@ -263,7 +262,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             var data:CoreDataHelper=CoreDataHelper()
             let username: String = data.getUsername()
             if username == "-1" {
-                println("data: \(username)")
+                println("username data: \(username)")
             }
             if(beacons.count > 0) {
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
