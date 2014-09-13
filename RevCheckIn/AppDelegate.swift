@@ -66,7 +66,7 @@ Problems with iOS 7
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
 
-        var uuidString:String = "AAAAAAAA-BBBB-BBBB-CCCC-CCCCDDDDDDDD" as String
+        var uuidString:String = "c0a52410-3b53-11e4-916c-0800200c9a66" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
