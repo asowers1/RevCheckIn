@@ -33,7 +33,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             
             let numberToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, self.scrollView.frame.size.width, 50))
             numberToolbar.barStyle = UIBarStyle.Default
-            numberToolbar.items = NSArray(objects: UIBarButtonItem(title: "prev ", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack:"), UIBarButtonItem(title: "next", style: UIBarButtonItemStyle.Plain, target: self, action: "goNext:") ,UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: "toolbarPressDone:"))
+            numberToolbar.items = NSArray(objects: UIBarButtonItem(title: "Prev ", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack:"), UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Plain, target: self, action: "goNext:") ,UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil), UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: "toolbarPressDone:"))
             passwordTestField.inputAccessoryView = numberToolbar;
             confirmPasswordTextField.inputAccessoryView = numberToolbar;
             nameTextField.inputAccessoryView = numberToolbar;
@@ -78,7 +78,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         let keyboardScreenBeginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as NSValue).CGRectValue()
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
         
-        scrollViewBottomSpace.constant = keyboardScreenEndFrame.size.height - 108
+        scrollViewBottomSpace.constant = keyboardScreenEndFrame.size.height + 50 - 108
        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardClose:", name: UIKeyboardWillHideNotification, object: nil)
