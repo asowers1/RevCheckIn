@@ -24,6 +24,11 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>RevCheckIn will use Bluetooth Low Energy BLE® to determin your location so everyone in the incubator can know who's around.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

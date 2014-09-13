@@ -50,21 +50,21 @@ Problems with iOS 7
         
         var helper: HTTPHelper = HTTPHelper()
         
-        helper.deleteActiveDevice()
-        helper.setDeviceContext("-1")
+        //helper.deleteActiveDevice()
+        //helper.setDeviceContext("-1")
         
         var data: CoreDataHelper = CoreDataHelper()
         data.setUserStatus("0")
         
         
-        var types: UIUserNotificationType = UIUserNotificationType.Badge |
-            UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound
+        //var types: UIUserNotificationType = UIUserNotificationType.Badge |
+        //    UIUserNotificationType.Alert |
+        //     UIUserNotificationType.Sound
         
-        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        //var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
         
-        application.registerUserNotificationSettings( settings )
-        application.registerForRemoteNotifications()
+        //application.registerUserNotificationSettings( settings )
+        //application.registerForRemoteNotifications()
 
         var uuidString:String = "c0a52410-3b53-11e4-916c-0800200c9a66" as String
         let beaconIdentifier = "Push"
@@ -128,12 +128,16 @@ Problems with iOS 7
         
         data.setUserStatus("-1")
         
-        self.saveContext()
         
-        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive!")
-        println("SENDING TERMINATION STATE")
+        let username:String = data.getUsername()
+        if username != "-1" {
+            sendLocalNotificationWithMessage("You've quit RevCheckIn, \(username). this makes your account inactive!")
+            println("SENDING TERMINATION STATE")
+        }
+        self.saveContext()
     }
 
+    /*
     func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData! ) {
         
         var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
@@ -189,7 +193,7 @@ Problems with iOS 7
         helper.setDeviceContext("nil token")
 
     }
-
+    */
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
