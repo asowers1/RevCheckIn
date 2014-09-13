@@ -63,10 +63,6 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    HTTPHelper *helper = [[HTTPHelper alloc] init];
-    NSLog(@"getAllUsers");
-    [helper getAllUsers];
-    NSLog(@"gotAllUsers");
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
