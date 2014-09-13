@@ -29,7 +29,8 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         self.navigationController?.navigationBar.hidden = true;
         
         if (UIDevice.currentDevice().model != "iPad"){
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardOpen:", name:UIKeyboardDidShowNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardFrameChanged:", name:UIKeyboardDidChangeFrameNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardClose:", name:UIKeyboardDidHideNotification, object: nil)
             
             let numberToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, self.scrollView.frame.size.width, 50))
             numberToolbar.barStyle = UIBarStyle.Default
@@ -71,7 +72,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         standConst = scrollViewBottomSpace.constant
     }
     
-    func keyboardOpen(notification: NSNotification){
+    func keyboardFrameChanged(notification: NSNotification){
         let userInfo = notification.userInfo!
         
         // Convert the keyboard frame from screen to view coordinates.
@@ -79,16 +80,12 @@ class registerViewController: UIViewController, UITextFieldDelegate{
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
         
         scrollViewBottomSpace.constant = keyboardScreenEndFrame.size.height + 50 - 108
-       
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardClose:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func keyboardClose(notification: NSNotification){
         
         scrollViewBottomSpace.constant = standConst
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardOpen:", name:UIKeyboardDidShowNotification, object: nil)
         
     }
     
