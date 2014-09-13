@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "revLogoWhite@191.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "settings_gear_-_single.png"
+      "filename" : "revLogoWhite@382.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "revLogoWhite@573.png"
     }
   ],
   "info" : {
