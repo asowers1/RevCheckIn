@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.swift
 //  RevCheckIn
 //
@@ -42,31 +42,29 @@ import CoreLocation
 /*
 Problems with iOS 7
 */
-        //self.inBounds = 28
-        //self.outOfBoundsCount = 28
         
 // Launched from remote notification
         
         
         var helper: HTTPHelper = HTTPHelper()
         
-        helper.deleteActiveDevice()
-        helper.setDeviceContext("-1")
+        //helper.deleteActiveDevice()
+        //helper.setDeviceContext("-1")
         
         var data: CoreDataHelper = CoreDataHelper()
         data.setUserStatus("0")
         
         
-        var types: UIUserNotificationType = UIUserNotificationType.Badge |
-            UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound
+        //var types: UIUserNotificationType = UIUserNotificationType.Badge |
+        //    UIUserNotificationType.Alert |
+        //     UIUserNotificationType.Sound
         
-        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        //var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
         
-        application.registerUserNotificationSettings( settings )
-        application.registerForRemoteNotifications()
+        //application.registerUserNotificationSettings( settings )
+        //application.registerForRemoteNotifications()
 
-        var uuidString:String = "c0a52410-3b53-11e4-916c-0800200c9a66" as String
+        var uuidString:String = "C0A52410-3B53-11E4-916C-0800200C9A66" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
@@ -128,12 +126,16 @@ Problems with iOS 7
         
         data.setUserStatus("-1")
         
-        self.saveContext()
         
-        sendLocalNotificationWithMessage("You've quit RevCheckIn, \(data.getUsername()). this makes your account inactive!")
-        println("SENDING TERMINATION STATE")
+        let username:String = data.getUsername()
+        if username != "-1" {
+            sendLocalNotificationWithMessage("You've quit RevCheckIn, \(username). this makes your account inactive!")
+            println("SENDING TERMINATION STATE")
+        }
+        self.saveContext()
     }
 
+    /*
     func application( application: UIApplication!, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData! ) {
         
         var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
@@ -189,7 +191,7 @@ Problems with iOS 7
         helper.setDeviceContext("nil token")
 
     }
-
+    */
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -264,7 +266,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!,
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
-            
+            println("did range beacon")
             var message:String = ""
             
             var data:CoreDataHelper=CoreDataHelper()
@@ -273,6 +275,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 println("username data: \(username)")
             }
             if(beacons.count > 0) {
+                println("beacons > 0")
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
                 
                 if username == "-1" {
@@ -281,6 +284,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }else{
                     
                     self.inBounds++
+                    println("inBounds: \(self.inBounds)")
                     if self.inBounds > 39 {
                         if !isIn {
                             isIn=true
@@ -320,6 +324,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 else{
                     
                     self.outOfBoundsCount++
+                    println("outOfBounds: \(self.outOfBoundsCount)")
                     if outOfBoundsCount > 39 {
                         if isIn {
                             isIn = false
@@ -362,7 +367,9 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking in, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "1" {
-                
+                self.isIn = true
+                self.inBounds = 0
+                self.outOfBoundsCount = 0
                 self.setUserState("1")
             }
             else{
@@ -395,8 +402,9 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking out, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "0" {
-                //self.isIn = false
-                //self.outOfBoundsCount = 0
+                self.isIn = false
+                self.outOfBoundsCount = 0
+                self.inBounds = 0
                 
                 self.setUserState("0")
                 

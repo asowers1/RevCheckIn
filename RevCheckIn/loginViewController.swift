@@ -111,15 +111,15 @@ class loginViewController: UIViewController, UITextFieldDelegate  {
                 println("login successful")
                 //record user device
                 
-                var helper: HTTPHelper = HTTPHelper()
+                //var helper: HTTPHelper = HTTPHelper()
                 
-                let device = helper.getDeviceContext()
+                //let device = helper.getDeviceContext()
                 
-                var coreDataHelper: CoreDataHelper = CoreDataHelper()
-                let network: HTTPBackground = HTTPBackground()
-                network.linkUserToDevice(user, device)
+                //var coreDataHelper: CoreDataHelper = CoreDataHelper()
+                //let network: HTTPBackground = HTTPBackground()
+                //network.linkUserToDevice(user, device)
                 
-                println("user:\(user): device:\(device): LINKED")
+                //println("user:\(user): device:\(device): LINKED")
             
                 self.performSegueWithIdentifier("login", sender: self)
             }

@@ -413,10 +413,12 @@
                             <constraint firstAttribute="centerX" secondItem="FPG-7p-SCc" secondAttribute="centerX" id="IDC-5T-PrB"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="top" secondItem="uW7-lv-SNb" secondAttribute="bottom" constant="8" id="Re5-ue-CfM"/>
                             <constraint firstItem="zDY-0X-AuF" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" id="ReM-FT-ClF"/>
+                            <constraint firstItem="uW7-lv-SNb" firstAttribute="leading" secondItem="SAq-7a-psr" secondAttribute="leading" id="U67-hV-tfm"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="width" secondItem="6L7-II-4xE" secondAttribute="width" id="YlL-Ng-lgd"/>
                             <constraint firstItem="uW7-lv-SNb" firstAttribute="top" secondItem="FPG-7p-SCc" secondAttribute="bottom" constant="8" id="aUv-6O-Ip7">
                                 <variation key="widthClass=compact" constant="23"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="uW7-lv-SNb" secondAttribute="trailing" id="b7P-Gz-OhM"/>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="leading" secondItem="SAq-7a-psr" secondAttribute="leadingMargin" constant="-16" id="d6s-n6-CMv"/>
                             <constraint firstItem="6L7-II-4xE" firstAttribute="width" secondItem="SAq-7a-psr" secondAttribute="width" multiplier="1:2" id="e92-0S-Dl9"/>
                             <constraint firstItem="vxF-Im-fhj" firstAttribute="leading" secondItem="6L7-II-4xE" secondAttribute="trailing" id="iSD-SJ-Mfu"/>
@@ -430,6 +432,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="COt-40-Ck5"/>
+                                <exclude reference="yVX-VQ-qXB"/>
                                 <exclude reference="ReM-FT-ClF"/>
                                 <exclude reference="8LI-Ry-OI1"/>
                                 <exclude reference="Hwa-wh-HXQ"/>
@@ -792,7 +796,9 @@
                         <constraints>
                             <constraint firstItem="04b-bw-DIt" firstAttribute="top" secondItem="RVC-Hk-Za0" secondAttribute="bottom" id="9uW-ui-PPv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="04b-bw-DIt" secondAttribute="trailing" constant="-16" id="CSq-ID-bmG"/>
+                            <constraint firstItem="04b-bw-DIt" firstAttribute="leading" secondItem="UAr-UF-2Ss" secondAttribute="leading" id="JSd-n1-WGe"/>
                             <constraint firstAttribute="centerX" secondItem="h2C-gg-Axa" secondAttribute="centerX" priority="250" id="TLf-s7-12p"/>
+                            <constraint firstAttribute="trailing" secondItem="04b-bw-DIt" secondAttribute="trailing" id="edn-XD-ODc"/>
                             <constraint firstItem="6je-7z-eXa" firstAttribute="top" secondItem="04b-bw-DIt" secondAttribute="bottom" id="exA-VX-6RY"/>
                             <constraint firstItem="h2C-gg-Axa" firstAttribute="leading" secondItem="UAr-UF-2Ss" secondAttribute="leadingMargin" constant="90" id="gLw-V1-t2d"/>
                             <constraint firstItem="h2C-gg-Axa" firstAttribute="leading" secondItem="UAr-UF-2Ss" secondAttribute="leadingMargin" constant="45" id="tD1-ec-IPR"/>
@@ -803,7 +809,17 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="JSd-n1-WGe"/>
+                                <exclude reference="edn-XD-ODc"/>
                                 <exclude reference="tD1-ec-IPR"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="CSq-ID-bmG"/>
+                                <include reference="JSd-n1-WGe"/>
+                                <include reference="edn-XD-ODc"/>
+                                <exclude reference="wee-yQ-d7l"/>
                             </mask>
                         </variation>
                     </view>
@@ -832,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huo-mX-5qR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2171" y="337"/>
+            <point key="canvasLocation" x="2174" y="337"/>
         </scene>
         <!--teamModal-->
         <scene sceneID="tRr-N1-HbY">
@@ -870,10 +886,10 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erV-P2-qPG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="262"/>
+                                <rect key="frame" x="-4" y="0.0" width="608" height="262"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="push.png" translatesAutoresizingMaskIntoConstraints="NO" id="QZe-aw-um3">
-                                        <rect key="frame" x="225" y="70" width="150" height="150"/>
+                                        <rect key="frame" x="229" y="70" width="150" height="150"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="hTI-B1-cO6"/>
@@ -881,7 +897,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Interactive, LLC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sD-ge-dft">
-                                        <rect key="frame" x="0.0" y="233" width="600" height="21"/>
+                                        <rect key="frame" x="0.0" y="233" width="608" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Gtf-CM-wtC"/>
                                             <constraint firstAttribute="height" constant="21" id="hOw-1O-0j0"/>
@@ -891,7 +907,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WG3-5j-WSm">
-                                        <rect key="frame" x="175" y="228" width="250" height="1"/>
+                                        <rect key="frame" x="179" y="228" width="250" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ACj-NL-C7Q"/>
@@ -923,7 +939,7 @@
                                 </variation>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-0g-8cS">
-                                <rect key="frame" x="-2" y="262" width="604" height="29"/>
+                                <rect key="frame" x="-6" y="262" width="608" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="uf9-nT-0YL"/>
                                 </constraints>
@@ -936,40 +952,6 @@
                                     <action selector="changeSubview:" destination="9RO-FK-fgN" eventType="valueChanged" id="sAi-kv-LFW"/>
                                 </connections>
                             </segmentedControl>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-hB-Rlg">
-                                <rect key="frame" x="0.0" y="291" width="600" height="309"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qe4-j8-kmg">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="422"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="584" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-Lo-gl5">
-                                                <rect key="frame" x="8" y="8" width="584" height="406"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" priority="750" constant="294" id="iT6-Y5-xjG"/>
-                                                </constraints>
-                                                <string key="text">active was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push </string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="UgD-Lo-gl5" firstAttribute="top" secondItem="Qe4-j8-kmg" secondAttribute="top" constant="8" id="4MJ-mo-XWQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="UgD-Lo-gl5" secondAttribute="bottom" constant="8" id="Aed-Ps-Hsg"/>
-                                            <constraint firstAttribute="trailing" secondItem="UgD-Lo-gl5" secondAttribute="trailing" constant="8" id="LxN-cx-Rfh"/>
-                                            <constraint firstItem="UgD-Lo-gl5" firstAttribute="leading" secondItem="Qe4-j8-kmg" secondAttribute="leading" constant="8" id="mIG-3N-vZd"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="Qe4-j8-kmg" firstAttribute="leading" secondItem="dsb-hB-Rlg" secondAttribute="leading" id="4WY-g6-8qW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qe4-j8-kmg" secondAttribute="trailing" id="H0v-Xf-CH7"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qe4-j8-kmg" secondAttribute="bottom" id="MaL-4A-MXW"/>
-                                    <constraint firstItem="Qe4-j8-kmg" firstAttribute="top" secondItem="dsb-hB-Rlg" secondAttribute="top" id="jVx-nr-XJS"/>
-                                </constraints>
-                            </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0V9-bT-JEn">
                                 <rect key="frame" x="0.0" y="291" width="600" height="309"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1061,6 +1043,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-hB-Rlg">
+                                <rect key="frame" x="0.0" y="291" width="600" height="309"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qe4-j8-kmg">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="422"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="584" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-Lo-gl5">
+                                                <rect key="frame" x="8" y="8" width="584" height="406"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="294" id="iT6-Y5-xjG"/>
+                                                </constraints>
+                                                <string key="text">active was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push e guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push Interactive was founded by some guys who wanted to do some things Push </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="UgD-Lo-gl5" firstAttribute="top" secondItem="Qe4-j8-kmg" secondAttribute="top" constant="8" id="4MJ-mo-XWQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="UgD-Lo-gl5" secondAttribute="bottom" constant="8" id="Aed-Ps-Hsg"/>
+                                            <constraint firstAttribute="trailing" secondItem="UgD-Lo-gl5" secondAttribute="trailing" constant="8" id="LxN-cx-Rfh"/>
+                                            <constraint firstItem="UgD-Lo-gl5" firstAttribute="leading" secondItem="Qe4-j8-kmg" secondAttribute="leading" constant="8" id="mIG-3N-vZd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Qe4-j8-kmg" firstAttribute="leading" secondItem="dsb-hB-Rlg" secondAttribute="leading" id="4WY-g6-8qW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qe4-j8-kmg" secondAttribute="trailing" id="H0v-Xf-CH7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qe4-j8-kmg" secondAttribute="bottom" id="MaL-4A-MXW"/>
+                                    <constraint firstItem="Qe4-j8-kmg" firstAttribute="top" secondItem="dsb-hB-Rlg" secondAttribute="top" id="jVx-nr-XJS"/>
+                                </constraints>
+                            </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-Uf-gPR" customClass="TransLoadingIndicator">
                                 <rect key="frame" x="225" y="70" width="150" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1075,27 +1091,69 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="erV-P2-qPG" firstAttribute="top" secondItem="B6s-xt-4CM" secondAttribute="topMargin" id="5Za-EB-0P6"/>
+                            <constraint firstItem="dsb-hB-Rlg" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leading" id="9jp-5E-MkN"/>
                             <constraint firstItem="a4r-hN-mDZ" firstAttribute="top" secondItem="i2u-0g-8cS" secondAttribute="bottom" id="BEq-6B-w4S"/>
+                            <constraint firstAttribute="trailing" secondItem="dsb-hB-Rlg" secondAttribute="trailing" id="FBI-E4-pPl"/>
+                            <constraint firstItem="dsb-hB-Rlg" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leading" id="IVt-io-KOB"/>
                             <constraint firstItem="hJf-Uf-gPR" firstAttribute="top" secondItem="B6s-xt-4CM" secondAttribute="topMargin" constant="70" id="JRK-vS-ZzH"/>
                             <constraint firstItem="c5F-Qc-ERb" firstAttribute="top" secondItem="dsb-hB-Rlg" secondAttribute="bottom" id="LNx-gP-OHf"/>
-                            <constraint firstItem="dsb-hB-Rlg" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="M7u-fg-KBY"/>
+                            <constraint firstItem="dsb-hB-Rlg" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="M7u-fg-KBY">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="i2u-0g-8cS" firstAttribute="top" secondItem="erV-P2-qPG" secondAttribute="bottom" id="RmW-74-ekz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="erV-P2-qPG" secondAttribute="trailing" constant="-16" id="Xql-DV-i7t"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="erV-P2-qPG" secondAttribute="trailing" constant="-20" id="Xql-DV-i7t">
+                                <variation key="widthClass=compact" constant="-16"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="0V9-bT-JEn" firstAttribute="top" secondItem="i2u-0g-8cS" secondAttribute="bottom" constant="1" id="ZeR-Zj-5fy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0V9-bT-JEn" secondAttribute="trailing" constant="-16" id="aV2-4x-ydM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0V9-bT-JEn" secondAttribute="trailing" constant="-16" id="aV2-4x-ydM">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="c5F-Qc-ERb" firstAttribute="top" secondItem="0V9-bT-JEn" secondAttribute="bottom" id="cM4-ij-beC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="i2u-0g-8cS" secondAttribute="trailing" constant="-18" id="dyK-zo-8Jb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="a4r-hN-mDZ" secondAttribute="trailing" constant="-16" id="hgv-bp-B4K"/>
-                            <constraint firstItem="i2u-0g-8cS" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-18" id="lAa-Qe-eFd"/>
-                            <constraint firstItem="erV-P2-qPG" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="qyf-ef-PDJ"/>
-                            <constraint firstItem="0V9-bT-JEn" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="uBf-f8-oPG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dsb-hB-Rlg" secondAttribute="trailing" constant="-16" id="wDP-Ir-YxF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i2u-0g-8cS" secondAttribute="trailing" constant="-18" id="dyK-zo-8Jb">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-22"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="a4r-hN-mDZ" secondAttribute="trailing" constant="-16" id="hgv-bp-B4K">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="i2u-0g-8cS" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-22" id="lAa-Qe-eFd"/>
+                            <constraint firstAttribute="trailing" secondItem="dsb-hB-Rlg" secondAttribute="trailing" id="qnw-ve-s3X"/>
+                            <constraint firstItem="erV-P2-qPG" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-20" id="qyf-ef-PDJ">
+                                <variation key="widthClass=compact" constant="-16"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="0V9-bT-JEn" firstAttribute="leading" secondItem="B6s-xt-4CM" secondAttribute="leadingMargin" constant="-16" id="uBf-f8-oPG">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="dsb-hB-Rlg" secondAttribute="trailing" constant="-16" id="wDP-Ir-YxF">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="hJf-Uf-gPR" secondAttribute="centerX" id="x3q-Mp-a0k"/>
                             <constraint firstItem="dsb-hB-Rlg" firstAttribute="top" secondItem="i2u-0g-8cS" secondAttribute="bottom" constant="1" id="xhr-nT-CtA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9jp-5E-MkN"/>
+                                <exclude reference="FBI-E4-pPl"/>
+                                <exclude reference="IVt-io-KOB"/>
+                                <exclude reference="qnw-ve-s3X"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="9jp-5E-MkN"/>
+                                <exclude reference="FBI-E4-pPl"/>
+                                <include reference="IVt-io-KOB"/>
+                                <exclude reference="M7u-fg-KBY"/>
+                                <include reference="qnw-ve-s3X"/>
+                                <exclude reference="wDP-Ir-YxF"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="V7V-i8-pwa">
-                        <barButtonItem key="leftBarButtonItem" title="close" id="AWn-cr-ehb">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="AWn-cr-ehb">
                             <connections>
                                 <action selector="close:" destination="9RO-FK-fgN" id="WfC-Sc-rpT"/>
                             </connections>
@@ -1408,7 +1466,7 @@
         <image name="peek" width="40" height="90"/>
         <image name="poweredbypush" width="300" height="165"/>
         <image name="push.png" width="1625" height="1781"/>
-        <image name="revCircle" width="95" height="95"/>
+        <image name="revCircle" width="286" height="286"/>
         <image name="revWithText" width="300" height="74"/>
         <image name="settings_gears" width="25" height="25"/>
     </resources>

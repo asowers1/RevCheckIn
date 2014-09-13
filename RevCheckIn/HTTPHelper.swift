@@ -108,14 +108,16 @@ class HTTPHelper: NSObject {
     func register(username:String, password:String, name:String, email:String, registrationCode:String, role:String, phone:String) {
         
         // get user device id token and check for a nil case. If nill, set device to -1(error) state.
-        var device_id_data: String? = CoreDataHelper().getUserId()
+        var device_id:String = "-1"
+        //var device_id_data: String? = CoreDataHelper().getUserId()
+        /*
         var device_id:String = ""
         if let data = device_id_data {
             device_id = data
         }else{
             device_id = "-1"
         }
-        
+        */
         Crashlytics.setObjectValue("register", forKey: "HTTPHelperAction")
         
         // HTTP POST parameters
