@@ -46,7 +46,8 @@
     
     [self.bioLabel setText:[self.team objectForKey:@"bio"]];
     NSLog(@"Width: %f",self.employeeTable.frame.size.width);
-    [self.bioLabel setPreferredMaxLayoutWidth:320 - 16];
+    float screenWidth = self.navigationController.navigationBar.frame.size.width;
+    [self.bioLabel setPreferredMaxLayoutWidth:screenWidth - 16];
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];
