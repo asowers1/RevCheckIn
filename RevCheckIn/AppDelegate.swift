@@ -42,8 +42,6 @@ import CoreLocation
 /*
 Problems with iOS 7
 */
-        //self.inBounds = 28
-        //self.outOfBoundsCount = 28
         
 // Launched from remote notification
         
@@ -66,7 +64,7 @@ Problems with iOS 7
         //application.registerUserNotificationSettings( settings )
         //application.registerForRemoteNotifications()
 
-        var uuidString:String = "c0a52410-3b53-11e4-916c-0800200c9a66" as String
+        var uuidString:String = "C0A52410-3B53-11E4-916C-0800200C9A66" as String
         let beaconIdentifier = "Push"
         let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)
         let beaconRegion:CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconUUID,
@@ -268,7 +266,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!,
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
-            
+            println("did range beacon")
             var message:String = ""
             
             var data:CoreDataHelper=CoreDataHelper()
@@ -277,6 +275,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 println("username data: \(username)")
             }
             if(beacons.count > 0) {
+                println("beacons > 0")
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
                 
                 if username == "-1" {
@@ -285,6 +284,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }else{
                     
                     self.inBounds++
+                    println("inBounds: \(self.inBounds)")
                     if self.inBounds > 39 {
                         if !isIn {
                             isIn=true
@@ -324,6 +324,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 else{
                     
                     self.outOfBoundsCount++
+                    println("outOfBounds: \(self.outOfBoundsCount)")
                     if outOfBoundsCount > 39 {
                         if isIn {
                             isIn = false

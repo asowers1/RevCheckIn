@@ -27,6 +27,7 @@
 		49945A0219981BFD00DDD773 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499459F119981BFD00DDD773 /* Main.storyboard */; };
 		49945A0419981BFD00DDD773 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499459F319981BFD00DDD773 /* Images.xcassets */; };
 		49945A071998230B00DDD773 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49945A051998230B00DDD773 /* Model.xcdatamodeld */; };
+		4996378519C4AA5E001F563F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4996378419C4AA5E001F563F /* CoreBluetooth.framework */; };
 		49F8685519A69CFE00A2AC11 /* HTTPBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8685419A69CFE00A2AC11 /* HTTPBackground.m */; };
 		AB08CFEF19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB08CFEE19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.m */; };
 		AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2E1F7D19AF7293000F5690 /* Crashlytics.framework */; };
@@ -84,6 +85,7 @@
 		499459F119981BFD00DDD773 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		499459F319981BFD00DDD773 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49945A061998230B00DDD773 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4996378419C4AA5E001F563F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		49F8685319A69CFE00A2AC11 /* HTTPBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPBackground.h; sourceTree = "<group>"; };
 		49F8685419A69CFE00A2AC11 /* HTTPBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPBackground.m; sourceTree = "<group>"; };
 		AB08CFED19B12D9D00FCAEA4 /* ECPhoneNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPhoneNumberFormatter.h; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4996378519C4AA5E001F563F /* CoreBluetooth.framework in Frameworks */,
 				AB84ADA219B602180077BB6D /* QuartzCore.framework in Frameworks */,
 				AB2E1F7E19AF7293000F5690 /* Crashlytics.framework in Frameworks */,
 			);
@@ -140,6 +143,7 @@
 		499459B419981BE500DDD773 = {
 			isa = PBXGroup;
 			children = (
+				4996378419C4AA5E001F563F /* CoreBluetooth.framework */,
 				AB84ADA119B602180077BB6D /* QuartzCore.framework */,
 				499459BF19981BE500DDD773 /* RevCheckIn */,
 				499459D519981BE600DDD773 /* RevCheckInTests */,
