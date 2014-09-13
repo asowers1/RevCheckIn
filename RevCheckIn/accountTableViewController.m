@@ -32,7 +32,9 @@
     [self.logo setClipsToBounds:YES];
     [self.logo.layer setCornerRadius:self.logo.frame.size.width / 2.0];
     
+    
     [self.nameDetailLabel setText:[self.user valueForKey:@"name"]];
+    NSLog(@"%@", [self.user valueForKeyPath:@"name"]);
     [self.roleDetailLabel setText:[self.user valueForKey:@"role"]];
     [self.phoneDetailLabel setText:[self.user valueForKey:@"phone"]];
 }
