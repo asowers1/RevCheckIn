@@ -1408,7 +1408,7 @@
         <image name="peek" width="40" height="90"/>
         <image name="poweredbypush" width="300" height="165"/>
         <image name="push.png" width="1625" height="1781"/>
-        <image name="revCircle" width="95" height="95"/>
+        <image name="revCircle" width="286" height="286"/>
         <image name="revWithText" width="300" height="74"/>
         <image name="settings_gears" width="25" height="25"/>
     </resources>
