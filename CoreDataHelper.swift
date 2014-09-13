@@ -95,8 +95,8 @@ class CoreDataHelper: NSObject {
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User_status")
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-        if let device = myList[0].valueForKeyPath("checked_in") as? String {
-            return device
+        if let status = myList[0].valueForKeyPath("checked_in") as? String {
+            return status
         }
         return "-1"
     }
