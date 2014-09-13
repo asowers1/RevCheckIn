@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "defaultLogo@150.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "defaultLogo.png"
+      "filename" : "defaultLogo@300.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "defaultLogo@450.png"
     }
   ],
   "info" : {
