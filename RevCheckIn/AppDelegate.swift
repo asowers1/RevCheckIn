@@ -367,7 +367,9 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking in, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "1" {
-                
+                self.isIn = true
+                self.inBounds = 0
+                self.outOfBoundsCount = 0
                 self.setUserState("1")
             }
             else{
@@ -400,8 +402,9 @@ extension AppDelegate: CLLocationManagerDelegate {
             println("checking out, :\(user): previous state:\(state):")
             
             if (user != "-1" && user != "") && state != "0" {
-                //self.isIn = false
-                //self.outOfBoundsCount = 0
+                self.isIn = false
+                self.outOfBoundsCount = 0
+                self.inBounds = 0
                 
                 self.setUserState("0")
                 

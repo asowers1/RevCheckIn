@@ -112,9 +112,9 @@
             CoreDataHelper *data = [[CoreDataHelper alloc] init];
             [data setUserStatus:self.state];
             if ([self.state isEqual:@"1"]){
-                [appDelegate sendLocalNotificationWithMessage:@"Checking in!"];
+                [appDelegate sendLocalNotificationWithMessage:@"Checking in"];
             }else if([self.state isEqual:@"0"]){
-                [appDelegate sendLocalNotificationWithMessage:@"Checking out!"];
+                [appDelegate sendLocalNotificationWithMessage:@"Checking out"];
             }
             [self getAllUsers];
         }else if([self.call isEqual:@"updateUserState"]&&[file isEqual:@"-2"]){
