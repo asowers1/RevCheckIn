@@ -201,6 +201,7 @@ class registerViewController: UIViewController, UITextFieldDelegate{
             if user != "-1" || user != "-2" {
                 Crashlytics.setObjectValue("user not -1", forKey: "registrationPass")
                 println("login successful")
+                context2.save(nil);
                 self.performSegueWithIdentifier("uploadImage", sender: self)
             }
             else if (user == "-2"){

@@ -164,7 +164,7 @@
             }
             [teamInfo[@"members"] addObject:record];
             
-            if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
+            if ([[[record valueForKey:@"username"] lowercaseString] isEqualToString:[[activeUser valueForKey:@"username"] lowercaseString]]){
                 activeTeam = teamInfo;
                 activeUser = record;
                 [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
