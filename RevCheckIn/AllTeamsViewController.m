@@ -63,10 +63,6 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    HTTPHelper *helper = [[HTTPHelper alloc] init];
-    NSLog(@"getAllUsers");
-    [helper getAllUsers];
-    NSLog(@"gotAllUsers");
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -132,7 +128,7 @@
             }
             [teamInfo[@"members"] addObject:record];
             
-            if ([[record valueForKey:@"username"] isEqualToString:[activeUser valueForKey:@"username"]]){
+            if ([[[record valueForKey:@"username"] lowercaseString] isEqualToString:[[activeUser valueForKey:@"username"] lowercaseString]]){
                 activeTeam = teamInfo;
                 activeUser = record;
                 [(AppDelegate *)[UIApplication sharedApplication].delegate setIsIn:[[record valueForKey:@"state"] isEqualToString:@"1"]];
@@ -378,10 +374,9 @@
             selectedMember = nil;
         }
     } else if ([segue.identifier isEqualToString:@"accountSettings"]){
+        [Crashlytics setObjectValue:[activeUser valueForKeyPath:@"username"] forKey:@"activeUsername"];
         [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeamInfo:activeTeam];
-        
-        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setUser:activeUser];
-    }
+        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setUser:activeUser];    }
 }
 
 

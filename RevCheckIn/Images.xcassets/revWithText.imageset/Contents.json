@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "revText.png"
+      "filename" : "revWithText@300x74.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "revWithText@2x.png"
+      "filename" : "revWithText@600x148.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "revWithText@900x222.png"
     }
   ],
   "info" : {
