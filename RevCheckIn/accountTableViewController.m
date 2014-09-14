@@ -355,7 +355,7 @@
     
     if ([imageChanged isEqualToString:@"logo"]){
         
-        UIImage *newLogo = info[UIImagePickerControllerEditedImage];
+        UIImage *newLogo = info[UIImagePickerControllerOriginalImage];
         
         self.loadingIndicator = [[TransLoadingIndicator alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2.0) - 75, (self.view.frame.size.height / 2.0) - 75, 150, 150)];
         [self.loadingIndicator setUp];
