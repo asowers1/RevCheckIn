@@ -298,7 +298,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                         let state: String = CoreDataHelper().getUserStatus()
                         //if state == "0" || state == "-2" || state == "-1" {
                         message = "Setting new 1 state"
-                        self.sendLocalNotificationWithMessage("checking in called")
+                        //self.sendLocalNotificationWithMessage("checking in called")
                         self.setUserState("1")
                         
                     }
@@ -342,7 +342,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                         let state: String = data.getUserStatus()
                         //if state == "1" || state == "-2" || state == "-1" {
                         message = "sending new 0 state"
-                        self.sendLocalNotificationWithMessage("checking out called")
+                        //self.sendLocalNotificationWithMessage("checking out called")
                         self.setUserState("0")
                         //}
                     }
@@ -424,7 +424,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     }
     
     func setUserState(state:String){
-        self.sendLocalNotificationWithMessage("set user state called")
+        //self.sendLocalNotificationWithMessage("set user state called")
         
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -432,10 +432,9 @@ extension AppDelegate: CLLocationManagerDelegate {
         let freq = NSFetchRequest(entityName: "Active_user")
         
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
-        var selectedItem: NSManagedObject = myList[0] as
-        NSManagedObject
+        var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         var user: String = selectedItem.valueForKeyPath("username") as String
-        self.sendLocalNotificationWithMessage("username: \(user)")
+        //self.sendLocalNotificationWithMessage("username: \(user)")
         if user != "-1" || user != ""{
             
             var httpBackgrounder: HTTPBackground = HTTPBackground()
