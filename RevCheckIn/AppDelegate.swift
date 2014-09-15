@@ -289,21 +289,22 @@ extension AppDelegate: CLLocationManagerDelegate {
                     
                     //self.inBounds++
                     NSLog("inBounds")
-                    /*
+                    
                     if self.inBounds > 39 {
                         self.inBounds = 0
-                    }
-                    */
-                    if !isIn {
-                        isIn=true
-                        NSLog("Is not in");
-                        let state: String = CoreDataHelper().getUserStatus()
-                        NSLog("Got user status");
-                        //if state == "0" || state == "-2" || state == "-1" {
-                        message = "Setting new 1 state"
-                        //self.sendLocalNotificationWithMessage("checking in called")
-                        self.setUserState("1")
-                        NSLog("Finished Block");
+                    
+    
+                        if !isIn {
+                            isIn=true
+                            NSLog("Is not in");
+                            let state: String = CoreDataHelper().getUserStatus()
+                            NSLog("Got user status");
+                            //if state == "0" || state == "-2" || state == "-1" {
+                            message = "Setting new 1 state"
+                            //self.sendLocalNotificationWithMessage("checking in called")
+                            self.setUserState("1")
+                            NSLog("Finished Block");
+                        }
                     } else {
                         NSLog("Is in");
                     }
@@ -334,24 +335,24 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }
                 else{
                     
-                    //self.outOfBoundsCount++
+                    self.outOfBoundsCount++
                     println("outOfBounds")
-                    /*
+                    
                     if outOfBoundsCount > 39 {
                         self.outOfBoundsCount = 0
+    
+                        if isIn {
+                            isIn = false
+                            let data: CoreDataHelper = CoreDataHelper()
+                            let state: String = data.getUserStatus()
+                            //if state == "1" || state == "-2" || state == "-1" {
+                            message = "sending new 0 state"
+                            //self.sendLocalNotificationWithMessage("checking out called")
+                            self.setUserState("0")
+                            //}
+                        
+                        }
                     }
-                    */
-                    if isIn {
-                        isIn = false
-                        let data: CoreDataHelper = CoreDataHelper()
-                        let state: String = data.getUserStatus()
-                        //if state == "1" || state == "-2" || state == "-1" {
-                        message = "sending new 0 state"
-                        //self.sendLocalNotificationWithMessage("checking out called")
-                        self.setUserState("0")
-                        //}
-                    }
-
                 }
             }
             NSLog("%@", message)
