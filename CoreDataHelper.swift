@@ -90,14 +90,18 @@ class CoreDataHelper: NSObject {
         println("set state: \(state)")
     }
     func getUserStatus()->String{
+        NSLog("Getting user status");
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         var freq = NSFetchRequest(entityName: "User_status")
+        NSLog("Prepping fetch request");
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
         if let status = myList[0].valueForKeyPath("checked_in") as? String {
+            NSLog("Finished prep request with result != -1");
             return status
         }
+        NSLog("Finished prep request with result -1");
         return "-1"
     }
 }

@@ -1471,8 +1471,8 @@
         <image name="settings_gears" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9jm-pO-BwN"/>
         <segue reference="pVf-53-w9Z"/>
+        <segue reference="rgm-lv-lJE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -34,19 +34,29 @@
     
     NSUUID *uuid = [[NSUUID alloc] init];
     NSString *config = [NSString stringWithFormat:@"com.experiencepush.state.transfer.%@",[uuid UUIDString]];
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:config];
+    //NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:config];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.allowsCellularAccess = YES;
     
     _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
-    NSURL *url = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/index.php"];
+    NSURL *url = [NSURL URLWithString:@"http://www.experiencepush.com/rev/rest/index.php"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     NSString *postString = [NSString stringWithFormat:@"PUSH_ID=123&call=updateUserState&username=%@&state=%@&appTimestamp=%@",username,state,appTimestamp];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    _downloadTask = [self.session downloadTaskWithRequest:request];
+    NSLog(@"initializing download task");
     
+    UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication]
+                                         beginBackgroundTaskWithExpirationHandler:
+                                         ^{
+                                             [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+                                             
+                                         }];
+    
+    _downloadTask = [self.session downloadTaskWithRequest:request];
+    NSLog(@"Resuming downloadTask");
     [_downloadTask resume];
 }
 
@@ -66,7 +76,7 @@
     configuration.allowsCellularAccess = YES;
     _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
-    NSURL *url = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/index.php"];
+    NSURL *url = [NSURL URLWithString:@"http://www.experiencepush.com/rev/rest/index.php"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     NSString *postString = [NSString stringWithFormat:@"PUSH_ID=123&call=linkDeviceToUser&username=%@&device=%@",username,device];
@@ -159,11 +169,13 @@
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
+    NSLog(@"Resumed from offset");
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
       didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
+    NSLog(@"Did write data");
 }
 @end

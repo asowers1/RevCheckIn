@@ -279,6 +279,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 println("username data: \(username)")
             }
             if(beacons.count > 0) {
+                NSLog("Found beacons");
                 let nearestBeacon:CLBeacon = beacons[0] as CLBeacon
                 
                 if username == "-1" {
@@ -287,7 +288,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 }else{
                     
                     //self.inBounds++
-                    println("inBounds")
+                    NSLog("inBounds")
                     /*
                     if self.inBounds > 39 {
                         self.inBounds = 0
@@ -295,12 +296,16 @@ extension AppDelegate: CLLocationManagerDelegate {
                     */
                     if !isIn {
                         isIn=true
+                        NSLog("Is not in");
                         let state: String = CoreDataHelper().getUserStatus()
+                        NSLog("Got user status");
                         //if state == "0" || state == "-2" || state == "-1" {
                         message = "Setting new 1 state"
                         //self.sendLocalNotificationWithMessage("checking in called")
                         self.setUserState("1")
-                        
+                        NSLog("Finished Block");
+                    } else {
+                        NSLog("Is in");
                     }
 
                 }
@@ -425,25 +430,29 @@ extension AppDelegate: CLLocationManagerDelegate {
     
     func setUserState(state:String){
         //self.sendLocalNotificationWithMessage("set user state called")
-        
+        NSLog("Setting user state");
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         var context2: NSManagedObjectContext = appDel2.managedObjectContext!
         let freq = NSFetchRequest(entityName: "Active_user")
+        NSLog("Prepping fetch in setuserstate");
         
         while myList.isEmpty {myList = context2.executeFetchRequest(freq, error: nil)!}
+        NSLog("finished fetch in setuserstate");
         var selectedItem: NSManagedObject = myList[0] as NSManagedObject
         var user: String = selectedItem.valueForKeyPath("username") as String
         //self.sendLocalNotificationWithMessage("username: \(user)")
         if user != "-1" || user != ""{
-            
+            NSLog("user not -1, prepping background task");
             var httpBackgrounder: HTTPBackground = HTTPBackground()
             if (state == "0"){
+                NSLog("sending 0 state");
                 httpBackgrounder.updateUserState(user, "0")
             } else if (state == "1"){
-                
+                NSLog("sending 1 state");
                 httpBackgrounder.updateUserState(user, "1")
             }
+            NSLog("Finished background task");
             //httpBackgrounder.getAllUsers()
             
         }
