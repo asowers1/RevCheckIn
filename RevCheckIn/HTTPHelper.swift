@@ -20,6 +20,16 @@ class HTTPHelper: NSObject {
         var myList: Array<AnyObject> = []
         myList = context.executeFetchRequest(freq, error: nil)!
         if !myList.isEmpty{
+            let username: NSString! = (myList[0] as NSManagedObject).valueForKeyPath("username") as NSString;
+            if username != "-1" || username != ""{
+                if (appDel.isIn){
+                    NSLog("user not -1, prepping background task");
+                    var httpBackgrounder: HTTPBackground = HTTPBackground()
+                    NSLog("sending -1 state");
+                    httpBackgrounder.updateUserState(username, "-1")
+                }
+                
+            }
             println("deleting context")
             for item in myList {
                 context.deleteObject(item as NSManagedObject)
