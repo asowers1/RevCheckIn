@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *roleLabel;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *maskImage;
 
 @property (strong, nonatomic) NSManagedObject *member;
 

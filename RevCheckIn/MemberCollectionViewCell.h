@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *memberImage;
 @property (weak, nonatomic) IBOutlet MarqueeLabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet UIImageView *maskImage;
 
 @end

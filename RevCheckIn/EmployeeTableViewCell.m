@@ -26,8 +26,6 @@
     self.member = memberIn;
     
     [self.userImage setImage:[UIImage imageWithData:[self.member valueForKey:@"picture"]]];
-    [self.userImage setClipsToBounds:YES];
-    [self.userImage.layer setCornerRadius:self.userImage.frame.size.width / 2.0];
     [self.nameLabel setText:[self.member valueForKey:@"name"]];
     [self.roleLabel setText:[self.member valueForKey:@"role"]];
     [self.emailLabel setText:[self.member valueForKey:@"email"]];
@@ -35,10 +33,9 @@
     
     
     if ([[self.member valueForKey:@"state"] isEqualToString:@"1"]){
-        [self.userImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
-        [self.userImage.layer setBorderWidth:2];
+        [self.maskImage setImage:[UIImage imageNamed:@"maskIn"]];
     } else {
-        [self.userImage.layer setBorderWidth:0];
+        [self.maskImage setImage:[UIImage imageNamed:@"mask"]];
     }
 }
 

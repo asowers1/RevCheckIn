@@ -213,6 +213,7 @@
     cell.team = [allTeams objectForKey:allTeams.allKeys[indexPath.row]];
     [cell.teamImage setImage:[allTeams[[allTeams.allKeys objectAtIndex:indexPath.row]] objectForKey:@"logo"]];
     
+    /*
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];;
     UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     [blurEffectView setFrame:CGRectMake(0, 0, 96, 105)];
@@ -232,7 +233,7 @@
     [cell.contentView sendSubviewToBack:blurBuffer];
     [[cell contentView] sendSubviewToBack:blurEffectView];
     [[cell contentView] sendSubviewToBack:cell.teamMembers];
-    
+    */
     [cell.teamMembers setTeamName:allTeams.allKeys[indexPath.row]];
     if (cell.teamMembers.delegate == self){
         [cell.teamMembers reloadData];
@@ -283,7 +284,7 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 106, 0, 5);
+    return UIEdgeInsetsMake(0, 0, 0, 5);
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -294,15 +295,12 @@
     MemberCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"memberCell" forIndexPath:indexPath];
     NSManagedObject *user = [[[allTeams objectForKey:[(TeamMembersCollectionView *)collectionView teamName]] objectForKey:@"members"] objectAtIndex:indexPath.row];
     [cell.memberImage setImage:[UIImage imageWithData:[user valueForKey:@"picture"]]];
-    [cell.memberImage.layer setCornerRadius:cell.memberImage.frame.size.width/2.0];
-    [cell.memberImage setClipsToBounds:YES];
     
     if ([[user valueForKey:@"state"] isEqualToString:@"1"]){
-        [cell.memberImage.layer setBorderColor:[UIColor colorWithRed:(76/255.0) green:(217/255.0) blue:(100/255.0) alpha:1].CGColor];
-        [cell.memberImage.layer setBorderWidth:2];
+        [cell.maskImage setImage:[UIImage imageNamed:@"maskIn"]];
         [cell.timeStamp setHidden:NO];
     } else {
-        [cell.memberImage.layer setBorderWidth:0];
+        [cell.maskImage setImage:[UIImage imageNamed:@"mask"]];
         [cell.timeStamp setHidden:YES];
     }
     

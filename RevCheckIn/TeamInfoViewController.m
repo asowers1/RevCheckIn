@@ -12,6 +12,8 @@
 #import "HTTPImage.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
+#define IPAD     UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
 @interface TeamInfoViewController ()
 {
     NSString *username;
@@ -35,8 +37,6 @@
     }
     [self changeSubview:self.control];
     
-    [self setPreferredContentSize:CGSizeMake(320, 568)];
-    
     [self.logo.layer setCornerRadius:75];
     [self.logo.layer setBorderColor:[UIColor whiteColor].CGColor];
     [self.logo.layer setBorderWidth:5];
@@ -46,8 +46,15 @@
     
     [self.bioLabel setText:[self.team objectForKey:@"bio"]];
     NSLog(@"Width: %f",self.employeeTable.frame.size.width);
-    float screenWidth = self.navigationController.navigationBar.frame.size.width;
-    [self.bioLabel setPreferredMaxLayoutWidth:screenWidth - 16];
+    
+    if (IPAD){
+        [self setPreferredContentSize:CGSizeMake(320, 568)];
+        [self.bioLabel setPreferredMaxLayoutWidth:320 - 16];
+    } else {
+        float screenWidth = self.navigationController.navigationBar.frame.size.width;
+        [self.bioLabel setPreferredMaxLayoutWidth:screenWidth - 16];
+    }
+    
     [self.employeeTable setRowHeight:90];
 
     [self.employeeTable setDataSource:self];
