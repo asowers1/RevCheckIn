@@ -373,7 +373,7 @@
         }
     } else if ([segue.identifier isEqualToString:@"accountSettings"]){
         [Crashlytics setObjectValue:[activeUser valueForKeyPath:@"username"] forKey:@"activeUsername"];
-        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeamInfo:activeTeam];
+        [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setTeamInfo:activeTeam];[(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setAllTeamsView:self];
         [(AccountTableViewController *)[(UINavigationController *)[segue destinationViewController] viewControllers][0] setUser:activeUser];    }
 }
 

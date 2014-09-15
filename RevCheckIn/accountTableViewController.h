@@ -10,6 +10,7 @@
 #import "RevCheckIn-Swift.h"
 #import <CoreData/CoreData.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AllTeamsViewController.h"
 #import "TransLoadingIndicator.h"
 
 @interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
@@ -33,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *changeNumberCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *changeLogoCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *changeBioCell;
+
+@property (strong, nonatomic) AllTeamsViewController *allTeamsView;
 
 - (IBAction)clickDone:(id)sender;
 - (IBAction)clickLogout:(id)sender;

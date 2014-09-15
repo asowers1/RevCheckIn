@@ -67,7 +67,8 @@
 }
 
 -(void)updateName:(NSString *)nameIn andRole:(NSString *)roleIn andPhone:(NSString *)phoneIn{
-    
+    [[self.navigationItem leftBarButtonItem] setEnabled:NO];
+    [[self.navigationItem leftBarButtonItem] setTitle:@"Saving..."];
     NSURL *newUrl = [NSURL URLWithString:@"http://experiencepush.com/rev/rest/"];
     NSString *username = [self.user valueForKey:@"username"];
     
@@ -84,12 +85,15 @@
         NSString *check = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [[self.navigationItem leftBarButtonItem] setEnabled:YES];
+            [[self.navigationItem leftBarButtonItem] setTitle:@"Done"];
             if ([check isEqualToString:@"1"]){
                 [self.phoneDetailLabel setText:phoneIn];
                 [self.roleDetailLabel setText:roleIn];
                 [self.nameDetailLabel setText:nameIn];
                 
-                [[[HTTPHelper alloc] init] getAllUsers];
+                [self.allTeamsView reloadUsers];
             } else {
                 // Upload failed
                 UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"Change Failed" message:@"Try again later" preferredStyle:UIAlertControllerStyleAlert];
@@ -232,8 +236,6 @@
                                             [finished addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil]];
                                             
                                             [self presentViewController:finished animated:YES completion:nil];
-                                            
-                                            [[[HTTPHelper alloc] init] getAllUsers];
                                         } else {
                                             // Upload failed
                                             UIAlertController *fail = [UIAlertController alertControllerWithTitle:@"Change Failed" message:@"Try again later" preferredStyle:UIAlertControllerStyleAlert];
@@ -353,6 +355,9 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     
+    [[self.navigationItem leftBarButtonItem] setEnabled:NO];
+    [[self.navigationItem leftBarButtonItem] setTitle:@"Saving..."];
+    
     if ([imageChanged isEqualToString:@"logo"]){
         
         UIImage *newLogo = info[UIImagePickerControllerOriginalImage];
@@ -374,11 +379,15 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.logo setImage:newLogo];
                     [self.loadingIndicator hide];
+                    [[self.navigationItem leftBarButtonItem] setEnabled:YES];
+                    [[self.navigationItem leftBarButtonItem] setTitle:@"Done"];
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.loadingIndicator changeText:@"upload failed"];
                     [self.loadingIndicator fadeAway];
+                    [[self.navigationItem leftBarButtonItem] setEnabled:YES];
+                    [[self.navigationItem leftBarButtonItem] setTitle:@"Done"];
                 });
             }
             
@@ -399,16 +408,20 @@
             // Build handler for image load failure
             
             if (success){
-                [[[HTTPHelper alloc] init] getAllUsers];
+                [self.allTeamsView reloadUsers];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.loadingIndicator hide];
                     [self.profilePicView setImage:newImage];
+                    [[self.navigationItem leftBarButtonItem] setEnabled:YES];
+                    [[self.navigationItem leftBarButtonItem] setTitle:@"Done"];
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.loadingIndicator changeText:@"upload failed"];
                     [self.loadingIndicator fadeAway];
+                    [[self.navigationItem leftBarButtonItem] setEnabled:YES];
+                    [[self.navigationItem leftBarButtonItem] setTitle:@"Done"];
                 });
             }
             

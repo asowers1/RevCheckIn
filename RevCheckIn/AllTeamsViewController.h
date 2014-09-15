@@ -27,5 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet TransLoadingIndicator *loadingView;
 
+-(void)reloadUsers;
+
 
 @end
