@@ -285,71 +285,61 @@
 
 -(void)changePicture{
     
-    if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
+    
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Change Picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *take = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Change Picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-            [alert dismissViewControllerAnimated:YES completion:nil];
-        }];
-        UIAlertAction *take = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
-            [self presentViewController:picker animated:YES completion:nil];
-            
-        }];
-        UIAlertAction *choose = [UIAlertAction actionWithTitle:@"Choose From Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
-            [self presentViewController:picker animated:YES completion:nil];
-            
-        }];
-        [alert addAction:cancel];
-        [alert addAction:take];
-        [alert addAction:choose];
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        UIActionSheet *changeLogo = [[UIActionSheet alloc] initWithTitle:@"Change Picture" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Picture", @"Choose From Library", nil];
-        [changeLogo showFromRect:self.view.frame inView:self.view animated:YES];
-    }
+        picker.delegate = self;
+        [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+        [picker setAllowsEditing:YES];
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    UIAlertAction *choose = [UIAlertAction actionWithTitle:@"Choose From Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        
+        picker.delegate = self;
+        [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+        [picker setAllowsEditing:YES];
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    [alert addAction:cancel];
+    [alert addAction:take];
+    [alert addAction:choose];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)changeLogo{
     
     
-    if ([[UIDevice currentDevice] systemVersion].floatValue >= 8){
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Change Logo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *choose = [UIAlertAction actionWithTitle:@"Choose From Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Change Logo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-            [alert dismissViewControllerAnimated:YES completion:nil];
-        }];
-        UIAlertAction *choose = [UIAlertAction actionWithTitle:@"Choose From Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:NO];
-            [self presentViewController:picker animated:YES completion:nil];
-            
-        }];
-        [alert addAction:cancel];
-        [alert addAction:choose];
-        [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        UIActionSheet *changeLogo = [[UIActionSheet alloc] initWithTitle:@"Change Logo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose From Library", nil];
-        [changeLogo showFromRect:self.view.frame inView:self.view animated:YES];
-    }
+        picker.delegate = self;
+        [[picker navigationBar] setTintColor:[UIColor whiteColor]];
+        [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
+        [picker setAllowsEditing:NO];
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    [alert addAction:cancel];
+    [alert addAction:choose];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -429,41 +419,6 @@
     }
     
     
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if ([actionSheet.title isEqualToString:@"Change Picture"]){
-        if (buttonIndex == 0){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
-            [self presentViewController:picker animated:YES completion:nil];
-        } else if (buttonIndex == 1){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:YES];
-            [self presentViewController:picker animated:YES completion:nil];
-        }
-    } else if ([actionSheet.title isEqualToString:@"Change Logo"]){
-        if (buttonIndex == 0){
-            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-            
-            picker.delegate = self;
-            [[picker navigationBar] setTintColor:[UIColor whiteColor]];
-            [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [picker setMediaTypes:@[(NSString *) kUTTypeImage]];
-            [picker setAllowsEditing:NO];
-            [self presentViewController:picker animated:YES completion:nil];
-        }
-    }
 }
 
 - (IBAction)clickDone:(id)sender {

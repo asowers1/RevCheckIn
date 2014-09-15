@@ -13,7 +13,7 @@
 #import "AllTeamsViewController.h"
 #import "TransLoadingIndicator.h"
 
-@interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
+@interface AccountTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSDictionary *teamInfo;
 @property (strong, nonatomic) NSManagedObject *user;

@@ -174,6 +174,10 @@
         }
     }
     
+    
+    self.keys = [allTeams.allKeys sortedArrayUsingSelector:
+                               @selector(localizedCaseInsensitiveCompare:)];
+    
     for (NSString *key in allTeams.allKeys){
         NSMutableArray *members = [[allTeams objectForKey:key] objectForKey:@"members"];
         
@@ -204,14 +208,14 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger ret = allTeams.allKeys.count;
+    NSInteger ret = self.keys.count;
     return ret;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TeamTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"teamCell"];
-    cell.team = [allTeams objectForKey:allTeams.allKeys[indexPath.row]];
-    [cell.teamImage setImage:[allTeams[[allTeams.allKeys objectAtIndex:indexPath.row]] objectForKey:@"logo"]];
+    cell.team = [allTeams objectForKey:self.keys[indexPath.row]];
+    [cell.teamImage setImage:[allTeams[[self.keys objectAtIndex:indexPath.row]] objectForKey:@"logo"]];
     
     /*
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];;
@@ -234,7 +238,7 @@
     [[cell contentView] sendSubviewToBack:blurEffectView];
     [[cell contentView] sendSubviewToBack:cell.teamMembers];
     */
-    [cell.teamMembers setTeamName:allTeams.allKeys[indexPath.row]];
+    [cell.teamMembers setTeamName:self.keys[indexPath.row]];
     if (cell.teamMembers.delegate == self){
         [cell.teamMembers reloadData];
     } else {

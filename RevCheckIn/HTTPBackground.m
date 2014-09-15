@@ -32,8 +32,8 @@
     NSString *appTimestamp = [self getTimestamp];
     NSLog(@"APP TIMESTAMP %@",appTimestamp);
     
-    NSUUID *uuid = [[NSUUID alloc] init];
-    NSString *config = [NSString stringWithFormat:@"com.experiencepush.state.transfer.%@",[uuid UUIDString]];
+    //NSUUID *uuid = [[NSUUID alloc] init];
+    //NSString *config = [NSString stringWithFormat:@"com.experiencepush.state.transfer.%@",[uuid UUIDString]];
     //NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:config];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.allowsCellularAccess = YES;

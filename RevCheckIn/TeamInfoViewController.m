@@ -123,7 +123,7 @@
     EmployeeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"employeeCell"];
     
     [cell passMember:[[self.team objectForKey:@"members"] objectAtIndex:indexPath.row]];
-    
+        
     if (self.member){
         if ([cell.nameLabel.text isEqualToString:self.member]){
             selected = indexPath;
