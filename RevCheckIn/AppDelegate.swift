@@ -286,7 +286,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                     data.setUserStatus("1")
                 }else{
                     
-                    //self.inBounds++
+                    self.inBounds++
                     NSLog("inBounds")
                     
                     if self.inBounds > 39 {
@@ -304,10 +304,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                             self.setUserState("1")
                             NSLog("Finished Block");
                         }
-                    } else {
-                        NSLog("Is in");
                     }
-
                 }
             
                 if(nearestBeacon.proximity == lastProximity ||
