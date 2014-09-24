@@ -93,22 +93,32 @@ Problems with iOS 7
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         println("BACKGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
         HTTPBackground().getAllUsers()
     }
 
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        println("RESIGN ACTIVE FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
     }
 
     func applicationDidEnterBackground(application: UIApplication!) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        println("ENTER BACKGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
 
     }
 
     func applicationWillEnterForeground(application: UIApplication!) {
         // Called as part of the transition from the background to the `inactive state; here you can undo many of the changes made on entering the background.
+        println("ENTER FOREGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
 
     }
 
@@ -321,11 +331,12 @@ extension AppDelegate: CLLocationManagerDelegate {
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
             
-            if state != "1"{
-                self.setUserState("1")
-            }
-            else{
-            }
+            //if state != "1"{
+            CoreDataHelper().setUserStatus(state)
+            self.setUserState("1")
+            //}
+            //else{
+            //}
             
 
     }
@@ -343,12 +354,13 @@ extension AppDelegate: CLLocationManagerDelegate {
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
             
-            if  state != "0"{
-                self.setUserState("0")
+            //if  state != "0"{
+            CoreDataHelper().setUserStatus(state)
+            self.setUserState("0")
                 
-            }
-            else{
-            }
+            //}
+            //else{
+            //}
             
 
     }
@@ -367,6 +379,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         var user: String = selectedItem.valueForKeyPath("username") as String
         //self.sendLocalNotificationWithMessage("username: \(user)")
         if user != "-1" || user != ""{
+            
             NSLog("user not -1, prepping background task");
             var httpBackgrounder: HTTPBackground = HTTPBackground()
             if (state == "0"){

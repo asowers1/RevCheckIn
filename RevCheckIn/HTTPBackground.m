@@ -119,8 +119,8 @@
         if([self.call  isEqual: @"updateUserState"]&&[file isEqual:@"1"]){
             NSLog(@"updated user state");
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-            CoreDataHelper *data = [[CoreDataHelper alloc] init];
-            [data setUserStatus:self.state];
+            //CoreDataHelper *data = [[CoreDataHelper alloc] init];
+            //[data setUserStatus:self.state];
             if ([self.state isEqual:@"1"]){
                 [appDelegate sendLocalNotificationWithMessage:@"Checking in"];
             }else if([self.state isEqual:@"0"]){
