@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>Rev</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.experiencepush.</string>
+	<string>com.experiencepush.revcheckin</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,16 +21,14 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>RevCheckIn will use Bluetooth Low Energy BLE® to determin your location so everyone in the incubator can know who's around.</string>
+	<string>RevCheckIn will use Bluetooth Low Energy to determin your location so everyone in the incubator can know who's around.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
-		<string>location</string>
-		<string>remote-notification</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
@@ -44,6 +42,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>requestAlwaysAuthorization</key>
-	<string>RevCheckIn will use Bluetooth Low Energy BLE® to determin your location so everyone in the incubator can know who's around.</string>
+	<string>RevCheckIn will use Bluetooth Low Energy to determin your location so everyone in the incubator can know who's around.</string>
 </dict>
 </plist>

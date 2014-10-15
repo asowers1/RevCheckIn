@@ -101,6 +101,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     if (selected){
         [self.employeeTable selectRowAtIndexPath:selected animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     }

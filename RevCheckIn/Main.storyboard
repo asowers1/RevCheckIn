@@ -782,10 +782,10 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="LbW-Zb-ZjH"/>
-                                                    <exclude reference="xYI-lo-whP"/>
                                                     <exclude reference="9s2-Ga-ry2"/>
                                                     <exclude reference="MTM-r7-Cer"/>
+                                                    <exclude reference="LbW-Zb-ZjH"/>
+                                                    <exclude reference="xYI-lo-whP"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1501,7 +1501,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pVf-53-w9Z"/>
-        <segue reference="rgm-lv-lJE"/>
+        <segue reference="9jm-pO-BwN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
