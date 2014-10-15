@@ -93,22 +93,32 @@ Problems with iOS 7
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         println("BACKGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
         HTTPBackground().getAllUsers()
     }
 
     func applicationWillResignActive(application: UIApplication!) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        println("RESIGN ACTIVE FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
     }
 
     func applicationDidEnterBackground(application: UIApplication!) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        println("ENTER BACKGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
 
     }
 
     func applicationWillEnterForeground(application: UIApplication!) {
         // Called as part of the transition from the background to the `inactive state; here you can undo many of the changes made on entering the background.
+        println("ENTER FOREGROUND FETCH")
+        self.setUserState(CoreDataHelper().getUserStatus())
+        HTTPBackground().getAllUsers()
 
     }
 
@@ -271,7 +281,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
             var message:String = ""
-            
+            NSLog("didRangeBeacon");
             var data:CoreDataHelper=CoreDataHelper()
             let username: String = data.getUsername()
             if username == "-1" {
@@ -285,30 +295,9 @@ extension AppDelegate: CLLocationManagerDelegate {
                     println("Set unknown user state to 1")
                     data.setUserStatus("1")
                 }else{
-                    
-                    //self.inBounds++
-                    NSLog("inBounds")
-                    
-                    if self.inBounds > 39 {
-                        self.inBounds = 0
-                    
-    
-                        if !isIn {
-                            isIn=true
-                            NSLog("Is not in");
-                            let state: String = CoreDataHelper().getUserStatus()
-                            NSLog("Got user status");
-                            //if state == "0" || state == "-2" || state == "-1" {
-                            message = "Setting new 1 state"
-                            //self.sendLocalNotificationWithMessage("checking in called")
-                            self.setUserState("1")
-                            NSLog("Finished Block");
-                        }
-                    } else {
-                        NSLog("Is in");
-                    }
 
                 }
+                
             
                 if(nearestBeacon.proximity == lastProximity ||
                     nearestBeacon.proximity == CLProximity.Unknown) {
@@ -326,33 +315,6 @@ extension AppDelegate: CLLocationManagerDelegate {
                     return
                 }
                 
-            } else {
-                
-                if username == "-1" {
-                    println("Set unknown user state to 0")
-                    data.setUserStatus("0")
-                }
-                else{
-                    
-                    self.outOfBoundsCount++
-                    println("outOfBounds")
-                    
-                    if outOfBoundsCount > 39 {
-                        self.outOfBoundsCount = 0
-    
-                        if isIn {
-                            isIn = false
-                            let data: CoreDataHelper = CoreDataHelper()
-                            let state: String = data.getUserStatus()
-                            //if state == "1" || state == "-2" || state == "-1" {
-                            message = "sending new 0 state"
-                            //self.sendLocalNotificationWithMessage("checking out called")
-                            self.setUserState("0")
-                            //}
-                        
-                        }
-                    }
-                }
             }
             NSLog("%@", message)
     }
@@ -368,25 +330,13 @@ extension AppDelegate: CLLocationManagerDelegate {
             while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
-            CoreDataHelper().setUserStatus("1")
-            var myList1: Array<AnyObject> = []
-            var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
-            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
-            var user: String = selectedItem2.valueForKeyPath("username") as String
-            println("checking in, :\(user): previous state:\(state):")
-            
-            if (user != "-1" && user != ""){
-                self.isIn = true
-                self.inBounds = 0
-                self.outOfBoundsCount = 0
-                self.setUserState("1")
-            }
-            else{
-            }
+            //if state != "1"{
+            CoreDataHelper().setUserStatus(state)
+            self.setUserState("1")
+            //}
+            //else{
+            //}
             
 
     }
@@ -403,33 +353,19 @@ extension AppDelegate: CLLocationManagerDelegate {
             while myList.isEmpty {myList = context1.executeFetchRequest(freq1, error: nil)!}
             var selectedItem1: NSManagedObject = myList[0] as NSManagedObject
             var state: String = selectedItem1.valueForKeyPath("checked_in") as String
-            CoreDataHelper().setUserStatus("0")
-            var myList1: Array<AnyObject> = []
-            var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            var context2: NSManagedObjectContext = appDel2.managedObjectContext!
-            var freq2 = NSFetchRequest(entityName: "Active_user")
             
-            while myList1.isEmpty {myList1 = context2.executeFetchRequest(freq2, error: nil)!}
-            var selectedItem2: NSManagedObject = myList1[0] as NSManagedObject
-            var user: String = selectedItem2.valueForKeyPath("username") as String
-            println("checking out, :\(user): previous state:\(state):")
-            
-            if (user != "-1" && user != ""){
-                self.isIn = false
-                self.outOfBoundsCount = 0
-                self.inBounds = 0
+            //if  state != "0"{
+            CoreDataHelper().setUserStatus(state)
+            self.setUserState("0")
                 
-                self.setUserState("0")
-                
-            }
-            else{
-            }
+            //}
+            //else{
+            //}
             
 
     }
     
     func setUserState(state:String){
-        //self.sendLocalNotificationWithMessage("set user state called")
         NSLog("Setting user state");
         var myList: Array<AnyObject> = []
         var appDel2: AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -443,6 +379,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         var user: String = selectedItem.valueForKeyPath("username") as String
         //self.sendLocalNotificationWithMessage("username: \(user)")
         if user != "-1" || user != ""{
+            
             NSLog("user not -1, prepping background task");
             var httpBackgrounder: HTTPBackground = HTTPBackground()
             if (state == "0"){
